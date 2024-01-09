@@ -1,8 +1,8 @@
 "use client";
 
-import Container from "../Container";
-import SearchBar from "../searchbar/SearchBar";
-import SearchBarContainer from "../searchbar/SearchBarContainer";
+import Container from "../ui/Container";
+import SearchBar from "./searchbar/SearchBar";
+import SearchBarContainer from "./searchbar/SearchBarContainer";
 import Logo from "./Logo";
 import UserMenu from "./UserMenu";
 

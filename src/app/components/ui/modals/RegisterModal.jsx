@@ -1,22 +1,19 @@
 "use client";
 
-// import { signIn } from "next-auth/react";
 import axios from "axios";
 import { AiFillGithub } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import useRegisterModal from "@/app/hooks/useRegisterModal";
 import Modal from "./Modal";
-import Heading from "./Heading";
+import Heading from "../Heading";
 import Input from "../inputs/Input";
 import toast from "react-hot-toast";
 import Button from "../Button";
-import useLoginModal from "@/app/hooks/useLoginModal";
 
-const LoginModal = () => {
+const RegisterModal = () => {
   const registerModal = useRegisterModal();
-  const loginModal = useLoginModal();
   const [isLoading, setIsLoading] = useState(false);
 
   const {
@@ -25,6 +22,7 @@ const LoginModal = () => {
     formState: { errors },
   } = useForm({
     defaultValues: {
+      name: "",
       email: "",
       password: "",
     },
@@ -49,10 +47,18 @@ const LoginModal = () => {
 
   const bodyContent = (
     <div className="flex flex-col gap-4">
-      <Heading title="Welcome back" subtitle="Login to your account!" />
+      <Heading title="Welcome to Wherebnb" subtitle="Create an account!" />
       <Input
         id="eamil"
         label="Email"
+        disabled={isLoading}
+        register={register}
+        errors={errors}
+        required
+      />
+      <Input
+        id="name"
+        label="Name"
         disabled={isLoading}
         register={register}
         errors={errors}
@@ -113,10 +119,10 @@ const LoginModal = () => {
   return (
     <Modal
       disabled={isLoading}
-      isOpen={loginModal.isOpen}
-      title="Login"
+      isOpen={registerModal.isOpen}
+      title="Register"
       actionLabel="Continue"
-      onClose={loginModal.onClose}
+      onClose={registerModal.onClose}
       onSubmit={handleSubmit(onSubmit)}
       body={bodyContent}
       footer={footerContent}
@@ -124,4 +130,4 @@ const LoginModal = () => {
   );
 };
 
-export default LoginModal;
+export default RegisterModal;
