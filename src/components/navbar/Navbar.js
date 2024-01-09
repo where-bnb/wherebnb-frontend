@@ -1,8 +1,8 @@
 "use client";
 
 import Container from "../Container";
-import Search from "../searchbar/Search";
 import SearchBar from "../searchbar/SearchBar";
+import SearchBarContainer from "../searchbar/SearchBarContainer";
 import Logo from "./Logo";
 import UserMenu from "./UserMenu";
 
@@ -19,16 +19,17 @@ const Navbar = () => {
                 justify-between
                 gap-3
                 md:gap-0
+                sm:mx-5
             "
           >
             <Logo />
             <div className="md:hidden">
-              <Search />
+              <SearchBar />
             </div>
             <UserMenu />
           </div>
           <div className="hidden md:block">
-            <SearchBar />
+            <SearchBarContainer />
           </div>
         </Container>
       </div>
