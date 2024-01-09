@@ -1,6 +1,6 @@
 "use client";
 
-import Container from "../ui/Container";
+import Container from "@/app/components/ui/Container";
 import SearchBar from "./searchbar/SearchBar";
 import SearchBarContainer from "./searchbar/SearchBarContainer";
 import Logo from "./Logo";

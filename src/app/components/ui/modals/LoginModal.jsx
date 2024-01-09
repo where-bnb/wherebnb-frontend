@@ -1,21 +1,17 @@
 "use client";
-
-// import { signIn } from "next-auth/react";
-import axios from "axios";
 import { AiFillGithub } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
-import { useCallback, useState } from "react";
+import useLoginModal from "@/app/hooks/useLoginModal";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
-import useRegisterModal from "@/app/hooks/useRegisterModal";
 import Modal from "./Modal";
 import Heading from "../Heading";
 import Input from "../inputs/Input";
-import toast from "react-hot-toast";
 import Button from "../Button";
-import useLoginModal from "@/app/hooks/useLoginModal";
 
 const LoginModal = () => {
-  const registerModal = useRegisterModal();
+  const router = useRouter();
   const loginModal = useLoginModal();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -30,38 +26,22 @@ const LoginModal = () => {
     },
   });
 
-  const onSubmit = (data) => {
-    setIsLoading(true);
-
-    axios
-      .post("http://localhost:3001/", data)
-      .then((res) => {
-        console.log(res);
-        registerModal.onClose();
-      })
-      .catch((error) => {
-        toast.error("Something went wrong.");
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
-  };
-
   const bodyContent = (
     <div className="flex flex-col gap-4">
       <Heading title="Welcome back" subtitle="Login to your account!" />
       <Input
-        id="eamil"
+        id="email"
         label="Email"
         disabled={isLoading}
         register={register}
         errors={errors}
         required
       />
+
       <Input
         id="password"
         type="password"
-        label="Password"
+        label="password"
         disabled={isLoading}
         register={register}
         errors={errors}
@@ -85,28 +65,6 @@ const LoginModal = () => {
         icon={AiFillGithub}
         onClick={() => {}}
       />
-      <div
-        className="
-          text-neutral-500
-          text-center
-          mt-4
-          font-light
-        "
-      >
-        <div className="justify-center flex flex-row items-center gap-2">
-          <div>Already have an account?</div>
-          <div
-            onClick={registerModal.onClose}
-            className="
-          text-neutral-800
-          cursor-pointer
-          hover:underline
-        "
-          >
-            Log in
-          </div>
-        </div>
-      </div>
     </div>
   );
 
@@ -117,7 +75,6 @@ const LoginModal = () => {
       title="Login"
       actionLabel="Continue"
       onClose={loginModal.onClose}
-      onSubmit={handleSubmit(onSubmit)}
       body={bodyContent}
       footer={footerContent}
     />
