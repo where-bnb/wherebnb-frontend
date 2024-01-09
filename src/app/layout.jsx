@@ -1,11 +1,11 @@
 import { Nunito } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/navbar/Navbar";
-import SearchBar from "@/components/searchbar/SearchBarContainer";
-import LoginModal from "@/components/modals/LoginModal";
-import RegisterModal from "@/components/modals/RegisterModal";
-import ClientOnly from "@/components/ClientOnly";
-import ToastProvider from "@/providers/ToastProvider";
+import Navbar from "@/app/components/navbar/Navbar";
+import SearchBar from "@/app/components/searchbar/SearchBarContainer";
+import LoginModal from "@/app/components/modals/LoginModal";
+import RegisterModal from "@/app/components/modals/RegisterModal";
+import ClientOnly from "@/app/components/ClientOnly";
+import ToastProvider from "@/app/providers/ToastProvider";
 
 export const metadata = {
   title: "WhereBnb",
