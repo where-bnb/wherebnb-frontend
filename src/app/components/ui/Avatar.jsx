@@ -1,15 +1,14 @@
 "use client";
-
 import Image from "next/image";
 
-const Avatar = () => {
+const Avatar = ({ src }) => {
   return (
     <Image
       className="rounded-full"
-      height="35"
-      width="35"
+      height="30"
+      width="30"
       alt="Avatar"
-      src="/images/placeholder.jpg"
+      src={src || "/images/placeholder.jpg"}
     />
   );
 };

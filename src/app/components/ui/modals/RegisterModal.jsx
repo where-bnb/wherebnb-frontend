@@ -1,22 +1,17 @@
 "use client";
-
-// import { signIn } from "next-auth/react";
-import axios from "axios";
 import { AiFillGithub } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
-import { useCallback, useState } from "react";
-import { useForm } from "react-hook-form";
-import useRegisterModal from "@/hooks/useRegisterModal";
+import useRegisterModal from "@/app/hooks/useRegisterModal";
+import { useState } from "react";
+import { toast } from "react-hot-toast";
+import { SubmitHandler, useForm } from "react-hook-form";
 import Modal from "./Modal";
-import Heading from "./Heading";
+import Heading from "../Heading";
 import Input from "../inputs/Input";
-import toast from "react-hot-toast";
 import Button from "../Button";
-import useLoginModal from "@/hooks/useLoginModal";
 
-const LoginModal = () => {
+const RegisterModal = () => {
   const registerModal = useRegisterModal();
-  const loginModal = useLoginModal();
   const [isLoading, setIsLoading] = useState(false);
 
   const {
@@ -25,34 +20,40 @@ const LoginModal = () => {
     formState: { errors },
   } = useForm({
     defaultValues: {
+      name: "",
       email: "",
       password: "",
     },
   });
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     setIsLoading(true);
-
-    axios
-      .post("http://localhost:3001/", data)
-      .then((res) => {
-        console.log(res);
-        registerModal.onClose();
-      })
-      .catch((error) => {
-        toast.error("Something went wrong.");
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
+    try {
+      // next-server api 주소로 설정예정
+      // await axios.post("/api/register", data);
+      registerModal.onClose();
+      toast.success("성공적으로 회원가입이 되었습니다.");
+    } catch (err) {
+      toast.error("something went wrong");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const bodyContent = (
     <div className="flex flex-col gap-4">
-      <Heading title="Welcome back" subtitle="Login to your account!" />
+      <Heading title="Welcome to WhereBnb" subtitle="Create an account!" />
       <Input
-        id="eamil"
-        label="Email"
+        id="email"
+        label="email"
+        disabled={isLoading}
+        register={register}
+        errors={errors}
+        required
+      />
+      <Input
+        id="name"
+        label="Name"
         disabled={isLoading}
         register={register}
         errors={errors}
@@ -61,7 +62,7 @@ const LoginModal = () => {
       <Input
         id="password"
         type="password"
-        label="Password"
+        label="password"
         disabled={isLoading}
         register={register}
         errors={errors}
@@ -85,23 +86,12 @@ const LoginModal = () => {
         icon={AiFillGithub}
         onClick={() => {}}
       />
-      <div
-        className="
-          text-neutral-500
-          text-center
-          mt-4
-          font-light
-        "
-      >
-        <div className="justify-center flex flex-row items-center gap-2">
+      <div className="text-neutral-500 text-center mt-4 font-light">
+        <div className=" justify-center flex flex-row items-center gap-2">
           <div>Already have an account?</div>
           <div
             onClick={registerModal.onClose}
-            className="
-          text-neutral-800
-          cursor-pointer
-          hover:underline
-        "
+            className="text-neutral-800 cursor-pointer hover:underline"
           >
             Log in
           </div>
@@ -109,14 +99,13 @@ const LoginModal = () => {
       </div>
     </div>
   );
-
   return (
     <Modal
       disabled={isLoading}
-      isOpen={loginModal.isOpen}
-      title="Login"
+      isOpen={registerModal.isOpen}
+      title="Register"
       actionLabel="Continue"
-      onClose={loginModal.onClose}
+      onClose={registerModal.onClose}
       onSubmit={handleSubmit(onSubmit)}
       body={bodyContent}
       footer={footerContent}
@@ -124,4 +113,4 @@ const LoginModal = () => {
   );
 };
 
-export default LoginModal;
+export default RegisterModal;
