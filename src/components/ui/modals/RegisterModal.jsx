@@ -63,10 +63,13 @@ const RegisterModal = () => {
 
   const bodyContent = (
     <div className="flex flex-col gap-4">
-      <Heading title="Welcome to WhereBnb" subtitle="Create an account!" />
+      <Heading
+        title="웨어비앤비에 오신 것을 환영합니다."
+        subtitle="계정을 생성해보세요!"
+      />
       <Input
         id="email"
-        label="email"
+        label="이메일"
         disabled={isLoading}
         register={register}
         errors={errors}
@@ -74,7 +77,7 @@ const RegisterModal = () => {
       />
       <Input
         id="name"
-        label="Name"
+        label="이름"
         disabled={isLoading}
         register={register}
         errors={errors}
@@ -83,7 +86,7 @@ const RegisterModal = () => {
       <Input
         id="password"
         type="password"
-        label="password"
+        label="비밀번호"
         disabled={isLoading}
         register={register}
         errors={errors}
@@ -98,24 +101,24 @@ const RegisterModal = () => {
       <hr />
       <Button
         outline
-        label="Continue with Google"
+        label="구글로 로그인하기"
         icon={FcGoogle}
         onClick={() => {}}
       />
       <Button
         outline
-        label="Continue with Github"
+        label="깃허브로 로그인하기"
         icon={AiFillGithub}
         onClick={() => {}}
       />
       <div className="text-neutral-500 text-center mt-4 font-light">
         <div className=" justify-center flex flex-row items-center gap-2">
-          <div>Already have an account?</div>
+          <div>이미 계정이 있으신가요?</div>
           <div
             onClick={registerModal.onClose}
             className="text-neutral-800 cursor-pointer hover:underline"
           >
-            Log in
+            로그인 하기
           </div>
         </div>
       </div>
@@ -127,8 +130,8 @@ const RegisterModal = () => {
       <Modal
         disabled={isLoading}
         isOpen={registerModal.isOpen}
-        title="Register"
-        actionLabel="Continue"
+        title="회원 가입"
+        actionLabel="계속"
         onClose={registerModal.onClose}
         // onSubmit={handleSubmit(onSubmit)}
         body={bodyContent}

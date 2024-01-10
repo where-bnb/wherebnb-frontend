@@ -28,7 +28,7 @@ const LoginModal = () => {
 
   const bodyContent = (
     <div className="flex flex-col gap-4">
-      <Heading title="Welcome back" subtitle="Login to your account!" />
+      <Heading title="웨어비앤비에 오신 것을 환영합니다." subtitle="" />
       <Input
         id="email"
         label="Email"
@@ -55,13 +55,13 @@ const LoginModal = () => {
       <hr />
       <Button
         outline
-        label="Continue with Google"
+        label="구글로 로그인하기"
         icon={FcGoogle}
         onClick={() => {}}
       />
       <Button
         outline
-        label="Continue with Github"
+        label="깃허브로 로그인하기"
         icon={AiFillGithub}
         onClick={() => {}}
       />
@@ -72,8 +72,8 @@ const LoginModal = () => {
     <Modal
       disabled={isLoading}
       isOpen={loginModal.isOpen}
-      title="Login"
-      actionLabel="Continue"
+      title="로그인"
+      actionLabel="계속"
       onClose={loginModal.onClose}
       body={bodyContent}
       footer={footerContent}

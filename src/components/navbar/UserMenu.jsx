@@ -78,8 +78,8 @@ const UserMenu = () => {
         >
           <div className="flex flex-col cursor-pointer">
             <>
-              <MenuItem onClick={loginModal.onOpen} label="Login" />
-              <MenuItem onClick={registerModal.onOpen} label="Sign Up" />
+              <MenuItem onClick={loginModal.onOpen} label="로그인" />
+              <MenuItem onClick={registerModal.onOpen} label="회원 가입" />
             </>
           </div>
         </div>
