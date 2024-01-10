@@ -1,7 +1,8 @@
 "use client";
+import axios from "axios";
 import { AiFillGithub } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
-import useRegisterModal from "@/app/hooks/useRegisterModal";
+import useRegisterModal from "@/hooks/useRegisterModal";
 import { useState } from "react";
 import { toast } from "react-hot-toast";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -9,10 +10,28 @@ import Modal from "./Modal";
 import Heading from "../Heading";
 import Input from "../inputs/Input";
 import Button from "../Button";
+import * as actions from "@/actions";
+
+function showMessage(messasge) {
+  if (messasge === "no_id") {
+    return "아이디를 입력하세요.";
+  }
+  if (messasge === "no_name") {
+    return "닉네임을 입력하세요.";
+  }
+  if (messasge === "no_password") {
+    return "비밀번호를 입력하세요.";
+  }
+  if (messasge === "user_exists") {
+    return "이미 사용 중인 아이디입니다.";
+  }
+  return "에러가 발생하였습니다.";
+}
 
 const RegisterModal = () => {
   const registerModal = useRegisterModal();
   const [isLoading, setIsLoading] = useState(false);
+  const [message, setMessage] = useState(null);
 
   const {
     register,
@@ -26,19 +45,21 @@ const RegisterModal = () => {
     },
   });
 
-  const onSubmit = async (data) => {
+  const action = handleSubmit(async (data) => {
     setIsLoading(true);
-    try {
-      // next-server api 주소로 설정예정
-      // await axios.post("/api/register", data);
+
+    const response = await actions.createUser(data);
+    console.log("response!", response);
+
+    if (response.status === 200) {
       registerModal.onClose();
       toast.success("성공적으로 회원가입이 되었습니다.");
-    } catch (err) {
-      toast.error("something went wrong");
-    } finally {
-      setIsLoading(false);
+    } else {
+      setMessage(showMessage(response.data));
     }
-  };
+
+    setIsLoading(false);
+  });
 
   const bodyContent = (
     <div className="flex flex-col gap-4">
@@ -68,6 +89,7 @@ const RegisterModal = () => {
         errors={errors}
         required
       />
+      {message && <p className="text-sm text-error">{message}</p>}
     </div>
   );
 
@@ -99,17 +121,20 @@ const RegisterModal = () => {
       </div>
     </div>
   );
+
   return (
-    <Modal
-      disabled={isLoading}
-      isOpen={registerModal.isOpen}
-      title="Register"
-      actionLabel="Continue"
-      onClose={registerModal.onClose}
-      onSubmit={handleSubmit(onSubmit)}
-      body={bodyContent}
-      footer={footerContent}
-    />
+    <form action={action}>
+      <Modal
+        disabled={isLoading}
+        isOpen={registerModal.isOpen}
+        title="Register"
+        actionLabel="Continue"
+        onClose={registerModal.onClose}
+        // onSubmit={handleSubmit(onSubmit)}
+        body={bodyContent}
+        footer={footerContent}
+      />
+    </form>
   );
 };
 
