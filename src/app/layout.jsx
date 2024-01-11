@@ -5,6 +5,8 @@ import LoginModal from "../components/ui/modals/LoginModal";
 import RegisterModal from "../components/ui/modals/RegisterModal";
 import ToastProvider from "@/providers/ToastProvider";
 import { MswProvider } from "../providers/MswProvider";
+import AuthSession from "@/providers/AuthSessionProvider";
+import getCurrentUser from "./actions/getCurrentUser";
 
 export const metadata = {
   title: "WhereBnb",
@@ -15,16 +17,19 @@ const font = Nunito({
   subsets: ["latin"],
 });
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  const currentUser = await getCurrentUser();
   return (
     <html lang="en">
       <body className={font.className}>
         <MswProvider />
-        <ToastProvider />
-        <RegisterModal />
-        <LoginModal />
-        <Navbar />
-        <div className="md:pt-[200px] pt-[95px]">{children}</div>
+        <AuthSession>
+          <ToastProvider />
+          <RegisterModal />
+          <LoginModal />
+          <Navbar />
+          <div className="md:pt-[200px] pt-[95px]">{children}</div>
+        </AuthSession>
       </body>
     </html>
   );

@@ -13,9 +13,7 @@ export async function createUser(formData) {
         credentials: "include",
       },
     );
-    console.log("response", response);
     const data = await response.json();
-    console.log("data", data);
     return {
       status: response.status,
       data: data,
