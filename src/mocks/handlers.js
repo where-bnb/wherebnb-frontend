@@ -7,7 +7,7 @@ export const handlers = [
       {
         userId: 1,
         nickname: "John",
-        id: "hello1358",
+        email: "hello1358@mail.com",
         image: "/t44EUxc.jpg",
       },
       {

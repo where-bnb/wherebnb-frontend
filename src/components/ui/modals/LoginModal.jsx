@@ -5,10 +5,12 @@ import useLoginModal from "@/hooks/useLoginModal";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import Modal from "./Modal";
+import ModalSubmit from "./ModalSubmit";
 import Heading from "../Heading";
 import Input from "../inputs/Input";
 import Button from "../Button";
+import { signIn } from "next-auth/react";
+import { toast } from "react-hot-toast";
 
 const LoginModal = () => {
   const router = useRouter();
@@ -25,6 +27,26 @@ const LoginModal = () => {
       password: "",
     },
   });
+
+  const onSubmit = (data) => {
+    setIsLoading(true);
+    signIn("credentials", {
+      ...data,
+      redirect: false,
+    }).then((callback) => {
+      setIsLoading(false);
+
+      if (callback?.ok) {
+        toast.success("Logged in");
+        router.refresh();
+        loginModal.onClose();
+      }
+
+      if (callback?.error) {
+        toast.error(callback.error);
+      }
+    });
+  };
 
   const bodyContent = (
     <div className="flex flex-col gap-4">
@@ -69,12 +91,13 @@ const LoginModal = () => {
   );
 
   return (
-    <Modal
+    <ModalSubmit
       disabled={isLoading}
       isOpen={loginModal.isOpen}
       title="로그인"
       actionLabel="계속"
       onClose={loginModal.onClose}
+      onSubmit={handleSubmit(onSubmit)}
       body={bodyContent}
       footer={footerContent}
     />
