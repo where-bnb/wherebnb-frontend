@@ -5,7 +5,7 @@ import useLoginModal from "@/hooks/useLoginModal";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import ModalSubmit from "./ModalSubmit";
+import Modal from "./Modal";
 import Heading from "../Heading";
 import Input from "../inputs/Input";
 import Button from "../Button";
@@ -85,13 +85,13 @@ const LoginModal = () => {
         outline
         label="깃허브로 로그인하기"
         icon={AiFillGithub}
-        onClick={() => {}}
+        onClick={() => signIn("github")}
       />
     </div>
   );
 
   return (
-    <ModalSubmit
+    <Modal
       disabled={isLoading}
       isOpen={loginModal.isOpen}
       title="로그인"
