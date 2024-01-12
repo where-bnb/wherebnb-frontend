@@ -6,8 +6,11 @@ import { useCallback, useState } from "react";
 import MenuItem from "./MenuItem";
 import useRegisterModal from "@/hooks/useRegisterModal";
 import useLoginModal from "@/hooks/useLoginModal";
+import { useSession } from "next-auth/react";
+import { signOut } from "next-auth/react";
 
 const UserMenu = () => {
+  const { data: session, status } = useSession();
   const [isOpen, setIsOpen] = useState(false);
   const registerModal = useRegisterModal();
   const loginModal = useLoginModal();
@@ -16,6 +19,29 @@ const UserMenu = () => {
     setIsOpen((value) => !value);
   }, []);
 
+  let menuContent;
+  if (status === "loading") {
+    menuContent = null;
+  } else if (status === "authenticated") {
+    menuContent = (
+      <>
+        <MenuItem onClick={() => {}} label="My trips" />
+        <MenuItem onClick={() => {}} label="My favorites" />
+        <MenuItem onClick={() => {}} label="My reservations" />
+        <MenuItem onClick={() => {}} label="My properties" />
+        <MenuItem onClick={() => {}} label="Airbnb my home" />
+        <hr />
+        <MenuItem onClick={() => signOut()} label="Logout" />
+      </>
+    );
+  } else {
+    menuContent = (
+      <>
+        <MenuItem onClick={loginModal.onOpen} label="로그인" />
+        <MenuItem onClick={registerModal.onOpen} label="회원 가입" />
+      </>
+    );
+  }
   return (
     <div className="relative">
       <div className="flex flex-row items-center gap-3">
@@ -76,12 +102,7 @@ const UserMenu = () => {
             text-sm
         "
         >
-          <div className="flex flex-col cursor-pointer">
-            <>
-              <MenuItem onClick={loginModal.onOpen} label="Login" />
-              <MenuItem onClick={registerModal.onOpen} label="Sign Up" />
-            </>
-          </div>
+          <div className="flex flex-col cursor-pointer">{menuContent}</div>
         </div>
       )}
     </div>
