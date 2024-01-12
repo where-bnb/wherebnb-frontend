@@ -22,7 +22,7 @@ const UserMenu = () => {
   let menuContent;
   if (status === "loading") {
     menuContent = null;
-  } else if (session?.user) {
+  } else if (status === "authenticated") {
     menuContent = (
       <>
         <MenuItem onClick={() => {}} label="My trips" />

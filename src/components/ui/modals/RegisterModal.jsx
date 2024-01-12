@@ -45,35 +45,23 @@ const RegisterModal = () => {
     },
   });
 
-  const action = handleSubmit(async (data) => {
+  const action = async (data) => {
     setIsLoading(true);
-
     const response = await actions.createUser(data);
-    console.log("response!", response);
-
     if (response.status === 200) {
       registerModal.onClose();
       toast.success("성공적으로 회원가입이 되었습니다.");
     } else {
       setMessage(showMessage(response.data));
     }
-
     setIsLoading(false);
-  });
+  };
 
   const bodyContent = (
     <div className="flex flex-col gap-4">
       <Heading
         title="웨어비앤비에 오신 것을 환영합니다."
         subtitle="계정을 생성해보세요!"
-      />
-      <Input
-        id="email"
-        label="이메일"
-        disabled={isLoading}
-        register={register}
-        errors={errors}
-        required
       />
       <Input
         id="name"
@@ -83,6 +71,16 @@ const RegisterModal = () => {
         errors={errors}
         required
       />
+
+      <Input
+        id="email"
+        label="이메일"
+        disabled={isLoading}
+        register={register}
+        errors={errors}
+        required
+      />
+
       <Input
         id="password"
         type="password"
@@ -109,7 +107,7 @@ const RegisterModal = () => {
         outline
         label="깃허브로 로그인하기"
         icon={AiFillGithub}
-        onClick={() => {}}
+        onClick={() => signIn("github")}
       />
       <div className="text-neutral-500 text-center mt-4 font-light">
         <div className=" justify-center flex flex-row items-center gap-2">
@@ -126,18 +124,16 @@ const RegisterModal = () => {
   );
 
   return (
-    <form action={action}>
-      <Modal
-        disabled={isLoading}
-        isOpen={registerModal.isOpen}
-        title="회원 가입"
-        actionLabel="계속"
-        onClose={registerModal.onClose}
-        // onSubmit={handleSubmit(onSubmit)}
-        body={bodyContent}
-        footer={footerContent}
-      />
-    </form>
+    <Modal
+      disabled={isLoading}
+      isOpen={registerModal.isOpen}
+      title="회원 가입"
+      actionLabel="계속"
+      onClose={registerModal.onClose}
+      onSubmit={handleSubmit(action)}
+      body={bodyContent}
+      footer={footerContent}
+    />
   );
 };
 
