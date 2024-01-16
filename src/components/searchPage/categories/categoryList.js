@@ -126,10 +126,10 @@ export const categories = [
     description: "컨테이너하우스",
   },
   {
-    label: "컨테이너하우스",
-    name: "container",
-    icon: "https://a0.muscache.com/pictures/0ff9740e-52a2-4cd5-ae5a-94e1bfb560d6.jpg",
-    description: "컨테이너하우스",
+    label: "초소형 주택",
+    name: "extraSmall",
+    icon: "https://a0.muscache.com/pictures/3271df99-f071-4ecf-9128-eb2d2b1f50f0.jpg",
+    description: "초소형 주택",
   },
   {
     label: "트리하우스",

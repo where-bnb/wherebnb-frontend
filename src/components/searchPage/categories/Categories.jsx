@@ -4,7 +4,6 @@ import CategoryBox from "./CategoryBox";
 import { useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { categories } from "./categoryList";
-import { Navigation, Pagination, A11y } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { BiChevronRight, BiChevronLeft } from "react-icons/bi";
 
@@ -38,8 +37,9 @@ const Categories = () => {
         <div className="flex flex-row items-center justify-between overflow-x-auto">
           {categories.map((item) => (
             <>
-              <SwiperSlide key={item.label}>
+              <SwiperSlide>
                 <CategoryBox
+                  key={item.name}
                   label={item.label}
                   name={item.name}
                   selected={params?.get("category") === item.name}

@@ -6,6 +6,8 @@ import RegisterModal from "../components/ui/modals/RegisterModal";
 import ToastProvider from "@/providers/ToastProvider";
 import { MswProvider } from "../providers/MswProvider";
 import AuthSession from "@/providers/AuthSessionProvider";
+import Container from "@/components/ui/Container";
+import FilterModal from "@/components/searchPage/filters/FilterModal";
 
 export const metadata = {
   title: "WhereBnb",
@@ -25,8 +27,11 @@ export default async function RootLayout({ children }) {
           <ToastProvider />
           <RegisterModal />
           <LoginModal />
+          <FilterModal />
           <Navbar />
-          <div className="md:pt-[200px] pt-[95px]">{children}</div>
+          <div className="md:pt-[260px] pt-[180px]">
+            <Container>{children}</Container>
+          </div>
         </AuthSession>
       </body>
     </html>

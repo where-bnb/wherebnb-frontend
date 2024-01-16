@@ -48,6 +48,7 @@ const CategoryBox = ({ icon, label, name, selected }) => {
         justify-center 
         gap-2 
         p-3
+        pb-0
         hover:text-neutral-800
         hover:opacity-100
         transition 
