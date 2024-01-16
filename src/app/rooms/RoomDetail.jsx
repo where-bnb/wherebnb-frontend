@@ -5,7 +5,7 @@ import RoomInfo from "@/components/room/RoomInfo";
 import Container from "@/components/ui/Container";
 import { CATEGORIES } from "@/utils/iconMaker";
 import RoomReview from "@/components/room/RoomReview";
-import RoomMap from "@/components/room/RoomMap";
+import HostingArea from "@/components/room/HostingArea";
 
 const RoomDetail = () => {
   // const category = useMemo(() => {
@@ -34,7 +34,8 @@ const RoomDetail = () => {
           <hr />
           <RoomReview />
           <hr />
-          <RoomMap />
+          <HostingArea />
+          <hr />
           <div>알아두어야 할 사항</div>
         </div>
       </div>

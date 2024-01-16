@@ -7,3 +7,8 @@ body,
 :root {
   height: 100%;
 }
+
+/* google map custom marker */
+.gm-ui-hover-effect {
+  display: none !important;
+}

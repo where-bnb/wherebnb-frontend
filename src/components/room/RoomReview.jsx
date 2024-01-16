@@ -45,7 +45,7 @@ const RoomReview = () => {
           </div>
         </div>
         <div className="mb-10 pb-10 border-b grid grid-cols-6">
-          <div class="border-r">
+          <div className="border-r">
             <div className="pl-4 flex flex-col justify-between gap-6">
               <div className="text-xs">
                 <div>청결도</div>
@@ -54,7 +54,7 @@ const RoomReview = () => {
               <MdOutlineSanitizer size={30} />
             </div>
           </div>
-          <div class="border-r">
+          <div className="border-r">
             <div className="pl-4 flex flex-col justify-between gap-6">
               <div className="text-xs">
                 <div>정확도</div>
@@ -63,7 +63,7 @@ const RoomReview = () => {
               <CiCircleCheck size={30} />
             </div>
           </div>
-          <div class="border-r">
+          <div className="border-r">
             <div className="pl-4 flex flex-col justify-between gap-6">
               <div className="text-xs">
                 <div>체크인</div>
@@ -72,7 +72,7 @@ const RoomReview = () => {
               <IoKeyOutline size={30} />
             </div>
           </div>
-          <div class="border-r">
+          <div className="border-r">
             <div className="pl-4 flex flex-col justify-between gap-6">
               <div className="text-xs">
                 <div>의사소통</div>
@@ -81,7 +81,7 @@ const RoomReview = () => {
               <FaCommentDots size={30} />
             </div>
           </div>
-          <div class="border-r">
+          <div className="border-r">
             <div className="pl-4 flex flex-col justify-between gap-6">
               <div className="text-xs">
                 <div>위치</div>
@@ -100,7 +100,7 @@ const RoomReview = () => {
             </div>
           </div>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <Comment />
           <Comment />
           <Comment />
