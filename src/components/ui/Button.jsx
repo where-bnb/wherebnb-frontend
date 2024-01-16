@@ -5,6 +5,7 @@ const Button = ({ label, onClick, disabled, outline, small, icon: Icon }) => {
       onClick={onClick}
       disabled={disabled}
       className={`
+        p-5
         relative
         disabled:opacity-70
         disabled:cursor-not-allowed

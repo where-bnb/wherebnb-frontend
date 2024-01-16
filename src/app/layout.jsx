@@ -16,21 +16,21 @@ const font = Nunito({
   subsets: ["latin"],
 });
 
-export default async function RootLayout({ children, navbar }) {
-
-
-  return (
-    <html lang="en">
-      <body className={font.className}>
-        <MswProvider />
-        <AuthSession>
-          <ToastProvider />
-          <RegisterModal />
-          <LoginModal />
-          {navbar || <Navbar/>}
-          <div className="md:pt-[200px] pt-[95px]">{children}</div>
-        </AuthSession>
-      </body>
-    </html>
-  );
+export default function RootLayout({ children }) {
+    return (
+        <html lang="en">
+        <body className={font.className}>
+        {/*<MswProvider />*/}
+        {/*<AuthSession>*/}
+        {/*    <ToastProvider />*/}
+        {/*    <RegisterModal />*/}
+        {/*    <LoginModal />*/}
+        {/*    <Navbar/>*/}
+        <div>{children}</div>
+        {/*<div>app/layout.jsx</div>*/}
+        
+        {/*</AuthSession>*/}
+        </body>
+        </html>
+    );
 }

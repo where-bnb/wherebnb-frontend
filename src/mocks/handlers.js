@@ -50,4 +50,18 @@ export const handlers = [
       created_at: "2024-01-12T02:48:55.040Z",
     });
   }),
+  http.post('/api/post/image', (req, res, ctx) => {
+    const { file } = req.body;
+    // 여기서는 간단히 모의 URL을 반환하고 있습니다.
+    const mockS3Url = 'https://example-s3-bucket.com';
+    const mockFields = { key: 'mock-key' }; // 모의 필드
+
+    return res(
+        ctx.json({
+          url: mockS3Url, // 모의 S3 URL
+          fields: mockFields // 모의 필드
+        })
+    );
+  }),
+
 ];

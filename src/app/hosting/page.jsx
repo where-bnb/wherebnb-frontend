@@ -9,8 +9,3 @@ export default function HostingPage() {
     </div>
   );
 }
-
-// HostingPage에 대해 별도의 레이아웃을 적용하지 않음
-HostingPage.getLayout = function(page) {
-  return <>{page}</>;
-}
