@@ -100,6 +100,7 @@ const UserMenu = () => {
             right-0
             top-14
             text-sm
+            z-10
         "
         >
           <div className="flex flex-col cursor-pointer">{menuContent}</div>

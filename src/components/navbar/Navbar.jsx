@@ -7,14 +7,16 @@ import Logo from "./Logo";
 import UserMenu from "./UserMenu";
 import FilterButton from "../searchPage/filters/FilterButton";
 import Categories from "../searchPage/categories/Categories";
+import { DatePickerProvider } from "@bcad1591/react-date-picker";
 
 const Navbar = () => {
   return (
-    <div className="fixed w-full bg-white z-10">
-      <Container>
-        <div className="py-2">
-          <div
-            className="
+    <DatePickerProvider>
+      <div className="fixed w-full bg-white z-10">
+        <Container>
+          <div className="py-2">
+            <div
+              className="
                 flex
                 flex-row
                 items-center
@@ -23,20 +25,20 @@ const Navbar = () => {
                 md:gap-0
                 sm:mx-5
             "
-          >
-            <Logo />
-            <div className="md:hidden">
-              <SearchBar />
+            >
+              <Logo />
+              <div className="md:hidden">
+                <SearchBar />
+              </div>
+              <UserMenu />
             </div>
-            <UserMenu />
+            <div className="hidden md:block">
+              <SearchBarContainer />
+            </div>
           </div>
-          <div className="hidden md:block">
-            <SearchBarContainer />
-          </div>
-        </div>
-      </Container>
-      <div
-        className="
+        </Container>
+        <div
+          className="
             flex
             flex-row
             items-center
@@ -44,16 +46,16 @@ const Navbar = () => {
             gap-5
             border-t-[1px]
             border-neutral-200
-            pt-3
             xl:px-20
             md:px-10
             sm:px-2
             px-4"
-      >
-        <Categories />
-        <FilterButton />
+        >
+          <Categories />
+          <FilterButton />
+        </div>
       </div>
-    </div>
+    </DatePickerProvider>
   );
 };
 

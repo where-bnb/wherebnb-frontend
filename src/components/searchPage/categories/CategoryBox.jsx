@@ -46,7 +46,8 @@ const CategoryBox = ({ icon, label, name, selected }) => {
         flex-col 
         items-center 
         justify-center 
-        gap-2 
+        gap-2
+        pt-6 
         p-3
         pb-0
         hover:text-neutral-800

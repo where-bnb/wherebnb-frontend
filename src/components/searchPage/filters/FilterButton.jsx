@@ -13,7 +13,7 @@ const FilterButton = () => {
         flex flex-row flex-shrink-0
         align-middle
         justify-center
-        py-3
+        py-3 mt-3
         w-[85px] h-[50px] 
         border-neutral-300 
         border-[1.5px]

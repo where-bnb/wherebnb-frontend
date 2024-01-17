@@ -1,19 +1,28 @@
 "use client";
 
 import { useCallback } from "react";
+import { DatePicker, useDatePickReset } from "@bcad1591/react-date-picker";
+import { IoClose } from "react-icons/io5";
 
 const SearchDateInput = ({ name, label, placeholder, isOpen, setIsOpen }) => {
+  const resetDatePicker = useDatePickReset();
+
   const toggleOpen = useCallback(() => {
     setIsOpen((value) => {
       if (value === name) return "";
       return name;
     });
   }, []);
+  const resetDate = useCallback((e) => {
+    e.stopPropagation();
+    resetDatePicker();
+  }, []);
 
   return (
-    <div
-      onClick={toggleOpen}
-      className={`
+    <>
+      <div
+        onClick={toggleOpen}
+        className={`
                 hidden 
                 md:block
                 pl-3
@@ -26,18 +35,19 @@ const SearchDateInput = ({ name, label, placeholder, isOpen, setIsOpen }) => {
                 ${isOpen ? "md:bg-white" : ""}
                 ${isOpen ? "md:shadow-md" : ""}
             `}
-    >
-      <div
-        className="
+      >
+        <div className="flex flex-row justify-between">
+          <div
+            className="
               h-full
               p-3
               flex
               flex-col
             "
-      >
-        <div className="text-xs font-bold">{label}</div>
-        <div
-          className={`
+          >
+            <div className="text-xs font-bold">{label}</div>
+            <div
+              className={`
                 h-full
                 pt-[1px]
                 text-sm
@@ -48,11 +58,34 @@ const SearchDateInput = ({ name, label, placeholder, isOpen, setIsOpen }) => {
                 focus:outline-none
                 ${isOpen ? "text-neutral-400" : "text-neutral-500"}
               `}
-        >
-          {placeholder}
+            >
+              {placeholder}
+            </div>
+          </div>
+          {isOpen && (
+            <button
+              onClick={(e) => resetDate(e)}
+              className="-translate-x-4 translate-y-4 h-fit w-fit rounded-full p-2 hover:bg-neutral-100"
+            >
+              <IoClose />
+            </button>
+          )}
         </div>
       </div>
-    </div>
+
+      {isOpen && (
+        <div
+          className="
+        absolute
+        top-[120%]
+        -translate-x-10
+        z-10
+      "
+        >
+          <DatePicker disablePreviousDays />
+        </div>
+      )}
+    </>
   );
 };
 

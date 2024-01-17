@@ -5,7 +5,9 @@ import { useSwiper } from "swiper/react";
 const SwiperButton = ({ icon: Icon, direction }) => {
   const swiper = useSwiper();
 
-  const handleClick = () => {
+  const handleClick = (e) => {
+    e.stopPropagation();
+
     if (direction === "prev") {
       swiper.slidePrev();
     }
@@ -16,8 +18,8 @@ const SwiperButton = ({ icon: Icon, direction }) => {
   return (
     <div
       className={`
-        top-[25%]
         absolute
+        top-[45%]
         z-10
         button-${direction}-slide
         flex
@@ -28,8 +30,10 @@ const SwiperButton = ({ icon: Icon, direction }) => {
         h-[30px] 
         border-[1.5px]
         border-neutral-300
+        bg-white
         px-2
         py-2
+        mx-2
         rounded-full
         space-x-4
         duration-500
@@ -38,7 +42,7 @@ const SwiperButton = ({ icon: Icon, direction }) => {
     
         `}
     >
-      <button onClick={handleClick}>
+      <button onClick={(e) => handleClick(e)}>
         <Icon size={20} />
       </button>
     </div>

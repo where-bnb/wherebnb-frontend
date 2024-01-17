@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import HeartButton from "./HeartButton";
+import ImageSwiper from "../swiper/ImageSwiper";
 
 const ListingCard = ({ currentUser }) => {
   const router = useRouter();
@@ -22,12 +23,13 @@ const ListingCard = ({ currentUser }) => {
             rounded-xl
           "
         >
-          <Image
+          <ImageSwiper />
+          {/* <Image
             fill
             alt="Listing"
             src={"/images/placeholder.jpg"}
             className="object-cover h-full w-full group-hover:scale-110 transition"
-          />
+          /> */}
           <div className="absolute top-4 right-4">
             <HeartButton listingId="id" currentUser={currentUser} />
           </div>
