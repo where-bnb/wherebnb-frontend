@@ -5,18 +5,12 @@ import RoomContentModal from "@/components/room/RoomContentModal";
 
 const RoomDetailPage = async ({ params }) => {
   const room = await getRoomById(params);
-  console.log("room", room);
 
   if (!room) {
     return <EmptyState />;
   }
 
-  return (
-    <>
-      <RoomContentModal />
-      <RoomDetail room={room} />
-    </>
-  );
+  return <RoomDetail room={room} />;
 };
 
 export default RoomDetailPage;

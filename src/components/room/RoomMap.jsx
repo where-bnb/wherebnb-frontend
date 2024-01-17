@@ -13,9 +13,9 @@ const containerStyle = {
   height: "30vh",
 };
 
-const RoomMap = () => {
-  const [lat, setLat] = useState(27.672932021393862);
-  const [lng, setLng] = useState(85.31184012689732);
+const RoomMap = ({ latitude, longitude }) => {
+  const [lat, setLat] = useState(latitude);
+  const [lng, setLng] = useState(longitude);
   const [isInfoWindowOpen, setIsInfoWindowOpen] = useState(false);
 
   const mapCenter = useMemo(() => ({ lat: lat, lng: lng }), [lat, lng]);
