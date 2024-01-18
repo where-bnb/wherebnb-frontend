@@ -3,7 +3,11 @@
 import {useState} from "react";
 import {useCallback} from "react";
 import MenuItem from "@/components/navbar/MenuItem";
+import {useRouter} from "next/navigation";
 const HostMenu = () => {
+
+    const Router = useRouter();
+
     const [ isOpen, setIsOpen ] = useState (false);
 
     const toggleOpen = useCallback(() => {
@@ -13,8 +17,7 @@ const HostMenu = () => {
         <div className='relative'>
             <div className='flex flex-row items-center gap-3'>
                 <div
-                    onClick={() => {
-                    }}
+                    onClick={() => {Router.push('/hosting/inbox')}}
                     className='
                         hidden
                         md:block
@@ -28,28 +31,28 @@ const HostMenu = () => {
                         cursor-pointer
                     '
                 >
-                    투데이
+                    예약
                 </div>
+                {/*<div*/}
+                {/*    onClick={() => {*/}
+                {/*    }}*/}
+                {/*    className='*/}
+                {/*        hidden*/}
+                {/*        md:block*/}
+                {/*        text-sm*/}
+                {/*        font-semibold*/}
+                {/*        py-3*/}
+                {/*        px-4*/}
+                {/*        rounded-full*/}
+                {/*        hover:bg-neutral-100*/}
+                {/*        transition*/}
+                {/*        cursor-pointer*/}
+                {/*    '*/}
+                {/*>*/}
+                {/*    달력*/}
+                {/*</div>*/}
                 <div
-                    onClick={() => {
-                    }}
-                    className='
-                        hidden
-                        md:block
-                        text-sm
-                        font-semibold
-                        py-3
-                        px-4
-                        rounded-full
-                        hover:bg-neutral-100
-                        transition
-                        cursor-pointer
-                    '
-                >
-                    달력
-                </div>
-                <div
-                    onClick={() => {
+                    onClick={() => {Router.push('/hosting/listings')
                     }}
                     className='
                         hidden
@@ -119,16 +122,16 @@ const HostMenu = () => {
                 >
                     <div className='flex flex-col cursor-pointer'>
                         <>
-                            <MenuItem
-                                onClick={() => {}}
-                                label='예약'
-                            />
+                            {/*<MenuItem*/}
+                            {/*    onClick={() => {}}*/}
+                            {/*    label='예약'*/}
+                            {/*/>*/}
                             <MenuItem
                                 onClick={() => {}}
                                 label='인사이트'
                             />
                             <MenuItem
-                                onClick={() => {}}
+                                onClick={() => {Router.push('/become-a-host/first/overview')}}
                                 label='새로운 숙소 등록하기'
                             />
                         </>

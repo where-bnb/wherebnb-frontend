@@ -1,12 +1,16 @@
 // src/app/become-a-host/layout.jsx
 
+import HostNavbar from "@/components/host/Hosting/HostNavbar";
+
 const HostingLayout = ({ children }) => {
     return (
         <>
-            <div>HostingLayout</div>
-            <div>{children}</div>
+                <HostNavbar/>
+                <div className="py-40 min-h-screen">
+                    {children}
+                </div>
         </>
-    );
+        );
 };
 
 export default HostingLayout;

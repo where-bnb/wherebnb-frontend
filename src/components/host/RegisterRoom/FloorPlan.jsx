@@ -30,6 +30,8 @@ export const FloorPlan = () => {
         { name: 'bathroomCount', label: '욕실' }
     ];
 
+    const guest = { name: 'guestCount', label: '게스트' }
+
 
     return (
         <div

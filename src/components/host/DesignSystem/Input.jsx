@@ -1,4 +1,4 @@
-export default function Input({placeholder}) {
+export default function Input({placeholder, value}) {
     return (
         <div>
             <div style={{
@@ -30,6 +30,7 @@ export default function Input({placeholder}) {
                         wordWrap : 'break-word',
                     }}
                     placeholder={placeholder}
+                    value={value}
                     />
                 </div>
             </div>

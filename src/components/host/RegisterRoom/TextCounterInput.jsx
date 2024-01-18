@@ -13,11 +13,11 @@ const TextCounterInput = ({ maxLength, title, description}) => {
     };
 
     return (
-        <div className="flex justify-center items-center flex-col">
+        <div className="flex justify-center items-center flex-col w-2/5 ">
             <h1 className="text-4xl font-bold mb-2">{title}</h1>
             <h1 className="mb-2">{description}</h1>
             <div className="w-full h-96">
-                <input
+                <textarea
                     type="text"
                     value={text}
                     onChange={handleChange}
@@ -32,6 +32,7 @@ const TextCounterInput = ({ maxLength, title, description}) => {
                     focus:border-blue-500
                     transition
                     duration-200
+                    text-2xl
                 "
                 />
                 <p>{text.length} / {maxLength}</p>

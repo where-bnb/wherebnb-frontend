@@ -23,8 +23,8 @@ const HostNavbar = () => {
                     >
                         <Logo />
                         <HostMenu/>
+                        <HostProfile/>
                     </div>
-                    <HostProfile/>
                 </Container>
             </div>
         </div>
