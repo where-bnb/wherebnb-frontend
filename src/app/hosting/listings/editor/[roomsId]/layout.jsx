@@ -4,7 +4,7 @@ export default function EditLayout({children}) {
     return (
         <>
             <RoomsEditComponent/>
-            <div className="pl-96 min-h-screen">
+            <div className="pl-96 pr-24 min-h-fit">
                 {children}
             </div>
         </>
