@@ -1,19 +1,11 @@
 import EmptyState from "@/components/searchPage/EmptyState";
 import ListingCard from "@/components/searchPage/listingCard/ListingCard";
-import getCurrentUserId from "@/actions/getCurrentUserId";
+import { getCurrentUser } from "@/actions/getCurrentUser";
 import { authApi } from "@/lib/axios";
 
 export default async function Home() {
   const isEmpty = false;
-  const currentUser = await getCurrentUserId();
-
-  // ServerSide Axios api Test용 Code
-  if (currentUser) {
-    const favoriteList = await authApi.get(
-      `/users/${currentUser?.id}/favorite`
-    );
-    console.log(favoriteList.data);
-  }
+  const currentUser = await getCurrentUser();
 
   if (isEmpty) {
     return <EmptyState showReset />;

@@ -5,25 +5,9 @@ import { useRouter } from "next/navigation";
 import HeartButton from "./HeartButton";
 import ImageSwiper from "../swiper/ImageSwiper";
 import { useSession } from "next-auth/react";
-import { useAxiosAuth } from "@/hooks/useAxiosAuth";
 
 const ListingCard = ({ favoriteListing, id }) => {
   const router = useRouter();
-
-  // ClientSide axios instance Test용  --------------------------------
-  // const { data: session } = useSession();
-
-  // const axiosAuth = useAxiosAuth();
-  // const getData = async () => {
-  //   if (session) {
-  //     const data = await axiosAuth.get(
-  //       `/users/${session?.user.userId}/favorite`
-  //     );
-  //     console.log(data);
-  //   }
-  // };
-  // getData();
-  // ---------------------------------------------------------------
 
   return (
     <div

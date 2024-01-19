@@ -6,54 +6,25 @@ export const handlers = [
     console.log("로그인 -> access token 생성");
     return HttpResponse.json(
       {
-        user: {
-          createDate: "2024-01-12T02:48:55.040Z",
-          lastModifiedDate: "2024-01-12T02:48:55.040Z",
-          userId: 1,
-          name: "John Doe",
-          picture: "",
-          role: "USER",
-          email: "user@example.com",
-          password:
-            "$2a$10$/FzEaOhkzGSMxXgFiSzUlewyh6EcG/LM3an0MSWCnZKGBojLFc4B.",
-          phoneNumber: 1234567890,
-          refreshToken:
-            "Bearer eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3MDYyMzYxODV9.V8wWhm1uKjGt2Bso-x-Ttn6MImtk7xmP0nGUqoptck0",
-          provider: null,
-          providerId: null,
-          address: {
-            country: "Country",
-            state: "State",
-            city: "City",
-            street: "Street",
-            details: "Details",
-            zipcode: "Zipcode",
-            latitude: 10.0,
-            longitude: 20.0,
-          },
-          wishList: [1, 3, 4],
-        },
+        accessToken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9",
+        refreshToken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9",
+        expTime: 3600,
+        userId: 32,
       },
       {
         headers: {
           "Set-Cookie": "connect.sid=msw-cookie;HttpOnly;Path=/",
-          Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9",
         },
       }
     );
   }),
   http.post("/auth/refresh", () => {
-    console.log("로그인 -> refresh token 실행");
+    console.log("refresh token 실행");
     return HttpResponse.json(
-      {
-        NewAccessToken:
-          "Bearer refreshed!!!-eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9",
-      },
+      {},
       {
         headers: {
-          "Set-Cookie": "connect.sid=msw-cookie;HttpOnly;Path=/",
-          NewAccessToken:
-            "Bearer refreshed!!!-eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9",
+          NewAccessToken: "Bearer refreshed ---token ,.,..",
         },
       }
     );
@@ -67,6 +38,19 @@ export const handlers = [
       headers: {
         "Set-Cookie": "connect.sid=msw-cookie;HttpOnly;Path=/;Max-Age=0",
       },
+    });
+  }),
+  http.get("/users/:userId", async ({ request }) => {
+    // return HttpResponse.text(JSON.stringify("user_exists"), {
+    //   status: 403,
+    // });
+    console.log("user정보 요청");
+    return HttpResponse.json({
+      id: 32,
+      name: "John Doe",
+      email: "user@example.com",
+      farvoriteList: [123, 333, 555],
+      created_at: "2024-01-12T02:48:55.040Z",
     });
   }),
   http.get("/users/:id/favorite", async ({ request }) => {
