@@ -1,5 +1,9 @@
 "use client";
-const Button = ({ label, onClick, disabled, outline, small, icon: Icon }) => {
+import {useRouter} from "next/navigation";
+
+const Button = ({ label, onClick, disabled, outline, small , icon: Icon }) => {
+    const router = useRouter();
+
   return (
     <button
       onClick={onClick}

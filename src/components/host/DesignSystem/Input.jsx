@@ -1,4 +1,4 @@
-export default function Input({placeholder, value}) {
+export default function Input({ placeholder, value , onChange}) {
     return (
         <div>
             <div style={{
@@ -16,23 +16,19 @@ export default function Input({placeholder, value}) {
                 gap : 4,
                 display : 'inline-flex'
             }}>
-                <div style={{
-                    justifyContent : 'flex-start',
-                    alignItems : 'flex-start',
-                    gap : 357,
-                    display : 'inline-flex'
-                }}>
-                    <input style={{
-                        color : '#717171',
-                        fontSize : 16,
-                        fontFamily : 'SF Pro',
-                        fontWeight : '400',
-                        wordWrap : 'break-word',
-                    }}
-                    placeholder={placeholder}
-                    value={value}
-                    />
-                </div>
+                <input style={{
+                    color : '#717171',
+                    fontSize : 16,
+                    fontFamily : 'SF Pro',
+                    fontWeight : '400',
+                    wordWrap : 'break-word',
+                    width : '100%',
+                    height : '100%',
+                }}
+                       placeholder={placeholder}
+                       value={value}
+                       onChange={onChange}
+                />
             </div>
         </div>
     );
