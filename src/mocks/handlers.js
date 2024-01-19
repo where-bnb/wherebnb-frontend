@@ -6,10 +6,10 @@ export const handlers = [
     console.log("로그인 -> access token 생성");
     return HttpResponse.json(
       {
-        access_token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9",
-        refresh_token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9",
-        token_type: "Bearer",
-        expires_in: 3600,
+        accessToken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9",
+        refreshToken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9",
+        expTime: 3600,
+        userId: 32,
       },
       {
         headers: {
@@ -19,13 +19,15 @@ export const handlers = [
     );
   }),
   http.post("/auth/refresh", () => {
-    console.log("로그인 -> refresh token 실행");
-    return HttpResponse.json({
-      access_token: "updated_token",
-      refresh_token: "updated_token",
-      token_type: "Bearer",
-      expires_in: 3600,
-    });
+    console.log("refresh token 실행");
+    return HttpResponse.json(
+      {},
+      {
+        headers: {
+          NewAccessToken: "Bearer refreshed ---token ,.,..",
+        },
+      },
+    );
   }),
   http.post("/users", async ({ request }) => {
     console.log("회원가입");
@@ -38,23 +40,33 @@ export const handlers = [
       },
     });
   }),
-  http.post("/users/me", async ({ request }) => {
-    console.log("특정정보 유저확인");
+  http.get("/users/:userId", async ({ request }) => {
     // return HttpResponse.text(JSON.stringify("user_exists"), {
     //   status: 403,
     // });
+    console.log("user정보 요청");
     return HttpResponse.json({
-      id: 0,
+      id: 32,
       name: "John Doe",
       email: "user@example.com",
+      farvoriteList: [123, 333, 555],
       created_at: "2024-01-12T02:48:55.040Z",
     });
+  }),
+  // 숙소 예약
+  http.post("/rooms/booking/:propertyId", async ({ request, params }) => {
+    const propertyId = params.propertyId; // URL 경로에서 propertyId 추출
+    const body = await request.json(); // 요청 본문을 JSON으로 파싱
+
+    // 이제 propertyId와 body 데이터를 사용할 수 있음
+    console.log(propertyId, body);
+    return HttpResponse.json({});
   }),
   // 숙소상세 정보
   http.get("/rooms/:roomId", ({ request, params }) => {
     const { roomId } = params;
     // return HttpResponse.text(JSON.stringify("user_exists"), {
-    //   status: 510,
+    //   status: 401,
     // });
     return HttpResponse.json({
       propertyName: "Lovely Apartment",
