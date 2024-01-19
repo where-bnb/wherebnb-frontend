@@ -1,37 +1,17 @@
 import CredentialsProvider from "next-auth/providers/credentials";
-import GithubProvider from "next-auth/providers/github";
-
-const refreshTokenApiCall = async (token) => {
-  const url = process.env.NEXT_PUBLIC_BASE_URL + "/auth/refresh";
-  const res = await fetch(url, {
-    method: "POST",
-    headers: {
-      "refresh-token": token.refreshToken,
-    },
-  });
-  if (res.ok) {
-    const data = await res.json();
-    return {
-      ...token,
-      error: null,
-      accessToken: data.access_token,
-      refreshToken: data.refresh_token,
-      expiresIn: Date.now() + parseInt(data.expires_in) * 1000 - 2000,
-    };
-  } else {
-    return {
-      error: "RefreshTokenTokenError",
-    };
-  }
-};
 
 export const authOptions = {
   providers: [
-    GithubProvider({
-      clientId: process.env.GITHUB_ID,
-      clientSecret: process.env.GITHUB_SECRET,
+    CredentialsProvider({
+      id: "tokenUpdate",
+      name: "tokenUpdate",
+      async authorize({ credentials }) {
+        console.log("credentials updated: ", credentials);
+        return credentials;
+      },
     }),
     CredentialsProvider({
+      id: "credentials",
       name: "credentials",
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) {
@@ -48,71 +28,33 @@ export const authOptions = {
           body: formData,
         });
         if (res.ok) {
-          return await res.json();
+          const accessToken = res.headers.get("Authorization");
+          const body = await res.json();
+          return { ...body, accessToken: accessToken };
         }
         return null;
       },
     }),
   ],
   callbacks: {
-    async signIn({ user, account }) {
-      console.log("signIn 실행");
-      if (account.provider === "github") {
-        const response = await fetch(
-          process.env.NEXT_PUBLIC_BASE_URL + "/github/token",
-          {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              githubId: user.id,
-              email: user.email,
-              name: user.name,
-              accessToken: account.accessToken,
-            }),
-          },
-        );
+    async jwt({ token, user }) {
+      console.log("jwt 실행", user);
 
-        if (response.ok) {
-          const data = await response.json();
-          user.access_token = data.access_token;
-          user.refresh_token = data.refresh_token;
-          user.expires_in = data.expires_in;
-        } else {
-          return false;
-        }
+      if (user) {
+        token.user = user.user;
+        token.accessToken = user.accessToken;
+        token.refreshToken = user.user.refreshToken;
       }
-
-      return true;
+      return token;
     },
     async session({ session, token }) {
-      console.log("session 실행");
-      session.accessToken = token.accessToken;
-      if (session?.accessToken ?? false) {
-        const url = process.env.NEXT_PUBLIC_BASE_URL + "/users/me";
-        const userRes = await fetch(url, {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${token.accessToken}`,
-          },
-        });
-        if (userRes.ok) {
-          const userDetails = await userRes.json();
-          session.user = userDetails;
-        }
+      console.log("session 실행", token);
+      if (token) {
+        session.user = token.user;
+        session.accessToken = token.accessToken;
+        session.refreshToken = token.refreshToken;
       }
       return session;
-    },
-    async jwt({ token, user }) {
-      console.log("jwt 실행", token);
-      if (user) {
-        token.refreshToken = user.refresh_token;
-        token.accessToken = user.access_token;
-        token.expiresIn = Date.now() + parseInt(user.expires_in) * 1000 - 2000;
-      }
-      if (Date.now() < token.expiresIn) {
-        return token;
-      }
-      return await refreshTokenApiCall(token);
     },
   },
   pages: {

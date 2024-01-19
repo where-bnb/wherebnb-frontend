@@ -39,7 +39,7 @@ const Categories = () => {
             <>
               <SwiperSlide>
                 <CategoryBox
-                  key={item.name}
+                  key={item.id}
                   label={item.label}
                   name={item.name}
                   selected={params?.get("category") === item.name}

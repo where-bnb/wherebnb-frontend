@@ -4,13 +4,30 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import HeartButton from "./HeartButton";
 import ImageSwiper from "../swiper/ImageSwiper";
+import { useSession } from "next-auth/react";
+import { useAxiosAuth } from "@/hooks/useAxiosAuth";
 
-const ListingCard = ({ currentUser }) => {
+const ListingCard = ({ favoriteListing, id }) => {
   const router = useRouter();
+
+  // ClientSide axios instance Test용  --------------------------------
+  // const { data: session } = useSession();
+
+  // const axiosAuth = useAxiosAuth();
+  // const getData = async () => {
+  //   if (session) {
+  //     const data = await axiosAuth.get(
+  //       `/users/${session?.user.userId}/favorite`
+  //     );
+  //     console.log(data);
+  //   }
+  // };
+  // getData();
+  // ---------------------------------------------------------------
 
   return (
     <div
-      onClick={() => router.push(`/detail`)}
+      onClick={() => router.push(`/rooms/${id}`)}
       className="col-span-1 cursor-pointer group"
     >
       <div className="flex flex-col gap-2 w-full">
@@ -23,16 +40,10 @@ const ListingCard = ({ currentUser }) => {
             rounded-xl
           "
         >
-          <ImageSwiper />
-          {/* <Image
-            fill
-            alt="Listing"
-            src={"/images/placeholder.jpg"}
-            className="object-cover h-full w-full group-hover:scale-110 transition"
-          /> */}
-          <div className="absolute top-4 right-4">
-            <HeartButton listingId="id" currentUser={currentUser} />
+          <div className="absolute top-4 right-4 z-[8]">
+            <HeartButton listingId={id} />
           </div>
+          <ImageSwiper />
         </div>
         <div className="flex flex-row justify-between text-md">
           <div className="font-semibold">한국 Seoul</div>

@@ -6,26 +6,57 @@ export const handlers = [
     console.log("로그인 -> access token 생성");
     return HttpResponse.json(
       {
-        access_token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9",
-        refresh_token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9",
-        token_type: "Bearer",
-        expires_in: 3600,
+        user: {
+          createDate: "2024-01-12T02:48:55.040Z",
+          lastModifiedDate: "2024-01-12T02:48:55.040Z",
+          userId: 1,
+          name: "John Doe",
+          picture: "",
+          role: "USER",
+          email: "user@example.com",
+          password:
+            "$2a$10$/FzEaOhkzGSMxXgFiSzUlewyh6EcG/LM3an0MSWCnZKGBojLFc4B.",
+          phoneNumber: 1234567890,
+          refreshToken:
+            "Bearer eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3MDYyMzYxODV9.V8wWhm1uKjGt2Bso-x-Ttn6MImtk7xmP0nGUqoptck0",
+          provider: null,
+          providerId: null,
+          address: {
+            country: "Country",
+            state: "State",
+            city: "City",
+            street: "Street",
+            details: "Details",
+            zipcode: "Zipcode",
+            latitude: 10.0,
+            longitude: 20.0,
+          },
+          wishList: [1, 3, 4],
+        },
       },
       {
         headers: {
           "Set-Cookie": "connect.sid=msw-cookie;HttpOnly;Path=/",
+          Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9",
         },
-      },
+      }
     );
   }),
   http.post("/auth/refresh", () => {
     console.log("로그인 -> refresh token 실행");
-    return HttpResponse.json({
-      access_token: "updated_token",
-      refresh_token: "updated_token",
-      token_type: "Bearer",
-      expires_in: 3600,
-    });
+    return HttpResponse.json(
+      {
+        NewAccessToken:
+          "Bearer refreshed!!!-eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9",
+      },
+      {
+        headers: {
+          "Set-Cookie": "connect.sid=msw-cookie;HttpOnly;Path=/",
+          NewAccessToken:
+            "Bearer refreshed!!!-eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9",
+        },
+      }
+    );
   }),
   http.post("/users", async ({ request }) => {
     console.log("회원가입");
@@ -38,16 +69,23 @@ export const handlers = [
       },
     });
   }),
-  http.post("/users/me", async ({ request }) => {
-    console.log("특정정보 유저확인");
-    // return HttpResponse.text(JSON.stringify("user_exists"), {
-    //   status: 403,
+  http.get("/users/:id/favorite", async ({ request }) => {
+    // return HttpResponse.json({
+    //   favoriteLists: [1, 3, 5],
     // });
-    return HttpResponse.json({
-      id: 0,
-      name: "John Doe",
-      email: "user@example.com",
-      created_at: "2024-01-12T02:48:55.040Z",
+
+    // Access Token 만료시 401 Error
+    return HttpResponse.text(JSON.stringify("invalid token"), {
+      status: 401,
     });
+  }),
+  // Test용 - 토큰 재발급 후 재요청 시 정상 응답
+  http.get("/users/:id/favorite/retry", async ({ request }) => {
+    return HttpResponse.json({
+      favoriteLists: [1, 3, 5, 6],
+    });
+  }),
+  http.patch("/users/:id", async ({ request }) => {
+    // 유저 위시리스트 데이터 변경 (추가, 삭제) 로직
   }),
 ];
