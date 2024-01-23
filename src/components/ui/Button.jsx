@@ -1,10 +1,15 @@
 "use client";
-const Button = ({ label, onClick, disabled, outline, small, icon: Icon }) => {
+import {useRouter} from "next/navigation";
+
+const Button = ({ label, onClick, disabled, outline, small , icon: Icon }) => {
+    const router = useRouter();
+
   return (
     <button
       onClick={onClick}
       disabled={disabled}
       className={`
+        p-5
         relative
         disabled:opacity-70
         disabled:cursor-not-allowed

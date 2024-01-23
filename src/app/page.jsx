@@ -2,6 +2,7 @@ import EmptyState from "@/components/searchPage/EmptyState";
 import ListingCard from "@/components/searchPage/listingCard/ListingCard";
 import { getCurrentUser } from "@/actions";
 import { getRoomsList } from "@/actions";
+import Navbar from "@/components/navbar/Navbar";
 
 export default async function Home() {
   const isEmpty = false;
@@ -15,8 +16,11 @@ export default async function Home() {
   }
 
   return (
-    <div
-      className="
+    <>
+      <Navbar />
+      <div className="md:pt-[260px] pt-[180px]">
+        <div
+          className="
                   pt-5
                   grid
                   grid-cols-1
@@ -27,16 +31,18 @@ export default async function Home() {
                   2xl:grid-cols-6
                   gap-8
                 "
-    >
-      {list &&
-        list.map((room) => (
-          <ListingCard
-            key={room.id}
-            id={room.id}
-            room={room}
-            currentUser={currentUser}
-          />
-        ))}
-    </div>
+        >
+          {list &&
+            list.map((room) => (
+              <ListingCard
+                key={room.id}
+                id={room.id}
+                room={room}
+                currentUser={currentUser}
+              />
+            ))}
+        </div>
+      </div>
+    </>
   );
 }

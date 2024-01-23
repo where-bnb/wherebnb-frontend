@@ -1,11 +1,11 @@
 import { Nunito } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/navbar/Navbar";
 import LoginModal from "../components/ui/modals/LoginModal";
 import RegisterModal from "../components/ui/modals/RegisterModal";
 import ToastProvider from "@/providers/ToastProvider";
 import { MswProvider } from "../providers/MswProvider";
 import AuthSession from "@/providers/AuthSessionProvider";
+import Navbar from "@/components/navbar/Navbar";
 import Container from "@/components/ui/Container";
 import FilterModal from "@/components/searchPage/filters/FilterModal";
 import ReactQueryProvider from "@/providers/ReactQueryProvider";
@@ -30,11 +30,10 @@ export default async function RootLayout({ children }) {
           <RegisterModal />
           <LoginModal />
           <FilterModal />
-          <Navbar />
+
           <ReactQueryProvider>
-            <div className="md:pt-[260px] pt-[180px]">
-              <Container>{children}</Container>
-            </div>
+            <Container>{children}</Container>
+
             <ReactQueryDevtools />
           </ReactQueryProvider>
         </AuthSession>
