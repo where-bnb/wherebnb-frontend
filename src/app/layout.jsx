@@ -6,6 +6,8 @@ import RegisterModal from "../components/ui/modals/RegisterModal";
 import ToastProvider from "@/providers/ToastProvider";
 import { MswProvider } from "../providers/MswProvider";
 import AuthSession from "@/providers/AuthSessionProvider";
+import ReactQueryProvider from "@/providers/ReactQueryProvider";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 export const metadata = {
   title: "WhereBnb",
@@ -26,7 +28,10 @@ export default async function RootLayout({ children }) {
           <RegisterModal />
           <LoginModal />
           <Navbar />
-          <div className="md:pt-[200px] pt-[95px]">{children}</div>
+          <ReactQueryProvider>
+            <div className="md:pt-[200px] pt-[95px]">{children}</div>
+            <ReactQueryDevtools />
+          </ReactQueryProvider>
         </AuthSession>
       </body>
     </html>
