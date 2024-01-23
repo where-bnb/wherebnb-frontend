@@ -1,28 +1,25 @@
 "use client";
-import { useCallback, useMemo } from "react";
+import { useEffect } from "react";
 import RoomHead from "@/components/room/RoomHead";
 import RoomInfo from "@/components/room/RoomInfo";
 import Container from "@/components/ui/Container";
-import { CATEGORIES } from "@/utils/iconMaker";
 import RoomReview from "@/components/room/RoomReview";
 import HostingArea from "@/components/room/HostingArea";
 import RoomCalendar from "@/components/room/RoomCalendar";
-import axios from "axios";
+import useRoomReviewModal from "@/hooks/useRoomReviewModal";
 
-const roomInfo = {
-  price: 100,
-};
-
-const RoomDetail = ({ room }) => {
+const RoomDetail = ({ room, currentUser }) => {
   const { propertyType, propertyDetail, address, guestFavorite } = room;
-  const category = useMemo(() => {
-    return CATEGORIES.find((items) => items.label === room.category);
-  }, [room.category]);
+  const reviewModal = useRoomReviewModal();
 
-  const onCreateReservation = useCallback(() => {
-    // 로그인 여부 체크
-    // server action or api router
-  }, []);
+  useEffect(() => {
+    if (reviewModal.isOpen) {
+      document.body.classList.add("no-scroll");
+    } else {
+      document.body.classList.remove("no-scroll");
+    }
+  }, [reviewModal.isOpen]);
+
   return (
     <Container>
       <div className="max-w-screen-lg mx-auto">
@@ -40,7 +37,7 @@ const RoomDetail = ({ room }) => {
               address={address}
               propertyType={propertyType}
               propertyDetail={propertyDetail}
-              category={category}
+              category={room.category}
               guestFavorite={guestFavorite}
               totalScore={room.scores.totalScore}
               reviewLength={room.reviews.length}
@@ -56,7 +53,11 @@ const RoomDetail = ({ room }) => {
                 md:col-span-3
               "
             >
-              <RoomCalendar room={roomInfo} />
+              <RoomCalendar
+                price={room.price}
+                bookings={room.bookings}
+                currentUser={currentUser}
+              />
             </div>
           </div>
           <div>날짜 선택</div>

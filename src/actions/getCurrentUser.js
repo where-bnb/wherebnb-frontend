@@ -17,7 +17,7 @@ export async function getCurrentUser() {
       return null;
     }
 
-    return currentUser.data; //favoite
+    return currentUser.data;
   } catch (err) {
     return null;
   }

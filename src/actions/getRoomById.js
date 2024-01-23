@@ -2,6 +2,7 @@
 import { api, authApi } from "@/lib/axios";
 
 export async function getRoomById(params) {
+  // TODO: validation - 404
   try {
     const { roomId } = params;
     const response = await authApi.get(`/rooms/${roomId}`);

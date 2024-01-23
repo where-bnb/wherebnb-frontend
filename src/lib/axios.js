@@ -2,7 +2,6 @@ import axios from "axios";
 import { authOptions } from "@/app/api/auth/[...nextauth]/options";
 import { getServerSession } from "next-auth";
 import { signIn } from "next-auth/react";
-import { updateSession } from "./updateSession";
 
 // 일반 Axios 인스턴스
 const api = axios.create({

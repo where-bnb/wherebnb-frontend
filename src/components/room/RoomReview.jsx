@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import leftBay from "../../../public/images/left-bay.jpeg";
 import rightBay from "../../../public/images/right-bay.jpeg";
@@ -8,8 +9,12 @@ import { FaCommentDots, FaTag } from "react-icons/fa";
 import { FaLocationDot, FaStar } from "react-icons/fa6";
 
 import Comment from "./Comment";
+import Button from "./Button";
+import useRoomReviewModal from "@/hooks/useRoomReviewModal";
 
 const RoomReview = ({ guestFavorite, scores, reviews }) => {
+  const reviewModal = useRoomReviewModal();
+
   return (
     <section>
       {guestFavorite && (
@@ -115,9 +120,10 @@ const RoomReview = ({ guestFavorite, scores, reviews }) => {
         ))}
       </div>
       <div>
-        <button className="rounded-lg py-3 px-6 bg-white  border-black border-[0.5px] hover:bg-neutral-400/20 text-sm">
-          후기 x개 모두보기
-        </button>
+        <Button
+          label={`후기 ${reviews.length}개 모두보기`}
+          onClick={reviewModal.onOpen}
+        />
       </div>
     </section>
   );

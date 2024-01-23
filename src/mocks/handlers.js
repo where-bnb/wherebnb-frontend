@@ -112,7 +112,7 @@ export const handlers = [
           totalScore: 4.2, // 6개의 평가를 하지만 총 평점만 제공
           writeDate: "2024-01-17",
           content:
-            "정말 깨끗하고 아늑한 숙소였습니다. 호스트의 친절함도 좋았어요.정말 깨끗하고 아늑한 숙소였습니다. 호스트의 친절함도 좋았어요.정말 깨끗하고 아늑한 숙소였습니다. 호스트의 친절함도 좋았어요.정말 깨끗하고 아늑한 숙소였습니다. 호스트의 친절함도 좋았어요.정말 깨끗하고 아늑한 숙소였습니다. 호스트의 친절함도 좋았어요.정말 깨끗하고 아늑한 숙소였습니다. 호스트의 친절함도 좋았어요.정말 깨끗하고 아늑한 숙소였습니다. 호스트의 친절함도 좋았어요.",
+            "정말 깨끗하고 아늑한 숙소였습니다. 호스트의 친절함도 좋았어요.정말 깨끗하고 아늑한 숙소였습니다. 호스트의 친절함도 좋았어요.정말 깨끗하고 아늑한 숙소였습니다. 호스트의 친절함도 좋았어요.정말 깨끗하고 아늑한 숙소였습니다. 호스트의 친절함도 좋았어요.정말 깨끗하고 아늑한 숙소였습니다. 호스트의 친절함도 좋았어요.정말 깨끗하고 아늑한 숙소였습니다. 호스트의 친절함도 좋았어요.정말 깨끗하고 아늑한 숙소였습니다. 호스트의 친절함도 좋았어요.정말 깨끗하고 아늑한 숙소였습니다. 호스트의 친절함도 좋았어요.정말 깨끗하고 아늑한 숙소였습니다. 호스트의 친절함도 좋았어요.정말 깨끗하고 아늑한 숙소였습니다. 호스트의 친절함도 좋았어요.정말 깨끗하고 아늑한 숙소였습니다. 호스트의 친절함도 좋았어요.정말 깨끗하고 아늑한 숙소였습니다. 호스트의 친절함도 좋았어요.정말 깨끗하고 아늑한 숙소였습니다. 호스트의 친절함도 좋았어요.정말 깨끗하고 아늑한 숙소였습니다. 호스트의 친절함도 좋았어요.정말 깨끗하고 아늑한 숙소였습니다. 호스트의 친절함도 좋았어요.정말 깨끗하고 아늑한 숙소였습니다. 호스트의 친절함도 좋았어요.정말 깨끗하고 아늑한 숙소였습니다. 호스트의 친절함도 좋았어요.정말 깨끗하고 아늑한 숙소였습니다. 호스트의 친절함도 좋았어요.정말 깨끗하고 아늑한 숙소였습니다. 호스트의 친절함도 좋았어요.정말 깨끗하고 아늑한 숙소였습니다. 호스트의 친절함도 좋았어요.정말 깨끗하고 아늑한 숙소였습니다. 호스트의 친절함도 좋았어요.정말 깨끗하고 아늑한 숙소였습니다. 호스트의 친절함도 좋았어요.정말 깨끗하고 아늑한 숙소였습니다. 호스트의 친절함도 좋았어요.정말 깨끗하고 아늑한 숙소였습니다. 호스트의 친절함도 좋았어요.정말 깨끗하고 아늑한 숙소였습니다. 호스트의 친절함도 좋았어요.정말 깨끗하고 아늑한 숙소였습니다. 호스트의 친절함도 좋았어요.정말 깨끗하고 아늑한 숙소였습니다. 호스트의 친절함도 좋았어요.정말 깨끗하고 아늑한 숙소였습니다. 호스트의 친절함도 좋았어요.정말 깨끗하고 아늑한 숙소였습니다. 호스트의 친절함도 좋았어요.정말 깨끗하고 아늑한 숙소였습니다. 호스트의 친절함도 좋았어요.정말 깨끗하고 아늑한 숙소였습니다. 호스트의 친절함도 좋았어요.정말 깨끗하고 아늑한 숙소였습니다. 호스트의 친절함도 좋았어요.정말 깨끗하고 아늑한 숙소였습니다. 호스트의 친절함도 좋았어요.정말 깨끗하고 아늑한 숙소였습니다. 호스트의 친절함도 좋았어요.정말 깨끗하고 아늑한 숙소였습니다. 호스트의 친절함도 좋았어요.정말 깨끗하고 아늑한 숙소였습니다. 호스트의 친절함도 좋았어요.정말 깨끗하고 아늑한 숙소였습니다. 호스트의 친절함도 좋았어요.정말 깨끗하고 아늑한 숙소였습니다. 호스트의 친절함도 좋았어요.정말 깨끗하고 아늑한 숙소였습니다. 호스트의 친절함도 좋았어요.정말 깨끗하고 아늑한 숙소였습니다. 호스트의 친절함도 좋았어요.정말 깨끗하고 아늑한 숙소였습니다. 호스트의 친절함도 좋았어요.정말 깨끗하고 아늑한 숙소였습니다. 호스트의 친절함도 좋았어요.",
         },
         {
           id: 2,
@@ -194,4 +194,431 @@ export const handlers = [
       },
     });
   }),
+  // 댓글정보
+  http.get("/rooms/:roomId/reviews", ({ request, params }) => {
+    const { roomId } = params;
+    const url = new URL(request.url);
+    const page = parseInt(url.searchParams.get("page")) || 0;
+
+    if (page === 0) {
+      return HttpResponse.json({
+        content: [
+          {
+            reviewId: 6,
+            photo: "profilePic.jpg",
+            userName: "홍길동",
+            nation: "대한민국",
+            totalScore: 3.8,
+            writeDate: "2024-01-22",
+            content: "첫번째 chunk 댓글 모음입니다!",
+          },
+          {
+            reviewId: 5,
+            photo: "profilePic.jpg",
+            userName: "홍길동",
+            nation: "대한민국",
+            totalScore: 3.3,
+            writeDate: "2024-01-22",
+            content: "위치가 매우 좋았지만, 체크인 과정이 조금 복잡했어요.",
+          },
+          {
+            reviewId: 4,
+            photo: "profilePic.jpg",
+            userName: "홍길동",
+            nation: "대한민국",
+            totalScore: 4.2,
+            writeDate: "2024-01-22",
+            content:
+              "정말 깨끗하고 아늑한 숙소였습니다. 호스트의 친절함도 좋았어요.",
+          },
+          {
+            reviewId: 3,
+            photo: "profilePic.jpg",
+            userName: "홍길동",
+            nation: "대한민국",
+            totalScore: 3.8,
+            writeDate: "2024-01-22",
+            content: "완벽한 숙소! 모든 것이 기대 이상이었습니다.",
+          },
+          {
+            reviewId: 2,
+            photo: "profilePic.jpg",
+            userName: "홍길동",
+            nation: "대한민국",
+            totalScore: 3.3,
+            writeDate: "2024-01-22",
+            content: "위치가 매우 좋았지만, 체크인 과정이 조금 복잡했어요.",
+          },
+          {
+            reviewId: 1,
+            photo: "profilePic.jpg",
+            userName: "홍길동",
+            nation: "대한민국",
+            totalScore: 4.2,
+            writeDate: "2024-01-22",
+            content:
+              "정말 깨끗하고 아늑한 숙소였습니다. 호스트의 친절함도 좋았어요.",
+          },
+        ],
+        pageable: {
+          pageNumber: 1,
+          pageSize: 6,
+          sort: {
+            empty: false,
+            unsorted: false,
+            sorted: true,
+          },
+          offset: 6,
+          paged: true,
+          unpaged: false,
+        },
+        first: false,
+        last: false,
+        size: 6,
+        number: 1,
+        sort: {
+          empty: false,
+          unsorted: false,
+          sorted: true,
+        },
+        numberOfElements: 6,
+        empty: false,
+      });
+    } else if (page === 1) {
+      return HttpResponse.json({
+        content: [
+          {
+            reviewId: 12,
+            photo: "profilePic.jpg",
+            userName: "홍길동",
+            nation: "대한민국",
+            totalScore: 3.8,
+            writeDate: "2024-01-22",
+            content: "두번째 chunk 댓글 모음입니다!",
+          },
+          {
+            reviewId: 11,
+            photo: "profilePic.jpg",
+            userName: "홍길동",
+            nation: "대한민국",
+            totalScore: 3.3,
+            writeDate: "2024-01-22",
+            content: "위치가 매우 좋았지만, 체크인 과정이 조금 복잡했어요.",
+          },
+          {
+            reviewId: 10,
+            photo: "profilePic.jpg",
+            userName: "홍길동",
+            nation: "대한민국",
+            totalScore: 4.2,
+            writeDate: "2024-01-22",
+            content:
+              "정말 깨끗하고 아늑한 숙소였습니다. 호스트의 친절함도 좋았어요.",
+          },
+          {
+            reviewId: 9,
+            photo: "profilePic.jpg",
+            userName: "홍길동",
+            nation: "대한민국",
+            totalScore: 3.8,
+            writeDate: "2024-01-22",
+            content: "완벽한 숙소! 모든 것이 기대 이상이었습니다.",
+          },
+          {
+            reviewId: 8,
+            photo: "profilePic.jpg",
+            userName: "홍길동",
+            nation: "대한민국",
+            totalScore: 3.3,
+            writeDate: "2024-01-22",
+            content: "위치가 매우 좋았지만, 체크인 과정이 조금 복잡했어요.",
+          },
+          {
+            reviewId: 7,
+            photo: "profilePic.jpg",
+            userName: "홍길동",
+            nation: "대한민국",
+            totalScore: 4.2,
+            writeDate: "2024-01-22",
+            content:
+              "정말 깨끗하고 아늑한 숙소였습니다. 호스트의 친절함도 좋았어요.",
+          },
+        ],
+        pageable: {
+          pageNumber: 1,
+          pageSize: 6,
+          sort: {
+            empty: false,
+            unsorted: false,
+            sorted: true,
+          },
+          offset: 6,
+          paged: true,
+          unpaged: false,
+        },
+        first: false,
+        last: false,
+        size: 6,
+        number: 1,
+        sort: {
+          empty: false,
+          unsorted: false,
+          sorted: true,
+        },
+        numberOfElements: 6,
+        empty: false,
+      });
+    } else if (page === 2) {
+      return HttpResponse.json({
+        content: [
+          {
+            reviewId: 18,
+            photo: "profilePic.jpg",
+            userName: "홍길동",
+            nation: "대한민국",
+            totalScore: 3.8,
+            writeDate: "2024-01-22",
+            content: "마지막 chunk 댓글 모음입니다!",
+          },
+          {
+            reviewId: 17,
+            photo: "profilePic.jpg",
+            userName: "홍길동",
+            nation: "대한민국",
+            totalScore: 3.3,
+            writeDate: "2024-01-22",
+            content: "위치가 매우 좋았지만, 체크인 과정이 조금 복잡했어요.",
+          },
+          {
+            reviewId: 16,
+            photo: "profilePic.jpg",
+            userName: "홍길동",
+            nation: "대한민국",
+            totalScore: 4.2,
+            writeDate: "2024-01-22",
+            content:
+              "정말 깨끗하고 아늑한 숙소였습니다. 호스트의 친절함도 좋았어요.",
+          },
+          {
+            reviewId: 15,
+            photo: "profilePic.jpg",
+            userName: "홍길동",
+            nation: "대한민국",
+            totalScore: 3.8,
+            writeDate: "2024-01-22",
+            content: "완벽한 숙소! 모든 것이 기대 이상이었습니다.",
+          },
+          {
+            reviewId: 14,
+            photo: "profilePic.jpg",
+            userName: "홍길동",
+            nation: "대한민국",
+            totalScore: 3.3,
+            writeDate: "2024-01-22",
+            content: "위치가 매우 좋았지만, 체크인 과정이 조금 복잡했어요.",
+          },
+          {
+            reviewId: 13,
+            photo: "profilePic.jpg",
+            userName: "홍길동",
+            nation: "대한민국",
+            totalScore: 4.2,
+            writeDate: "2024-01-22",
+            content:
+              "정말 깨끗하고 아늑한 숙소였습니다. 호스트의 친절함도 좋았어요.",
+          },
+        ],
+        pageable: {
+          pageNumber: 1,
+          pageSize: 6,
+          sort: {
+            empty: false,
+            unsorted: false,
+            sorted: true,
+          },
+          offset: 6,
+          paged: true,
+          unpaged: false,
+        },
+        first: false,
+        last: true,
+        size: 6,
+        number: 1,
+        sort: {
+          empty: false,
+          unsorted: false,
+          sorted: true,
+        },
+        numberOfElements: 6,
+        empty: false,
+      });
+    }
+
+    return HttpResponse.json({});
+  }),
+];
+
+const reviews = [
+  {
+    id: 1,
+    photo: "profilePic.jpg",
+    userName: "홍길동",
+    nation: "대한민국",
+    totalScore: 4.2, // 6개의 평가를 하지만 총 평점만 제공
+    writeDate: "2024-01-17",
+    content: "정말 깨끗하고 아늑한 숙소였습니다. ",
+  },
+  {
+    id: 2,
+    photo: "profilePic.jpg",
+    userName: "홍길동",
+    nation: "대한민국",
+    totalScore: 3.3,
+    writeDate: "2024-01-17",
+    content: "위치가 매우 좋았지만, 체크인 과정이 조금 복잡했어요.",
+  },
+  {
+    id: 3,
+    photo: "profilePic.jpg",
+    userName: "홍길동",
+    nation: "대한민국",
+    totalScore: 3.8,
+    writeDate: "2024-01-17",
+    content: "완벽한 숙소! 모든 것이 기대 이상이었습니다.",
+  },
+  {
+    id: 4,
+    photo: "profilePic.jpg",
+    userName: "홍길동",
+    nation: "대한민국",
+    totalScore: 4.2, // 6개의 평가를 하지만 총 평점만 제공
+    writeDate: "2024-01-17",
+    content: "정말 깨끗하고 아늑한 숙소였습니다. 호스트의 친절함도 좋았어요.",
+  },
+  {
+    id: 5,
+    photo: "profilePic.jpg",
+    userName: "홍길동",
+    nation: "대한민국",
+    totalScore: 3.3,
+    writeDate: "2024-01-17",
+    content: "위치가 매우 좋았지만, 체크인 과정이 조금 복잡했어요.",
+  },
+  {
+    id: 6,
+    photo: "profilePic.jpg",
+    userName: "홍길동",
+    nation: "대한민국",
+    totalScore: 3.8,
+    writeDate: "2024-01-17",
+    content: "완벽한 숙소! 모든 것이 기대 이상이었습니다.",
+  },
+  {
+    id: 7,
+    photo: "profilePic.jpg",
+    userName: "홍길동",
+    nation: "대한민국",
+    totalScore: 4.2, // 6개의 평가를 하지만 총 평점만 제공
+    writeDate: "2024-01-17",
+    content: "정말 깨끗하고 아늑한 숙소였습니다. ",
+  },
+  {
+    id: 8,
+    photo: "profilePic.jpg",
+    userName: "홍길동",
+    nation: "대한민국",
+    totalScore: 3.3,
+    writeDate: "2024-01-17",
+    content: "위치가 매우 좋았지만, 체크인 과정이 조금 복잡했어요.",
+  },
+  {
+    id: 9,
+    photo: "profilePic.jpg",
+    userName: "홍길동",
+    nation: "대한민국",
+    totalScore: 3.8,
+    writeDate: "2024-01-17",
+    content: "완벽한 숙소! 모든 것이 기대 이상이었습니다.",
+  },
+  {
+    id: 10,
+    photo: "profilePic.jpg",
+    userName: "홍길동",
+    nation: "대한민국",
+    totalScore: 4.2, // 6개의 평가를 하지만 총 평점만 제공
+    writeDate: "2024-01-17",
+    content: "정말 깨끗하고 아늑한 숙소였습니다. 호스트의 친절함도 좋았어요.",
+  },
+  {
+    id: 11,
+    photo: "profilePic.jpg",
+    userName: "홍길동",
+    nation: "대한민국",
+    totalScore: 3.3,
+    writeDate: "2024-01-17",
+    content: "위치가 매우 좋았지만, 체크인 과정이 조금 복잡했어요.",
+  },
+  {
+    id: 12,
+    photo: "profilePic.jpg",
+    userName: "홍길동",
+    nation: "대한민국",
+    totalScore: 3.8,
+    writeDate: "2024-01-17",
+    content: "완벽한 숙소! 모든 것이 기대 이상이었습니다.",
+  },
+  {
+    id: 13,
+    photo: "profilePic.jpg",
+    userName: "홍길동",
+    nation: "대한민국",
+    totalScore: 4.2, // 6개의 평가를 하지만 총 평점만 제공
+    writeDate: "2024-01-17",
+    content: "정말 깨끗하고 아늑한 숙소였습니다. ",
+  },
+  {
+    id: 14,
+    photo: "profilePic.jpg",
+    userName: "홍길동",
+    nation: "대한민국",
+    totalScore: 3.3,
+    writeDate: "2024-01-17",
+    content: "위치가 매우 좋았지만, 체크인 과정이 조금 복잡했어요.",
+  },
+  {
+    id: 15,
+    photo: "profilePic.jpg",
+    userName: "홍길동",
+    nation: "대한민국",
+    totalScore: 3.8,
+    writeDate: "2024-01-17",
+    content: "완벽한 숙소! 모든 것이 기대 이상이었습니다.",
+  },
+  {
+    id: 16,
+    photo: "profilePic.jpg",
+    userName: "홍길동",
+    nation: "대한민국",
+    totalScore: 4.2, // 6개의 평가를 하지만 총 평점만 제공
+    writeDate: "2024-01-17",
+    content: "정말 깨끗하고 아늑한 숙소였습니다. 호스트의 친절함도 좋았어요.",
+  },
+  {
+    id: 17,
+    photo: "profilePic.jpg",
+    userName: "홍길동",
+    nation: "대한민국",
+    totalScore: 3.3,
+    writeDate: "2024-01-17",
+    content: "위치가 매우 좋았지만, 체크인 과정이 조금 복잡했어요.",
+  },
+  {
+    id: 18,
+    photo: "profilePic.jpg",
+    userName: "홍길동",
+    nation: "대한민국",
+    totalScore: 3.8,
+    writeDate: "2024-01-17",
+    content: "완벽한 숙소! 모든 것이 기대 이상이었습니다.",
+  },
 ];

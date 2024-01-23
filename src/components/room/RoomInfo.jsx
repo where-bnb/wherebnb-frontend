@@ -1,3 +1,5 @@
+"use client";
+
 import { useMemo } from "react";
 import Avatar from "../ui/Avatar";
 import RoomIcon from "./RoomIcon";
@@ -7,6 +9,7 @@ import { IoBanOutline } from "react-icons/io5";
 import { translatePropertyDetails } from "@/utils/helpers";
 import { FaDog } from "react-icons/fa";
 import { TbDoor, TbDoorExit } from "react-icons/tb";
+import { CATEGORIES } from "@/utils/iconMaker";
 
 const RoomInfo = ({
   address,
@@ -20,7 +23,6 @@ const RoomInfo = ({
   propertyExplanation,
   amenities,
 }) => {
-  const { icon: Icon, label, description } = category;
   const { country, city } = address;
   const {
     bedroom,
@@ -32,10 +34,36 @@ const RoomInfo = ({
     checkInTime,
     checkOutTime,
   } = propertyDetail;
+
   const translatedthumbnailInfo = useMemo(() => {
     return translatePropertyDetails({ bedroom, bed, bathroom });
   }, []);
-  console.log(guestFavorite);
+
+  const categoryComonent = useMemo(() => {
+    return CATEGORIES.find((items) => items.label === category);
+  }, [category]);
+
+  let roomCategory;
+
+  if (categoryComonent) {
+    const { icon: Icon, label, description } = categoryComonent;
+    roomCategory = (
+      <>
+        <div className="flex flex-col">
+          <div className="flex flex-row items-center gap-4">
+            <Icon size={30} className="text-neutral-700" />
+            <div>
+              <div className="font-medium">{label}</div>
+              <div className="text-neutral-500 text-sm">{description}</div>
+            </div>
+          </div>
+        </div>
+        <hr />
+      </>
+    );
+  }
+
+  console.log("roomCategory", roomCategory);
   return (
     <div className="col-span-4 flex flex-col gap-6">
       {/* 방 정보요약 */}
@@ -73,8 +101,9 @@ const RoomInfo = ({
         </div>
       </div>
       <hr />
+      {roomCategory}
       {/* 숙소 카테고리 */}
-      {category && (
+      {/* {category && (
         <>
           <div className="flex flex-col">
             <div className="flex flex-row items-center gap-4">
@@ -87,7 +116,7 @@ const RoomInfo = ({
           </div>
           <hr />
         </>
-      )}
+      )} */}
       {/* 숙소정보 - propertyExplanation */}
       <div className="flex flex-col gap-4">
         <div className="text-xl font-medium">숙소 특징</div>
