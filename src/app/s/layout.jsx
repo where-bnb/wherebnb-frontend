@@ -1,3 +1,5 @@
+import Navbar from "@/components/navbar/Navbar";
+
 const SearchResultLayout = ({ children }) => {
   return (
     <div className="relative">
@@ -6,3 +8,5 @@ const SearchResultLayout = ({ children }) => {
     </div>
   );
 };
+
+export default SearchResultLayout;
