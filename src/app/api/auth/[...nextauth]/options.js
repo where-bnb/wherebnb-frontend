@@ -73,7 +73,7 @@ export const authOptions = {
               name: user.name,
               accessToken: account.accessToken,
             }),
-          },
+          }
         );
 
         if (response.ok) {

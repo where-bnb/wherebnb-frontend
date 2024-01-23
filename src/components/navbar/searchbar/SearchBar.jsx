@@ -1,18 +1,56 @@
 "use client";
 
 import SearchTextInput from "./SearchTextInput";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SearchDateInput from "./searchDateInput";
 import SearchGuestInput from "./SearchGuestInput";
+import { useDatePickGetter } from "@bcad1591/react-date-picker";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import qs from "query-string";
+import dayjs from "dayjs";
 
 const SearchBar = () => {
+  const router = useRouter();
+  const pathname = usePathname();
+  const params = useSearchParams();
   const [isSelected, setIsSelected] = useState("");
+  const { pickedDates } = useDatePickGetter();
+
+  useEffect(() => {
+    let currentQuery = {};
+
+    if (params) {
+      currentQuery = qs.parse(params.toString());
+    }
+    let updatedQuery;
+
+    if (!pickedDates.firstPickedDate || !pickedDates.secondPickedDate) {
+      updatedQuery = {
+        ...currentQuery,
+        checkin: dayjs().format("YYYY-MM-DD"),
+        checkout: dayjs().add(1, "week").format("YYYY-MM-DD"),
+      };
+    } else {
+      updatedQuery = {
+        ...currentQuery,
+        checkin: dayjs(pickedDates.firstPickedDate).format("YYYY-MM-DD"),
+        checkout: dayjs(pickedDates.secondPickedDate).format("YYYY-MM-DD"),
+      };
+    }
+
+    const url = qs.stringifyUrl({
+      url: pathname,
+      query: updatedQuery,
+    });
+
+    router.push(url);
+  }, [pickedDates, params, router, pathname]);
 
   return (
     <div
       className={`
             border-[1px]
-            w-3/5
+            w-[80%]
             max-w-[850px]
             md:min-w-[700px]
             min-w-[300px]
@@ -27,6 +65,8 @@ const SearchBar = () => {
     >
       <div
         className="
+                relative
+                w-full
                 h-full
                 flex
                 flex-row
@@ -45,14 +85,26 @@ const SearchBar = () => {
         <SearchDateInput
           name="checkIn"
           label="체크인"
-          placeholder="날짜 추가"
+          placeholder={
+            pickedDates?.firstPickedDate
+              ? `${
+                  pickedDates?.firstPickedDate.getMonth() + 1
+                }월 ${pickedDates?.firstPickedDate.getDate()}일`
+              : "날짜 추가"
+          }
           isOpen={isSelected === "checkIn"}
           setIsOpen={setIsSelected}
         />
         <SearchDateInput
           name="checkOut"
           label="체크아웃"
-          placeholder="날짜 추가"
+          placeholder={
+            pickedDates?.secondPickedDate
+              ? `${
+                  pickedDates?.secondPickedDate.getMonth() + 1
+                }월 ${pickedDates?.secondPickedDate.getDate()}일`
+              : "날짜 추가"
+          }
           isOpen={isSelected === "checkOut"}
           setIsOpen={setIsSelected}
         />

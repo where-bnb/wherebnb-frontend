@@ -7,6 +7,8 @@ const nextConfig = {
       "avatars.githubusercontent.com",
       "lh3.googleusercontent.com",
       "assets.pokemon.com",
+      "a0.muscache.com", 
+      "picsum.photos"
     ],
   },
 };

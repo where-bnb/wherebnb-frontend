@@ -1,5 +1,3 @@
-"use client";
-
 const Container = ({ children }) => {
   return (
     <div
