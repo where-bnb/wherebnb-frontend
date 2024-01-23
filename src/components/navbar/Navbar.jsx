@@ -41,15 +41,13 @@ const Navbar = () => {
           className="
             flex
             flex-row
+            w-[90svw]
             items-center
             justify-center
             gap-5
             border-t-[1px]
             border-neutral-200
-            xl:px-20
-            md:px-10
-            sm:px-2
-            px-4"
+        "
         >
           <Categories />
           <FilterButton />

@@ -12,7 +12,6 @@ import {
 import { LiaBuilding } from "react-icons/lia";
 import Rheostat from "rheostat";
 import "rheostat/initialize";
-import "./Rheostat.css";
 import PriceInput from "./PriceInput";
 import RadioButton from "./RadioButton";
 import RadioGroup from "./RadioGroup";

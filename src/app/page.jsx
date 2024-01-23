@@ -16,7 +16,7 @@ export default async function Home() {
   }
 
   return (
-    <>
+    <div className="relative">
       <Navbar />
       <div className="md:pt-[260px] pt-[180px]">
         <div
@@ -43,6 +43,6 @@ export default async function Home() {
             ))}
         </div>
       </div>
-    </>
+    </div>
   );
 }
