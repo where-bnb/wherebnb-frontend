@@ -1,5 +1,5 @@
 // pages/hosting.jsx 또는 적절한 경로의 파일
-
+'use client';
 import {CardComponent} from "@/components/host/RegisterRoom/CardComponent";
 
 export default function inbox() {

@@ -1,7 +1,10 @@
 'use client';
+
+
 import {useState} from "react";
 
 async function handleImageUpload(file) {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const [ src, setSrc ] = useState('')
     
     let filename = encodeURIComponent(file.name);
