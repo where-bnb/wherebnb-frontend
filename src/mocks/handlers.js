@@ -72,10 +72,10 @@ export const handlers = [
       propertyName: "Lovely Apartment",
       category: "Beach",
       photos: [
-        "https://wherebnb-review-photos.s3.ap-northeast-2.amazonaws.com/%E1%84%80%E1%85%B5%E1%86%B7%E1%84%86%E1%85%B5%E1%86%AB%E1%84%89%E1%85%B5%E1%86%A8.jpeg",
-        "https://wherebnb-review-photos.s3.ap-northeast-2.amazonaws.com/%E1%84%80%E1%85%B5%E1%86%B7%E1%84%86%E1%85%B5%E1%86%AB%E1%84%89%E1%85%B5%E1%86%A8.jpeg",
-        "https://wherebnb-review-photos.s3.ap-northeast-2.amazonaws.com/%E1%84%80%E1%85%B5%E1%86%B7%E1%84%86%E1%85%B5%E1%86%AB%E1%84%89%E1%85%B5%E1%86%A8.jpeg",
-        "https://wherebnb-review-photos.s3.ap-northeast-2.amazonaws.com/%E1%84%80%E1%85%B5%E1%86%B7%E1%84%86%E1%85%B5%E1%86%AB%E1%84%89%E1%85%B5%E1%86%A8.jpeg",
+        "https://develsopher-nextjs.s3.ap-northeast-2.amazonaws.com/burger.jpg",
+        "https://develsopher-nextjs.s3.ap-northeast-2.amazonaws.com/burger.jpg",
+        "https://develsopher-nextjs.s3.ap-northeast-2.amazonaws.com/burger.jpg",
+        "https://develsopher-nextjs.s3.ap-northeast-2.amazonaws.com/burger.jpg",
       ],
       propertyType: "호텔",
       propertyDetail: {
