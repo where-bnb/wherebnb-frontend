@@ -1,14 +1,50 @@
 "use client";
 
 import SearchTextInput from "./SearchTextInput";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SearchDateInput from "./searchDateInput";
 import SearchGuestInput from "./SearchGuestInput";
 import { useDatePickGetter } from "@bcad1591/react-date-picker";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import qs from "query-string";
+import dayjs from "dayjs";
 
 const SearchBar = () => {
+  const router = useRouter();
+  const pathname = usePathname();
+  const params = useSearchParams();
   const [isSelected, setIsSelected] = useState("");
   const { pickedDates } = useDatePickGetter();
+
+  useEffect(() => {
+    let currentQuery = {};
+
+    if (params) {
+      currentQuery = qs.parse(params.toString());
+    }
+    let updatedQuery;
+
+    if (!pickedDates.firstPickedDate || !pickedDates.secondPickedDate) {
+      updatedQuery = {
+        ...currentQuery,
+        checkin: dayjs().format("YYYY-MM-DD"),
+        checkout: dayjs().add(1, "week").format("YYYY-MM-DD"),
+      };
+    } else {
+      updatedQuery = {
+        ...currentQuery,
+        checkin: dayjs(pickedDates.firstPickedDate).format("YYYY-MM-DD"),
+        checkout: dayjs(pickedDates.secondPickedDate).format("YYYY-MM-DD"),
+      };
+    }
+
+    const url = qs.stringifyUrl({
+      url: pathname,
+      query: updatedQuery,
+    });
+
+    router.push(url);
+  }, [pickedDates, params, router, pathname]);
 
   return (
     <div

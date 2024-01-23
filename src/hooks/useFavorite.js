@@ -3,56 +3,52 @@ import useLoginModal from "./useLoginModal";
 import { useCallback, useMemo } from "react";
 import { authApi } from "@/lib/axios";
 import toast from "react-hot-toast";
-import { getFavoriteList } from "@/actions";
 import { useSession } from "next-auth/react";
+import { addWishlist, removeWishlist } from "@/actions";
 
-export const useFavorite = ({ listingId, wishList }) => {
+const useFavorite = ({ listingId, currentUser }) => {
+  const { data: session } = useSession();
   const router = useRouter();
   const loginModal = useLoginModal();
-  const { data: session } = useSession();
 
   const hasFavorited = useMemo(() => {
+    const wishList = currentUser?.favoriteList;
+
     if (!session) return false;
-    if (!wishList) return null;
 
     return wishList.includes(Number(listingId));
-  }, [wishList, listingId]);
+  }, [currentUser, listingId]);
 
   const toggleFavorite = useCallback(
     async (e) => {
       e.stopPropagation();
+      console.log("current user has favorited", currentUser);
 
-      if (!currentUser) {
-        loginModal.onOpen();
+      if (!session) {
+        return loginModal.onOpen();
       }
 
       try {
-        let request;
-
+        let res;
         if (hasFavorited) {
-          const deletedList = wishList.filter((room) => room.id !== listingId);
+          res = await removeWishlist(session?.user.userId, listingId);
 
-          request = authApi.patch(
-            `/users/${currentUser.id}`,
-            json.stringify({ favoriteLists: deletedList })
-          );
+          if (res === 200) {
+            toast.success("위시리스트에서 삭제되었습니다.");
+          }
         } else {
-          const addedList = [...wishList, listingId];
-          request = authApi.patch(
-            `/users/${currentUser.id}`,
-            json.stringify({ favoriteLists: addedList })
-          );
-        }
+          res = await addWishlist(session?.user.userId, listingId);
 
-        await request();
-        router.refresh();
-        toast.success("위시리스트에 추가되었습니다.");
+          if (res === 200) {
+            toast.success("위시리스트에 추가되었습니다.");
+          }
+        }
       } catch (error) {
         toast.error("문제가 발생했습니다.");
         console.log("useFavorite err: ", error);
       }
     },
-    [wishList, hasFavorited, listingId, loginModal, router]
+    [currentUser, hasFavorited, listingId, loginModal, router]
   );
 
   return {
@@ -60,3 +56,5 @@ export const useFavorite = ({ listingId, wishList }) => {
     toggleFavorite,
   };
 };
+
+export default useFavorite;

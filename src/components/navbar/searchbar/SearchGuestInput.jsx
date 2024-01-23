@@ -1,12 +1,18 @@
 "use client";
 
 import { useGuestFilter } from "@/hooks/useSearchFilter";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import { BiSearch, BiMinus, BiPlus } from "react-icons/bi";
+import qs from "query-string";
 
 const SearchGuestInput = ({ name, label, isOpen, setIsOpen }) => {
+  const router = useRouter();
+  const pathname = usePathname();
+  const params = useSearchParams();
   const [placeholder, setPlaceholder] = useState("");
   const guestStore = useGuestFilter((state) => state.guests);
+  let { adults, children, infants, pets } = guestStore;
   const {
     increaseAdults,
     decreaseAdults,
@@ -16,6 +22,7 @@ const SearchGuestInput = ({ name, label, isOpen, setIsOpen }) => {
     decreaseInfants,
     increasePets,
     decreasePets,
+    resetAll,
   } = useGuestFilter();
 
   const toggleOpen = useCallback(() => {
@@ -26,8 +33,45 @@ const SearchGuestInput = ({ name, label, isOpen, setIsOpen }) => {
   }, []);
 
   useEffect(() => {
-    let { adults, children, infants, pets } = guestStore;
+    let currentQuery = {};
 
+    if (params) {
+      currentQuery = qs.parse(params.toString());
+    }
+
+    const updatedQuery = {
+      ...currentQuery,
+      adults: adults,
+      children: children,
+      infants: infants,
+      pets: pets,
+    };
+
+    if (updatedQuery.adults === 0) {
+      delete updatedQuery.adults;
+    }
+    if (updatedQuery.children === 0) {
+      delete updatedQuery.children;
+    }
+    if (updatedQuery.infants === 0) {
+      delete updatedQuery.infants;
+    }
+    if (updatedQuery.pets === 0) {
+      delete updatedQuery.pets;
+    }
+
+    const url = qs.stringifyUrl(
+      {
+        url: pathname,
+        query: updatedQuery,
+      },
+      { skipNull: true }
+    );
+
+    router.push(url);
+  }, [adults, children, infants, pets, params, router, pathname]);
+
+  useEffect(() => {
     if (adults && children && infants && pets) {
       setPlaceholder(
         `게스트 ${adults}명, 어린이 ${children}명, 유아 ${infants}명, 반려동물 ${pets}`
@@ -51,7 +95,7 @@ const SearchGuestInput = ({ name, label, isOpen, setIsOpen }) => {
     } else {
       setPlaceholder(`게스트 ${adults}명`);
     }
-  }, [guestStore]);
+  }, [adults, children, infants, pets]);
 
   return (
     <>

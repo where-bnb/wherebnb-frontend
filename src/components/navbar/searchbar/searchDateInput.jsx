@@ -1,10 +1,18 @@
 "use client";
 
-import { useCallback } from "react";
-import { DatePicker, useDatePickReset } from "@bcad1591/react-date-picker";
+import { useCallback, useEffect } from "react";
+import {
+  DatePicker,
+  useDatePickGetter,
+  useDatePickReset,
+} from "@bcad1591/react-date-picker";
 import { IoClose } from "react-icons/io5";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const SearchDateInput = ({ name, label, placeholder, isOpen, setIsOpen }) => {
+  const router = useRouter();
+  const params = useSearchParams();
+  const { pickedDates } = useDatePickGetter();
   const resetDatePicker = useDatePickReset();
 
   const toggleOpen = useCallback(() => {
@@ -13,6 +21,7 @@ const SearchDateInput = ({ name, label, placeholder, isOpen, setIsOpen }) => {
       return name;
     });
   }, []);
+
   const resetDate = useCallback((e) => {
     e.stopPropagation();
     resetDatePicker();

@@ -1,4 +1,5 @@
 import { http, HttpResponse } from "msw";
+import { generateRoomList } from "./faker";
 
 export const handlers = [
   // credentials
@@ -49,27 +50,19 @@ export const handlers = [
       id: 32,
       name: "John Doe",
       email: "user@example.com",
-      farvoriteList: [123, 333, 555],
+      favoriteList: [12, 22, 2, 4, 7, 8, 24, 17],
       created_at: "2024-01-12T02:48:55.040Z",
     });
   }),
-  http.get("/users/:id/favorite", async ({ request }) => {
-    // return HttpResponse.json({
-    //   favoriteLists: [1, 3, 5],
-    // });
-
-    // Access Token 만료시 401 Error
-    return HttpResponse.text(JSON.stringify("invalid token"), {
-      status: 401,
-    });
+  http.post("/:userId/wishlist/:propertyId", () => {
+    // 유저 위시리스트 추가 로직
+    return HttpResponse.json({}, { status: 200 });
   }),
-  // Test용 - 토큰 재발급 후 재요청 시 정상 응답
-  http.get("/users/:id/favorite/retry", async ({ request }) => {
-    return HttpResponse.json({
-      favoriteLists: [1, 3, 5, 6],
-    });
+  http.delete("/:userId/wishlist/:propertyId", () => {
+    // 유저 위시리스트 삭제 로직
+    return HttpResponse.json({}, { status: 200 });
   }),
-  http.patch("/users/:id", async ({ request }) => {
-    // 유저 위시리스트 데이터 변경 (추가, 삭제) 로직
+  http.get("/rooms", () => {
+    return HttpResponse.json(generateRoomList(30));
   }),
 ];

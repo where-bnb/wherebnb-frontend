@@ -1,4 +1,21 @@
-const Checkbox = ({ value }) => {
+import { useDetailFilter } from "@/hooks/useSearchFilter";
+import { useCallback } from "react";
+
+const Checkbox = ({ value, label }) => {
+  const { amenities } = useDetailFilter((state) => state);
+  const { addAmenities, removeAmenities } = useDetailFilter();
+
+  const handleChange = useCallback(
+    (e) => {
+      if (e.target.checked) {
+        addAmenities(value);
+      } else {
+        removeAmenities(value);
+      }
+    },
+    [value]
+  );
+
   return (
     <div class="inline-flex items-center">
       <label
@@ -6,6 +23,8 @@ const Checkbox = ({ value }) => {
         htmlFor="check"
       >
         <input
+          onChange={handleChange}
+          checked={amenities.includes(value) ? true : false}
           type="checkbox"
           class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-md border border-neutral-400 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-gray-900 checked:bg-gray-900 checked:before:bg-gray-900 hover:before:opacity-10"
           id="check"
@@ -31,7 +50,7 @@ const Checkbox = ({ value }) => {
         class="mt-px font-normal cursor-pointer select-none"
         htmlFor="check"
       >
-        {value}
+        {label}
       </label>
     </div>
   );

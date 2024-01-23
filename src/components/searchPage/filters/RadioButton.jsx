@@ -1,12 +1,34 @@
 "use client";
 
-import { useState } from "react";
+import { useDetailFilter } from "@/hooks/useSearchFilter";
+import { useCallback, useMemo, useState } from "react";
 
-const RadioButton = ({ label, name, value, id, checked }) => {
+const RadioButton = ({ label, name, value, id, defaultChecked, selected }) => {
+  const { min_bedrooms, min_beds, min_bathrooms } = useDetailFilter(
+    (state) => state
+  );
+  const { setMinBedrooms, setMinBeds, setMinBathrooms } = useDetailFilter();
+
+  const handleClick = useCallback((e) => {
+    switch (e.target.name) {
+      case "bedroom":
+        setMinBedrooms(Number(e.target.value));
+        break;
+      case "bed":
+        setMinBeds(Number(e.target.value));
+        break;
+      case "bathroom":
+        setMinBathrooms(Number(e.target.value));
+        break;
+    }
+  }, []);
+
   return (
     <div>
       <input
-        defaultChecked={checked}
+        onClick={handleClick}
+        defaultChecked={defaultChecked}
+        checked={selected}
         type="radio"
         name={name}
         id={id}

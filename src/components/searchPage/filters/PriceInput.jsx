@@ -2,18 +2,7 @@
 
 import { LiaWonSignSolid } from "react-icons/lia";
 
-const PriceInput = ({
-  id,
-  value,
-  label,
-
-  disabled,
-
-  register,
-  required,
-  errors,
-  helper,
-}) => {
+const PriceInput = ({ id, value, label, disabled, required, helper }) => {
   return (
     <div className="w-full relative">
       <LiaWonSignSolid
@@ -24,7 +13,6 @@ const PriceInput = ({
         id={id}
         value={value}
         disabled={disabled}
-        {...register(id, { required })}
         placeholder=" "
         type="currency"
         className={`
@@ -43,8 +31,7 @@ const PriceInput = ({
           disabled:cursor-not-allowed
           focus:border-black
           pl-10
-          ${errors[id] ? "border-error" : "border-neutral-300"}
-          ${errors[id] ? "focus:border-error" : "focus:border-neutral-300"}
+          
         `}
       />
       <label
@@ -57,7 +44,6 @@ const PriceInput = ({
           origin-[0]
           left-4
           scale-75
-          ${errors[id] ? "text-error" : "text-zinc-400"}
         `}
       >
         {label}

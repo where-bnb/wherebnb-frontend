@@ -11,7 +11,7 @@ import "./ImageSwiper.css";
 import SwiperButton from "./SwiperButton";
 import Image from "next/image";
 
-const ImageSwiper = () => {
+const ImageSwiper = ({ images }) => {
   return (
     <Swiper
       modules={[Pagination]}
@@ -29,12 +29,11 @@ const ImageSwiper = () => {
       }}
     >
       <div>
-        <SwiperSlide>
-          <Image fill alt="1" src="/images/placeholder.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image fill alt="2" src="/images/logo.png" />
-        </SwiperSlide>
+        {images.map((image) => (
+          <SwiperSlide key={image}>
+            <Image fill alt="room photo" src={image} sizes={24} />
+          </SwiperSlide>
+        ))}
       </div>
 
       <SwiperButton icon={BiChevronLeft} direction="prev" />

@@ -1,22 +1,18 @@
 "use client";
 
-import { getFavoriteList } from "@/actions";
-import { useFavorite } from "@/hooks/useFavorite";
-import { useSession } from "next-auth/react";
-import { useMemo } from "react";
+import useFavorite from "@/hooks/useFavorite";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 
-const HeartButton = ({ listingId }) => {
-  const { data: session } = useSession();
-  const wishList = session?.user?.wishList;
+const HeartButton = ({ listingId, currentUser }) => {
   const { hasFavorited, toggleFavorite } = useFavorite({
     listingId,
-    wishList,
+    currentUser,
   });
 
   return (
     <div
-      // onClick={toggleFavorite}
+      id={listingId}
+      onClick={toggleFavorite}
       className="
           relative
           hover:opacity-80

@@ -1,11 +1,14 @@
 import EmptyState from "@/components/searchPage/EmptyState";
 import ListingCard from "@/components/searchPage/listingCard/ListingCard";
-import { getCurrentUser } from "@/actions/getCurrentUser";
-import { authApi } from "@/lib/axios";
+import { getCurrentUser } from "@/actions";
+import { getRoomsList } from "@/actions";
 
 export default async function Home() {
   const isEmpty = false;
   const currentUser = await getCurrentUser();
+
+  const list = await getRoomsList();
+  console.log("user", currentUser);
 
   if (isEmpty) {
     return <EmptyState showReset />;
@@ -25,12 +28,15 @@ export default async function Home() {
                   gap-8
                 "
     >
-      <ListingCard id="1" />
-      <ListingCard id="2" />
-      <ListingCard id="3" />
-      <ListingCard id="4" />
-      <ListingCard id="5" />
-      <ListingCard id="6" />
+      {list &&
+        list.map((room) => (
+          <ListingCard
+            key={room.id}
+            id={room.id}
+            room={room}
+            currentUser={currentUser}
+          />
+        ))}
     </div>
   );
 }
