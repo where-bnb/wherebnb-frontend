@@ -1,22 +1,23 @@
 import CredentialsProvider from "next-auth/providers/credentials";
 import GithubProvider from "next-auth/providers/github";
+import mockImage from "/public/images/room-1.jpg";
 
 const refreshTokenApiCall = async (token) => {
   const url = process.env.NEXT_PUBLIC_BASE_URL + "/auth/refresh";
   const res = await fetch(url, {
     method: "POST",
     headers: {
-      "refresh-token": token.refreshToken,
+      RefreshToken: token.refreshToken,
     },
   });
   if (res.ok) {
-    const data = await res.json();
+    // const data = await res.json();
+    const accessToken = res.headers.get("NewAccessToken");
+    const expTime = res.headers.get("expTime");
     return {
       ...token,
-      error: null,
-      accessToken: data.access_token,
-      refreshToken: data.refresh_token,
-      expiresIn: Date.now() + parseInt(data.expires_in) * 1000 - 2000,
+      accessToken,
+      expTime: Date.now() + parseInt(expTime) * 1000 - 2000,
     };
   } else {
     return {
@@ -41,11 +42,15 @@ export const authOptions = {
         const formData = new URLSearchParams();
         formData.append("username", credentials.email);
         formData.append("password", credentials.password);
+        const data = {
+          username: "johndoe@example.com",
+          password: "password123",
+        };
         // api 통신을통해 유저존재 체크
         const res = await fetch(url, {
           method: "POST",
           headers: { Accept: "application/json" },
-          body: formData,
+          body: JSON.stringify(data),
         });
         if (res.ok) {
           return await res.json();
@@ -56,7 +61,6 @@ export const authOptions = {
   ],
   callbacks: {
     async signIn({ user, account }) {
-      console.log("signIn 실행");
       if (account.provider === "github") {
         const response = await fetch(
           process.env.NEXT_PUBLIC_BASE_URL + "/github/token",
@@ -69,7 +73,7 @@ export const authOptions = {
               name: user.name,
               accessToken: account.accessToken,
             }),
-          },
+          }
         );
 
         if (response.ok) {
@@ -85,31 +89,20 @@ export const authOptions = {
       return true;
     },
     async session({ session, token }) {
-      console.log("session 실행");
       session.accessToken = token.accessToken;
-      if (session?.accessToken ?? false) {
-        const url = process.env.NEXT_PUBLIC_BASE_URL + "/users/me";
-        const userRes = await fetch(url, {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${token.accessToken}`,
-          },
-        });
-        if (userRes.ok) {
-          const userDetails = await userRes.json();
-          session.user = userDetails;
-        }
-      }
+      session.user.userId = token.userId;
+      session.user.image = mockImage;
+
       return session;
     },
     async jwt({ token, user }) {
-      console.log("jwt 실행", token);
       if (user) {
-        token.refreshToken = user.refresh_token;
-        token.accessToken = user.access_token;
-        token.expiresIn = Date.now() + parseInt(user.expires_in) * 1000 - 2000;
+        token.refreshToken = user.refreshToken;
+        token.accessToken = user.accessToken;
+        token.expTime = Date.now() + parseInt(user.expTime) * 1000 - 2000;
+        token.userId = user.userId;
       }
-      if (Date.now() < token.expiresIn) {
+      if (Date.now() < token.expTime) {
         return token;
       }
       return await refreshTokenApiCall(token);

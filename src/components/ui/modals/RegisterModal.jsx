@@ -3,7 +3,8 @@ import axios from "axios";
 import { AiFillGithub } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
 import useRegisterModal from "@/hooks/useRegisterModal";
-import { useState } from "react";
+import useLoginModal from "@/hooks/useLoginModal";
+import { useCallback, useState } from "react";
 import { toast } from "react-hot-toast";
 import { SubmitHandler, useForm } from "react-hook-form";
 import Modal from "./Modal";
@@ -30,6 +31,7 @@ function showMessage(messasge) {
 
 const RegisterModal = () => {
   const registerModal = useRegisterModal();
+  const loginModal = useLoginModal();
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState(null);
 
@@ -56,6 +58,11 @@ const RegisterModal = () => {
     }
     setIsLoading(false);
   };
+
+  const toggle = useCallback(() => {
+    registerModal.onClose();
+    loginModal.onOpen();
+  }, [loginModal, registerModal]);
 
   const bodyContent = (
     <div className="flex flex-col gap-4">
@@ -113,7 +120,7 @@ const RegisterModal = () => {
         <div className=" justify-center flex flex-row items-center gap-2">
           <div>이미 계정이 있으신가요?</div>
           <div
-            onClick={registerModal.onClose}
+            onClick={toggle}
             className="text-neutral-800 cursor-pointer hover:underline"
           >
             로그인 하기
