@@ -1,7 +1,9 @@
+import ImageUploadComponent from "@/components/host/RegisterRoom/photos/ImageUploadComponent";
+
 export default function EditPhotosPage() {
     return (
         <>
-            <h4>PhotosEdit</h4>
+            <ImageUploadComponent />
         </>
     );
 }

@@ -1,35 +1,26 @@
-export default function Input({ placeholder, value , onChange}) {
+export default function Input({ placeholder, value, onChange, isCheckInOut = false }) {
+
+    const handleChange = (e) => {
+        const val = e.target.value;
+
+        // 입력값이 숫자이고 0과 23 사이인 경우에만 onChange 호출
+        if (!isNaN(val) && val >= 0 && val <= 23) {
+            onChange(e);
+        } else {
+            alert("0~23 사이의 숫자를 입력해주세요.");
+        }
+    };
+
+
     return (
         <div>
-            <div style={{
-                width : '100%',
-                height : '100%',
-                paddingLeft : 12,
-                paddingRight : 12,
-                paddingTop : 16,
-                paddingBottom : 16,
-                borderRadius : 8,
-                border : '1px #B0B0B0 solid',
-                flexDirection : 'column',
-                justifyContent : 'flex-start',
-                alignItems : 'flex-start',
-                gap : 4,
-                display : 'inline-flex'
-            }}>
-                <input style={{
-                    color : '#717171',
-                    fontSize : 16,
-                    fontFamily : 'SF Pro',
-                    fontWeight : '400',
-                    wordWrap : 'break-word',
-                    width : '100%',
-                    height : '100%',
-                }}
-                       placeholder={placeholder}
-                       value={value}
-                       onChange={onChange}
-                />
-            </div>
+            <input
+                className="p-10 text-2xl mt-10 w-full h-12 px-4 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-500"
+                placeholder={placeholder}
+                value={value}
+                onChange={isCheckInOut ? handleChange : onChange}
+                {...(isCheckInOut ? { min: "0", max: "23" } : {})}
+            />
         </div>
     );
 }

@@ -1,10 +1,14 @@
-// app/footer/page.jsx.tsx
+// app/footer/page.jsx.jsx.tsx
 "use client";
+
+
 import Button from "@/components/ui/Button";
-import {usePathname, useRouter} from "next/navigation"; // 임포트 경로는 실제 경로에 맞게 수정해주세요.
+import {usePathname, useRouter} from "next/navigation";
+import {useHostData} from "@/context/HostDataContext"; // 임포트 경로는 실제 경로에 맞게 수정해주세요.
 
 const Footer = (url) => {
 
+    const { handleSubmit } = useHostData()
     const router = useRouter();
     const pathname = usePathname();
     const handleButtonClick = () => {
@@ -14,9 +18,12 @@ const Footer = (url) => {
                 router.push("/become-a-host/first/about-your-place");
                 break;
             case "/become-a-host/first/about-your-place":
-                router.push("/become-a-host/first/structure");
+                router.push("/become-a-host/first/property-type");
                 break;
-            case "/become-a-host/first/structure":
+            case "/become-a-host/first/property-type":
+                router.push("/become-a-host/first/category");
+                break;
+            case "/become-a-host/first/category":
                 router.push("/become-a-host/first/location");
                 break;
             case "/become-a-host/first/location":
@@ -30,16 +37,32 @@ const Footer = (url) => {
                 break;
             case "/become-a-host/second/amenities":
                 router.push("/become-a-host/second/title");
+                break;
             case "/become-a-host/second/title":
                 router.push("/become-a-host/second/description");
+                break;
             case "/become-a-host/second/description":
                 router.push("/become-a-host/third/finish-setup");
+                break;
+            case "/become-a-host/third/finish-setup":
+                router.push("/become-a-host/third/price");
+                break;
             case "/become-a-host/third/price":
+                router.push("/become-a-host/third/checkinout");
+                break;
+            case "/become-a-host/third/checkinout":
                 router.push("/become-a-host/third/photos");
+                break;
             case "/become-a-host/third/photos":
                 router.push("/become-a-host/third/receipt");
+                break;
             case "/become-a-host/third/receipt":
+                handleSubmit();
                 router.push("/become-a-host/third/publish-celebration");;
+                break;
+            case "/become-a-host/third/publish-celebration":
+                handleSubmit();
+                router.push("/become-a-host/hosting");;
                 break;
             // 기타 케이스 추가 가능
             default:

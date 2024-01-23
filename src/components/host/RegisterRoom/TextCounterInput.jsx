@@ -1,19 +1,24 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 
-const TextCounterInput = ({ maxLength, title, description}) => {
-    const [text, setText] = useState('');
+const TextCounterInput = ({ value, maxLength, title, description, onChange, isTitle = false}) => {
+    const [text, setText] = useState(value);
+
+    useEffect(() => {
+        onChange(text);
+    }, [text]);
 
     const handleChange = (event) => {
         const inputText = event.target.value;
         if (inputText.length <= maxLength) {
             setText(inputText);
+            onChange(text);
         }
     };
 
     return (
-        <div className="flex justify-center items-center flex-col w-2/5 ">
+        <div className="flex justify-center items-center flex-col w-full ">
             <h1 className="text-4xl font-bold mb-2">{title}</h1>
             <h1 className="mb-2">{description}</h1>
             <div className="w-full h-96">

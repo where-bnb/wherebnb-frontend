@@ -1,14 +1,14 @@
 'use client';
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
-export const FloorPlan = () => {
-    const [floorPlan, setFloorPlan] = useState({
-        guestCount: 1,
-        bedroomCount: 0,
-        bedCount: 0,
-        bathroomCount: 0,
-    });
+export const FloorPlan = ({ onFloorPlan, initialData }) => {
+    const [floorPlan, setFloorPlan] = useState(initialData);
 
+    useEffect (() => {
+        onFloorPlan ({
+            ...floorPlan
+        });
+    }, [floorPlan]);
     const handleIncrement = (field) => {
         setFloorPlan({
             ...floorPlan,
@@ -19,18 +19,18 @@ export const FloorPlan = () => {
     const handleDecrement = (field) => {
         setFloorPlan({
             ...floorPlan,
-            [field]: Math.max(0, floorPlan[field] - 1)
+            [field]: floorPlan[field] - 1
         });
     };
 
     const fields = [
-        { name: 'guestCount', label: '게스트' },
-        { name: 'bedroomCount', label: '침실' },
-        { name: 'bedCount', label: '침대' },
-        { name: 'bathroomCount', label: '욕실' }
+        { name: 'maxPeople', label: '게스트' },
+        { name: 'bedroom', label: '침실' },
+        { name: 'bed', label: '침대' },
+        { name: 'bathroom', label: '욕실' }
     ];
 
-    const guest = { name: 'guestCount', label: '게스트' }
+    const guest = { name: 'maxPeople', label: '게스트' }
 
 
     return (

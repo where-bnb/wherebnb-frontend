@@ -2,12 +2,13 @@
 
 import {useState} from "react";
 
-export default function PriceComponent({priceNumber}) {
+export default function PriceComponent({priceNumber, onChange}) {
 
     const [price, setPrice] = useState(priceNumber);
 
     const handlePriceChange = (event) => {
         setPrice(event.target.value);
+        onChange(event.target.value);
     }
 
     return (

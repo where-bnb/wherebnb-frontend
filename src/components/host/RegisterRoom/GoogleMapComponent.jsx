@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useRef, useCallback } from 'react';
+import React, {useState, useRef, useCallback, useEffect} from 'react';
 import { GoogleMap, Marker, LoadScript, StandaloneSearchBox } from '@react-google-maps/api';
 import axios from "axios";
 import Input from "@/components/host/DesignSystem/Input";
@@ -9,28 +9,30 @@ import LocationParsingInput from "@/components/host/Hosting/LocationParsingInput
 
 const GOOGLE_MAPS_API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY;
 
+const libraries = ["places"];
+
 const containerStyle = {
     width: '900px',
-    height: '700px'
+    height: '1000px'
 };
 
-const center = {
-    lat: 36.745,
-    lng: 127.523
-};
 
-function GoogleMapComponent() {
+function GoogleMapComponent({ initialData, onLocationSelect, center}) {
     const [location, setLocation] = useState(center);
     const searchBoxRef = useRef(null);
     const [searchBoxValue, setSearchBoxValue] = useState("");
-    const [address, setAddress] = useState({
-        "country": '',
-        "state": '',
-        "city": '',
-        "street": '',
-        "zipcode": '',
-        "details": '',
-    });
+    const [address, setAddress] = useState(initialData || {
+        "country" : '',
+        "state" : '',
+        "city" : '',
+        "street" : '',
+        "zipcode" : '',
+        "details" : '',
+    })
+
+    useEffect(() => {
+        onLocationSelect(address, location);
+    }, [address, location]);
 
     const getAddressFromLatLng = async (lat, lng) => {
         try {
@@ -62,33 +64,28 @@ function GoogleMapComponent() {
 
             if (place.geometry) {
                 setLocation({
-                    lat: place.geometry.location.lat(),
-                    lng: place.geometry.location.lng()
+                    latitude: place.geometry.location.lat(),
+                    longitude: place.geometry.location.lng()
                 });
-
                 // Extract address components from the selected place and update address state
                 const addressComponents = place.address_components;
                 const formattedAddress = place.formatted_address;
                 processAddressComponents(addressComponents, formattedAddress);
-
                 setSearchBoxValue(formattedAddress);
             }
         }
     };
 
     const processAddressComponents = (components, formattedAddress) => {
-        console.log("formattedAddress, ", formattedAddress);
 
         const parts = formattedAddress.split(" ");
 
-        console.log("parts, ", parts)
         const addressState = {
             "country" : '',
             "state" : '',
             "city" : '',
             "street" : '',
             "zipcode" : '',
-            "details" : '',
         };
 
         if (parts.length > 0) {
@@ -118,27 +115,33 @@ function GoogleMapComponent() {
         });
 
         setAddress(addressState);
-        console.log(addressState);
     };
 
     const handleMapClick = async (event) => {
         const newLocation = {
+            latitude: event.latLng.lat(),
             lat: event.latLng.lat(),
+            longitude: event.latLng.lng(),
             lng: event.latLng.lng()
         };
         await setLocation(newLocation);
-        const address = await getAddressFromLatLng(newLocation.lat, newLocation.lng);
+        const address = await getAddressFromLatLng(newLocation.latitude, newLocation.longitude);
         setSearchBoxValue(address); // Update the search box value
     };
 
+    const handleDetailsChange = (e) => {
+        // details 필드만 업데이트
+        setAddress(prev => ({ ...prev, details: e.target.value }));
+    };
 
     return (
         <>
             <LoadScript
                 googleMapsApiKey={GOOGLE_MAPS_API_KEY}
-                libraries={['places']}
+                libraries={libraries}
             >
-                <div className="flex flex-col gap-10 w-2/5 pr-10">
+                <div className="flex flex-col gap-10 w-2/5 pr-10 flex-center">
+                    <h4 className="text-4xl font-bold">숙소의 위치는 어디인가요?</h4>
                     <StandaloneSearchBox
                         onLoad={onSearchBoxLoad}
                         onPlacesChanged={onPlacesChanged}
@@ -157,6 +160,7 @@ function GoogleMapComponent() {
                         <LocationParsingInput value={address.city} placeholder="City" />
                         <LocationParsingInput value={address.street} placeholder="Street" />
                         <LocationParsingInput value={address.zipcode} placeholder="Zipcode" />
+                        <LocationParsingInput isReadOnly={false} onChange={(e) => handleDetailsChange(e)} value={address.details} placeholder="Detail" />
                     </div>
                     {/* Display address details from state */}
                 </div>
