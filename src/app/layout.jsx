@@ -30,7 +30,7 @@ export default async function RootLayout({ children }) {
           <LoginModal />
           <FilterModal />
           <ReactQueryProvider>
-            <Container>{children}</Container>
+            {children}
             <ReactQueryDevtools />
           </ReactQueryProvider>
         </AuthSession>

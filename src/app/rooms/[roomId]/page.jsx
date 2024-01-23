@@ -1,10 +1,10 @@
-import EmptyState from "@/components/room/EmptyState";
 import RoomDetail from "../RoomDetail";
 import { getRoomById } from "@/actions/getRoomById";
-import RoomContentModal from "@/components/room/RoomContentModal";
+import Container from "@/components/ui/Container";
 import { notFound } from "next/navigation";
 import { getCurrentUser } from "@/actions/getCurrentUser";
 import ReviewModal from "@/components/room/ReviewModal";
+import SearchHeader from "@/components/ui/header/SearchHeader";
 
 const RoomDetailPage = async ({ params }) => {
   const room = await getRoomById(params);
@@ -15,10 +15,11 @@ const RoomDetailPage = async ({ params }) => {
   }
 
   return (
-    <>
+    <Container>
+      <SearchHeader />
       <ReviewModal guestFavorite={room.guestFavorite} scores={room.scores} />
       <RoomDetail room={room} currentUser={currentUser} />
-    </>
+    </Container>
   );
 };
 
