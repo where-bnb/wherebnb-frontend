@@ -5,7 +5,6 @@ import RegisterModal from "../components/ui/modals/RegisterModal";
 import ToastProvider from "@/providers/ToastProvider";
 import { MswProvider } from "../providers/MswProvider";
 import AuthSession from "@/providers/AuthSessionProvider";
-import Navbar from "@/components/navbar/Navbar";
 import Container from "@/components/ui/Container";
 import FilterModal from "@/components/searchPage/filters/FilterModal";
 import ReactQueryProvider from "@/providers/ReactQueryProvider";
@@ -30,10 +29,8 @@ export default async function RootLayout({ children }) {
           <RegisterModal />
           <LoginModal />
           <FilterModal />
-
           <ReactQueryProvider>
             <Container>{children}</Container>
-
             <ReactQueryDevtools />
           </ReactQueryProvider>
         </AuthSession>
