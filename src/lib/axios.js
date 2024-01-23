@@ -1,7 +1,6 @@
 import axios from "axios";
-import { authOptions } from "@/app/api/auth/[...nextauth]/options";
 import { getServerSession } from "next-auth";
-import { signIn } from "next-auth/react";
+import { authOptions } from "@/app/api/auth/[...nextauth]/options";
 
 // 일반 Axios 인스턴스
 const api = axios.create({
@@ -19,7 +18,7 @@ const authApi = axios.create({
   },
 });
 
-// 인증이 필요한 요청에 대해 인터셉터 설정
+// 인증이 필요한 요청에 대해 인터셉터 설정 // 인증이 필요한 요청에 대해 인터셉터 설정
 authApi.interceptors.request.use(
   async (config) => {
     const session = await getServerSession(authOptions);
@@ -31,7 +30,7 @@ authApi.interceptors.request.use(
   (error) => {
     // 요청 에러 처리
     return Promise.reject(error);
-  },
+  }
 );
 
 export { api, authApi };
