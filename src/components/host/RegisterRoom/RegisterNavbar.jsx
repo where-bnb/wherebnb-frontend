@@ -4,12 +4,10 @@ import Container from "@/components/ui/Container";
 import Logo from "@/components/navbar/Logo";
 
 const RegisterNavbar = () => {
-    return (
-        <div className="fixed w-full bg-white z-10 shadow-sm bg-amber-200">
-            <div className="py-4">
-                <Container>
-                    <div
-                        className="
+  return (
+    <div className="sticky top-0 bg-white z-10 shadow-sm py-2">
+      <div
+        className="
                 flex
                 flex-row
                 items-center
@@ -18,13 +16,11 @@ const RegisterNavbar = () => {
                 md:gap-0
                 sm:mx-5
             "
-                    >
-                        <Logo />
-                    </div>
-                </Container>
-            </div>
-        </div>
-    );
+      >
+        <Logo />
+      </div>
+    </div>
+  );
 };
 
 export default RegisterNavbar;
