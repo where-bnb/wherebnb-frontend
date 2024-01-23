@@ -5,12 +5,11 @@ import RegisterModal from "../components/ui/modals/RegisterModal";
 import ToastProvider from "@/providers/ToastProvider";
 import { MswProvider } from "../providers/MswProvider";
 import AuthSession from "@/providers/AuthSessionProvider";
-
+import Navbar from "@/components/navbar/Navbar";
 import Container from "@/components/ui/Container";
 import FilterModal from "@/components/searchPage/filters/FilterModal";
 import ReactQueryProvider from "@/providers/ReactQueryProvider";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-
 
 export const metadata = {
   title: "WhereBnb",
@@ -20,7 +19,6 @@ export const metadata = {
 const font = Nunito({
   subsets: ["latin"],
 });
-
 
 export default async function RootLayout({ children }) {
   return (
@@ -32,11 +30,10 @@ export default async function RootLayout({ children }) {
           <RegisterModal />
           <LoginModal />
           <FilterModal />
-          <Navbar />
+
           <ReactQueryProvider>
-            <div className="md:pt-[260px] pt-[180px]">
-              <Container>{children}</Container>
-            </div>
+            <Container>{children}</Container>
+
             <ReactQueryDevtools />
           </ReactQueryProvider>
         </AuthSession>
@@ -44,4 +41,3 @@ export default async function RootLayout({ children }) {
     </html>
   );
 }
-
