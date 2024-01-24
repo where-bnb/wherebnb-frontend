@@ -107,14 +107,14 @@ export const handlers = [
         ],
         propertyType: 2,
         maxPeople: 4,
-        selfCheckIn: true,
-        petAvailable: false,
-        smokeAvailable: false,
-        checkInTime: 14,
-        checkOutTime: 11,
         bedroom: 2,
         bed: 3,
         bathroom: 1,
+        selfCheckIn: true,
+        petAvailable: false,
+        smokeAvailable: false,
+        checkInTime: 9,
+        checkOutTime: 11,
         propertyExplanation:"lorem ipsum dolor sit amet, consectetur adip e",
         price: 100, // 평일, 주말 상관없이 가격 고정
         amenities: [1,2,3,4],
@@ -128,7 +128,100 @@ export const handlers = [
         longitude: 85.31184012689732,
       });
     }),
-  // 숙소 예약
+  // http.post('/hosting/listing/editor/:propertyId/status', async (req, res) => {
+  //   const propertyId = req.params.propertyId;
+  //   const { status } = req.body;  // status should be a boolean
+  //
+  //   // Update logic here
+  //
+  //   res.status(200).json({ message: 'Status updated successfully' });
+  // }),
+  // http.post('/hosting/listing/editor/:propertyId/propertyName', async (req, res) => {
+  //   const propertyId = req.params.propertyId;
+  //   const { propertyName } = req.body;  // propertyName should be a String
+  //
+  //   // Update logic here
+  //
+  //   res.status(200).json({ message: 'Property name updated successfully' });
+  // }),
+  // http.post('/hosting/listing/editor/:propertyId/propertyType', async (req, res) => {
+  //   const propertyId = req.params.propertyId;
+  //   const { propertyType } = req.body;  // propertyType should be a String
+  //
+  //   // Update logic here
+  //
+  //   res.status(200).json({ message: 'Property type updated successfully' });
+  // }),
+  // http.post('/hosting/listing/editor/:propertyId/propertyDetail', async (req, res) => {
+  //   const propertyId = req.params.propertyId;
+  //   const {
+  //     maxPeople,
+  //     selfCheckIn,  // boolean
+  //     petAvailable,  // boolean
+  //     smokeAvailable,  // boolean
+  //     checkInTime,  // int
+  //     checkOutTime,  // int
+  //     bedroom,  // int
+  //     bed,  // int
+  //     bathroom  // int
+  //   } = req.body;
+  //
+  //   // Update logic here
+  //
+  //   res.status(200).json({ message: 'Property details updated successfully' });
+  // }),
+  //   http.post('/hosting/listing/editor/:propertyId/propertyExplanation', async (req, res) => {
+  //       const propertyId = req.params.propertyId;
+  //       const { propertyExplanation } = req.body;  // String
+  //
+  //       // Update logic here
+  //
+  //       res.status(200).json({ message: 'Property explanation updated successfully' });
+  //   }),
+  // // Assuming multer is used for handling multipart/form-data
+  // http.post('/hosting/listing/editor/:propertyId/photos', upload.array('photos'), async (req, res) => {
+  //   const propertyId = req.params.propertyId;
+  //   const photos = req.files;
+  //
+  //   // Update logic here
+  //
+  //   res.status(200).json({ message: 'Photos updated successfully' });
+  // }),
+  // http.post('/hosting/listing/editor/:propertyId/amenities', async (req, res) => {
+  //   const propertyId = req.params.propertyId;
+  //   const { amenities } = req.body;  // Array of integers
+  //
+  //   // Update logic here
+  //
+  //   res.status(200).json({ message: 'Amenities updated successfully' });
+  // }),
+  // http.post('/hosting/listing/editor/:propertyId/address', async (req, res) => {
+  //   const propertyId = req.params.propertyId;
+  //   const {
+  //     country,
+  //     state,
+  //     city,
+  //     street,
+  //     details,
+  //     zipcode,
+  //     latitude,  // Double
+  //     longitude  // Double
+  //   } = req.body;
+  //
+  //   // Update logic here
+  //
+  //   res.status(200).json({ message: 'Address updated successfully' });
+  // }),
+  // http.post('/hosting/listing/editor/:propertyId/price', async (req, res) => {
+  //   const propertyId = req.params.propertyId;
+  //   const { price } = req.body;  // Integer
+  //
+  //   // Update logic here
+  //
+  //   res.status(200).json({ message: 'Price updated successfully' });
+  // }),
+
+// 숙소 예약
   http.post("/rooms/booking/:propertyId", async ({ request, params }) => {
     const propertyId = params.propertyId; // URL 경로에서 propertyId 추출
     const body = await request.json(); // 요청 본문을 JSON으로 파싱

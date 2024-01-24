@@ -12,11 +12,11 @@ export default function EditCategoryPage() {
         updateHostData({ 'category' : item });
     };
 
-    const categoryItems = categories.map((category) => {
+    const categoryItems = categories.map((category, key) => {
         return {
             name : category.label,
             id : category.id,
-            icon : <Image src={category.icon} alt={category.name} width={50} height={50}/>
+            icon : <Image src={category.icon} key={key} alt={category.name} width={50} height={50}/>
         }
     });
 

@@ -8,7 +8,7 @@ import {useHostData} from "@/context/HostDataContext"; // 임포트 경로는 �
 
 const Footer = () => {
 
-    const { handleSubmit } = useHostData()
+    const { handleEditSubmit } = useHostData()
 
 
 
@@ -20,7 +20,7 @@ const Footer = () => {
             <div className="flex justify-end">
                 <Button
                     label="제출"
-                    onClick={handleSubmit}
+                    onClick={handleEditSubmit}
                 />
             </div>
         </footer>

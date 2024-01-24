@@ -275,7 +275,7 @@ export const HostDataProvider = ({ children }) => {
     };
 
     return (
-        <HostDataContext.Provider value={{ hostData, isLoading, updateHostData, updateImages, handleSubmit }}>
+        <HostDataContext.Provider value={{ hostData, isLoading, updateHostData, updateImages, handleSubmit, handleEditSubmit }}>
             {children}
         </HostDataContext.Provider>
     );

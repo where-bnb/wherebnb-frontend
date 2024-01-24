@@ -30,18 +30,6 @@ export default function EditAmenitiesPage() {
         { name: "TV", id:8,  icon: <PiTelevisionFill /> },
         { name: "헤어드라이어", id:9,  icon: <GiHairStrands /> },
         { name: "다라미", id:10,  icon: <PiTelevisionFill /> },
-        // { name: "건물 내 무료 주차", icon : <FaCarAlt />},
-        // { name: "건물내 유료 주차", icon : <FaCcAmazonPay />},
-        // { name: "수영장", icon : <PiSwimmingPoolBold />},
-        // { name: "온수 욕조", icon : <FaBath />},
-        // { name: "바베큐 그릴", icon : <MdOutdoorGrill />},
-        // { name: "야외 식사 공간", icon : <MdOutlineTableRestaurant />},
-        // { name: "당구대", icon : <RiBilliardsFill />},
-        // { name: "실내 벽난로", icon : <MdFireplace />},
-        // { name: "피아노", icon : <GiPianoKeys />},
-        // { name: "운동기구", icon : <FaDumbbell />},
-        // { name: "구급 상자", icon : <AiFillMedicineBox />},
-        // { name: "소화기", icon : <FaFireExtinguisher />},
     ];
 
 

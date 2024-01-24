@@ -60,7 +60,7 @@ const Footer = () => {
                 await handleSubmit();
                 break;
             case "/become-a-host/third/publish-celebration":
-                handleSubmit();
+                router.push("/hosting");
                 break;
             // 기타 케이스 추가 가능
             default:
@@ -69,13 +69,68 @@ const Footer = () => {
         }
     };
 
+    const handlePreviousButtonClick = async () => {
+        console.log("Current Pathname: ", pathname);
+        switch (pathname) {
+            case "/become-a-host/first/about-your-place":
+                router.push("/become-a-host/first/overview");
+                break;
+            case "/become-a-host/first/property-type":
+                router.push("/become-a-host/first/about-your-place");
+                break;
+            case "/become-a-host/first/category":
+                router.push("/become-a-host/first/property-type");
+                break;
+            case "/become-a-host/first/location":
+                router.push("/become-a-host/first/category");
+                break;
+            case "/become-a-host/first/floor-plan":
+                router.push("/become-a-host/first/location");
+                break;
+            case "/become-a-host/second/stand-out":
+                router.push("/become-a-host/first/floor-plan");
+                break;
+            case "/become-a-host/second/amenities":
+                router.push("/become-a-host/second/stand-out");
+                break;
+            case "/become-a-host/second/title":
+                router.push("/become-a-host/second/amenities");
+                break;
+            case "/become-a-host/second/description":
+                router.push("/become-a-host/second/title");
+                break;
+            case "/become-a-host/third/finish-setup":
+                router.push("/become-a-host/second/description");
+                break;
+            case "/become-a-host/third/price":
+                router.push("/become-a-host/third/finish-setup");
+                break;
+            case "/become-a-host/third/checkinout":
+                router.push("/become-a-host/third/price");
+                break;
+            case "/become-a-host/third/photos":
+                router.push("/become-a-host/third/checkinout");
+                break;
+            case "/become-a-host/third/receipt":
+                router.push("/become-a-host/third/photos");
+                break;
+            case "/become-a-host/third/publish-celebration":
+                router.push("/become-a-host/third/receipt");
+                break;
+            // 기타 케이스 추가 가능
+            default:
+                // 기본적으로 아무것도 하지 않거나 기본 경로로 리디렉션
+                break;
+        }
+    };
 
     return (
-        <footer className="fixed bottom-0 left-0 w-full bg-white border-t-2 border-gray-200 px-6 py-4 flex justify-between items-center">
-            {/* 여기에 추가적인 컨텐츠나 로고를 넣을 수 있습니다. */}
-            <div></div>
-
-            <div className="flex justify-end">
+        <footer className="sticky bottom-0 left-0 w-full bg-white border-t-2 border-gray-200 px-6 py-4 flex flex-row items-center justify-between">
+            <div className="flex flex-row items-center justify-between">
+                <Button
+                    label="이전"
+                    onClick={handlePreviousButtonClick}
+                />
                 <Button
                     label="다음"
                     onClick={handleButtonClick}

@@ -5,7 +5,7 @@ import Logo from "@/components/navbar/Logo";
 
 const RegisterNavbar = () => {
     return (
-        <div className="fixed w-full bg-white z-10 shadow-sm bg-amber-200">
+        <div className="sticky w-full bg-white z-10 shadow-sm">
             <div className="py-4">
                 <Container>
                     <div

@@ -5,7 +5,6 @@ export default function HostingPage() {
   return (
     <div>
       HostingPage
-      {/* Hosting 페이지 컨텐츠 */}
     </div>
   );
 }
