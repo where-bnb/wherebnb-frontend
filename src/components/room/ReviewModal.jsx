@@ -82,6 +82,7 @@ const ReviewModal = ({ scores, guestFavorite, reviewCount }) => {
   return (
     <>
       <div className="justify-center items-center flex overflow-x-hidden fixed inset-0 z-50 outline-none focus:outline-none bg-neutral-800/70">
+
         <div className="relative w-11/12 max-w-2xl my-6 mx-auto max-h-[90vh] overflow-y-auto rounded-lg">
           <div
             className={`

@@ -10,6 +10,7 @@ import { DatePickerProvider } from "@bcad1591/react-date-picker";
 import RoomImageModal from "@/components/room/RoomImageModal";
 import useRoomDescModal from "@/hooks/useRoomDescModal";
 
+
 const RoomDetail = ({ room, currentUser, propertyId }) => {
   const [showImageModal, setShowImageModal] = useState(false);
   const { propertyType, propertyDetail, address, guestFavorite } = room;
