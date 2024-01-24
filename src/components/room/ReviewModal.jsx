@@ -82,19 +82,20 @@ const ReviewModal = ({ scores, guestFavorite, reviewCount }) => {
   return (
     <>
       <div className="justify-center items-center flex overflow-x-hidden fixed inset-0 z-50 outline-none focus:outline-none bg-neutral-800/70">
-        <div className="relative w-11/12 my-6 mx-auto max-h-[90vh] overflow-y-auto rounded-lg">
-          {isLoading ? (
-            <LoadingSpinner />
-          ) : (
-            <div
-              className={`
+
+        <div className="relative w-11/12 max-w-2xl my-6 mx-auto max-h-[90vh] overflow-y-auto rounded-lg">
+          <div
+            className={`
             translate
             duration-300
             h-1/2
             ${showModal ? "translate-y-0" : "translate-y-full"}
             ${showModal ? "opacity-100" : "opacity-0"}
           `}
-            >
+          >
+            {isLoading ? (
+              <LoadingSpinner />
+            ) : (
               <div className="translate h-full lg:h-auto md:h-auto border-0 shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                 {/* Header */}
                 <div className="bg-white shadow-sm sticky top-0 z-[100]">
@@ -242,8 +243,8 @@ const ReviewModal = ({ scores, guestFavorite, reviewCount }) => {
                   </ul>
                 </div>
               </div>
-            </div>
-          )}
+            )}
+          </div>
         </div>
       </div>
     </>

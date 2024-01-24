@@ -11,7 +11,6 @@ export async function getCurrentUser() {
   try {
     const session = await getSession();
 
-    // console.log("session", session);
     const currentUser = await authApi.get(`/users/${session.user?.userId}`);
     if (!currentUser) {
       return null;

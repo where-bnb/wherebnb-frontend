@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
-import HeartButton from "./HeartButton";
+import HeartButton from "@/components/ui/HeartButton";
 import ImageSwiper from "../swiper/ImageSwiper";
 
 const ListingCard = ({ room, propertyId, currentUser }) => {
