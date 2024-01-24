@@ -1,20 +1,17 @@
 import { useRouter } from "next/navigation";
 import useLoginModal from "./useLoginModal";
 import { useCallback, useMemo } from "react";
-import { authApi } from "@/lib/axios";
 import toast from "react-hot-toast";
-import { useSession } from "next-auth/react";
 import { addWishlist, removeWishlist } from "@/actions";
 
 const useFavorite = ({ listingId, currentUser }) => {
-  const { data: session } = useSession();
   const router = useRouter();
   const loginModal = useLoginModal();
 
   const hasFavorited = useMemo(() => {
     const wishList = currentUser?.favoriteList;
 
-    if (!session) return false;
+    if (!currentUser) return false;
 
     return wishList.includes(Number(listingId));
   }, [currentUser, listingId]);
@@ -22,33 +19,33 @@ const useFavorite = ({ listingId, currentUser }) => {
   const toggleFavorite = useCallback(
     async (e) => {
       e.stopPropagation();
-      console.log("current user has favorited", currentUser);
-
-      if (!session) {
+      console.log("함수실행?", currentUser);
+      if (!currentUser) {
         return loginModal.onOpen();
       }
 
-      try {
-        let res;
-        if (hasFavorited) {
-          res = await removeWishlist(session?.user.userId, listingId);
+      let res;
+      if (hasFavorited) {
+        res = await removeWishlist(currentUser.id, listingId);
 
-          if (res === 200) {
-            toast.success("위시리스트에서 삭제되었습니다.");
-          }
+        if (res === 200) {
+          router.refresh();
+          toast.success("위시리스트에서 삭제되었습니다.");
         } else {
-          res = await addWishlist(session?.user.userId, listingId);
-
-          if (res === 200) {
-            toast.success("위시리스트에 추가되었습니다.");
-          }
+          toast.error("문제가 발생했습니다.");
         }
-      } catch (error) {
-        toast.error("문제가 발생했습니다.");
-        console.log("useFavorite err: ", error);
+      } else {
+        res = await addWishlist(currentUser.id, listingId);
+
+        if (res === 200) {
+          router.refresh();
+          toast.success("위시리스트에 추가되었습니다.");
+        } else {
+          toast.error("문제가 발생했습니다.");
+        }
       }
     },
-    [currentUser, hasFavorited, listingId, loginModal, router]
+    [currentUser, hasFavorited, listingId, loginModal, router],
   );
 
   return {

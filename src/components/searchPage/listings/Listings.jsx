@@ -57,7 +57,7 @@ const Listings = ({ currentUser, queryKey }) => {
               room={room}
               currentUser={currentUser}
             />
-          ))
+          )),
         )}
 
       <div

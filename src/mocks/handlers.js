@@ -16,7 +16,7 @@ export const handlers = [
         headers: {
           "Set-Cookie": "connect.sid=msw-cookie;HttpOnly;Path=/",
         },
-      }
+      },
     );
   }),
   http.post("/auth/refresh", () => {
@@ -27,7 +27,7 @@ export const handlers = [
         headers: {
           NewAccessToken: "Bearer refreshed ---token ,.,..",
         },
-      }
+      },
     );
   }),
   http.post("/users", async ({ request }) => {
@@ -64,7 +64,7 @@ export const handlers = [
       ctx.json({
         url: mockS3Url, // 모의 S3 URL
         fields: mockFields, // 모의 필드
-      })
+      }),
     );
   }),
   http.post("/become-a-host", async (req, res, ctx) => {
@@ -102,7 +102,7 @@ export const handlers = [
     // });
     return HttpResponse.json({
       propertyName: "Lovely Apartment",
-      category: "Beach",
+      category: "bestView",
       photos: [
         "https://develsopher-nextjs.s3.ap-northeast-2.amazonaws.com/burger.jpg",
         "https://develsopher-nextjs.s3.ap-northeast-2.amazonaws.com/burger.jpg",
@@ -490,6 +490,7 @@ export const handlers = [
   }),
   http.post("/:userId/wishlist/:propertyId", () => {
     // 유저 위시리스트 추가 로직
+    console.log("추가되었습니다.");
     return HttpResponse.json({}, { status: 200 });
   }),
   http.delete("/:userId/wishlist/:propertyId", () => {
