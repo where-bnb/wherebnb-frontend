@@ -128,7 +128,7 @@ export const handlers = [
         longitude: 85.31184012689732,
       });
     }),
-    http.get("/hosting/inbox" , async ({ request, params }) => {
+    http.get("/hosting/listing" , async ({ request, params }) => {
       return HttpResponse.json({
         propertyName: "Lovely Apartment",
         category: 6,

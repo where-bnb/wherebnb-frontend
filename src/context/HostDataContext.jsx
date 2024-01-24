@@ -2,7 +2,7 @@
 'use client';
 
 import React, {createContext, useContext, useEffect, useState} from 'react';
-import {useRouter, usePathname} from "next/navigation";
+import {useRouter, usePathname } from "next/navigation";
 
 const HostDataContext = createContext ();
 
@@ -71,7 +71,7 @@ export const HostDataProvider = ({ children }) => {
 
 
     useEffect (() => {
-        if (pathname.startsWith('/hosting/listings')) {
+        if (pathname.startsWith('hosting/listing/editor/:propertyId')) {
             const propertyId = pathname.split('/')[4]; // Assuming the propertyId is the 4th segment in the URL
 
             setIsLoading(true);
@@ -166,7 +166,6 @@ export const HostDataProvider = ({ children }) => {
     };
 
     const handleEditSubmit = async () => {
-        const pathname = usePathname();
         let endpoint = '';
         let method = 'PATCH';
         let body = JSON.stringify(hostData);

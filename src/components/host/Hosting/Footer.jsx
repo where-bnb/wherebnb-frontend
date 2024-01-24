@@ -12,9 +12,9 @@ const Footer = () => {
 
 
     return (
-        <footer className="fixed bottom-0 left-0 w-full bg-white border-t-2 border-gray-200 px-6 py-4 flex justify-between items-center">
+        <footer className="fixed bottom-0 left-0 w-full bg-white border-t-2 border-gray-200 px-6 py-4 flex justify-center items-center">
             {/* 여기에 추가적인 컨텐츠나 로고를 넣을 수 있습니다. */}
-            <div className="flex justify-end">
+            <div className="flex w-72 justify-center">
                 <Button
                     label="제출"
                     onClick={handleEditSubmit}
