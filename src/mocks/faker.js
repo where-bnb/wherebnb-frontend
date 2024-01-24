@@ -15,14 +15,14 @@ export const generateRoomList = (number) => {
         latitude: faker.location.latitude(),
         longtitude: faker.location.longitude(),
       },
-      User: {
+      searchUser: {
         userId: faker.string.uuid(),
         name: faker.person.fullName(),
         picture: faker.image.avatar(),
         explanation: faker.lorem.sentence(),
       },
-      id: faker.number.int({ min: 1, max: 30 }),
-      images: [
+      propertyId: faker.number.int({ min: 1, max: 30 }),
+      photos: [
         faker.image.urlPicsumPhotos(),
         faker.image.urlPicsumPhotos(),
         faker.image.urlPicsumPhotos(),

@@ -4,7 +4,7 @@ import SearchHeader from "../ui/header/SearchHeader";
 
 const Navbar = () => {
   return (
-    <div className="sticky top-0 bg-white z-10">
+    <div className="sticky top-0 bg-white z-10 pt-2">
       <SearchHeader />
       <div
         className="

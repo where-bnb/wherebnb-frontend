@@ -1,12 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import { useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import qs from "query-string";
 import { useCallback } from "react";
 
-const CategoryBox = ({ icon, label, name, selected }) => {
+const CategoryBox = ({ icon, label, id, selected }) => {
   const router = useRouter();
+  const pathname = usePathname();
   const params = useSearchParams();
 
   // 카테고리 클릭 : query string에 category 추가
@@ -19,24 +20,24 @@ const CategoryBox = ({ icon, label, name, selected }) => {
 
     const updatedQuery = {
       ...currentQuery,
-      category: name,
+      category: id,
     };
 
     // 이미 카테고리가 선택되어있는 경우, 클릭 시 선택 해제 & query string 해제
-    if (params?.get("category") === name) {
+    if (params?.get("category") === `${id}`) {
       delete updatedQuery.category;
     }
 
     const url = qs.stringifyUrl(
       {
-        url: "/",
+        url: pathname,
         query: updatedQuery,
       },
       { skipNull: true }
     );
 
     router.push(url);
-  }, [name, params, router]);
+  }, [id, params, router]);
 
   return (
     <div

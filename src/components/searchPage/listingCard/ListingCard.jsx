@@ -5,7 +5,7 @@ import HeartButton from "./HeartButton";
 import ImageSwiper from "../swiper/ImageSwiper";
 import { useSession } from "next-auth/react";
 
-const ListingCard = ({ room, id, currentUser }) => {
+const ListingCard = ({ room, propertyId, currentUser }) => {
   const router = useRouter();
   const params = useSearchParams();
 
@@ -25,9 +25,9 @@ const ListingCard = ({ room, id, currentUser }) => {
           "
         >
           <div className="absolute top-4 right-4 z-[8]">
-            <HeartButton listingId={id} currentUser={currentUser} />
+            <HeartButton listingId={propertyId} currentUser={currentUser} />
           </div>
-          <ImageSwiper images={room.images} />
+          <ImageSwiper images={room.photos} />
         </div>
         <div className="flex flex-row justify-between text-md">
           <div className="font-semibold truncate">
@@ -39,7 +39,7 @@ const ListingCard = ({ room, id, currentUser }) => {
         </div>
       </div>
       <div className="text-sm font-light text-neutral-500 truncate">
-        호스트: {room.User.name}
+        호스트: {room.searchUser.name}
       </div>
       <div className="text-sm font-light text-neutral-500 truncate">
         {room.propertyExplanation}
