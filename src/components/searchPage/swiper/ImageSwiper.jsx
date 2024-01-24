@@ -3,11 +3,10 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import { BiChevronRight, BiChevronLeft } from "react-icons/bi";
-
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import "./ImageSwiper.css";
+
 import SwiperButton from "./SwiperButton";
 import Image from "next/image";
 
@@ -28,6 +27,11 @@ const ImageSwiper = ({ images }) => {
         prevEl: ".button-prev-slide",
       }}
     >
+      <style jsx global>{`
+        .swiper-pagination-bullet-active {
+          background-color: #ffffff;
+        }
+      `}</style>
       <div>
         {images.map((image) => (
           <SwiperSlide key={image}>

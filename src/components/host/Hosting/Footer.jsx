@@ -3,7 +3,6 @@
 
 
 import Button from "@/components/ui/Button";
-import {usePathname, useRouter} from "next/navigation";
 import {useHostData} from "@/context/HostDataContext"; // 임포트 경로는 실제 경로에 맞게 수정해주세요.
 
 const Footer = () => {

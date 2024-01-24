@@ -2,13 +2,13 @@
 /* tslint:disable */
 
 /**
- * Mock Service Worker (2.0.13).
+ * Mock Service Worker (2.1.0).
  * @see https://github.com/mswjs/msw
  * - Please do NOT modify this file.
  * - Please do NOT serve this file on production.
  */
 
-const INTEGRITY_CHECKSUM = 'c5f7f8e188b673ea4e677df7ea3c5a39'
+const INTEGRITY_CHECKSUM = '223d191a56023cd36aa88c802961b911'
 const IS_MOCKED_RESPONSE = Symbol('isMockedResponse')
 const activeClientIds = new Set()
 
@@ -194,7 +194,7 @@ async function getResponse(event, client, requestId) {
     return passthrough()
   }
 
-  // Bypass initial page.jsx.jsx load requests (i.e. static assets).
+  // Bypass initial page load requests (i.e. static assets).
   // The absence of the immediate/parent client in the map of the active clients
   // means that MSW hasn't dispatched the "MOCK_ACTIVATE" event yet
   // and is not ready to handle requests.

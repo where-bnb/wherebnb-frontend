@@ -1,15 +1,12 @@
 "use client";
 
-import Container from "@/components/ui/Container";
 import Logo from "@/components/navbar/Logo";
 
 const RegisterNavbar = () => {
-    return (
-        <div className="sticky w-full bg-white z-10 shadow-sm">
-            <div className="py-4">
-                <Container>
-                    <div
-                        className="
+  return (
+    <div className="sticky top-0 bg-white z-10 shadow-sm py-2">
+      <div
+        className="
                 flex
                 flex-row
                 items-center
@@ -21,9 +18,8 @@ const RegisterNavbar = () => {
                     >
                         <Logo />
                     </div>
-                </Container>
             </div>
-        </div>
+
     );
 };
 

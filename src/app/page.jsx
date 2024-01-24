@@ -2,22 +2,24 @@ import EmptyState from "@/components/searchPage/EmptyState";
 import ListingCard from "@/components/searchPage/listingCard/ListingCard";
 import { getCurrentUser } from "@/actions";
 import { getRoomsList } from "@/actions";
+import Navbar from "@/components/navbar/Navbar";
+import Container from "@/components/ui/Container";
 
 export default async function Home() {
   const isEmpty = false;
   const currentUser = await getCurrentUser();
 
   const list = await getRoomsList();
-  console.log("user", currentUser);
 
   if (isEmpty) {
     return <EmptyState showReset />;
   }
 
   return (
-    <div
-      className="
-                  pt-5
+    <Container>
+      <Navbar />
+      <div
+        className="
                   grid
                   grid-cols-1
                   sm:grid-cols-2
@@ -27,16 +29,17 @@ export default async function Home() {
                   2xl:grid-cols-6
                   gap-8
                 "
-    >
-      {list &&
-        list.map((room) => (
-          <ListingCard
-            key={room.id}
-            id={room.id}
-            room={room}
-            currentUser={currentUser}
-          />
-        ))}
-    </div>
+      >
+        {list &&
+          list.map((room) => (
+            <ListingCard
+              key={room.id}
+              id={room.id}
+              room={room}
+              currentUser={currentUser}
+            />
+          ))}
+      </div>
+    </Container>
   );
 }
