@@ -3,7 +3,7 @@
 import {SelectStructure} from "@/components/host/RegisterRoom/SelectStructure";
 import { useHostData } from "@/context/HostDataContext";
 import Image from "next/image";
-import categories from "/src/components/searchPage/categories/categoryList";
+import {categories} from "@/components/searchPage/categories/categoryList";
 
 export default function CategoryPage() {
     const { updateHostData, hostData, isLoading} = useHostData();

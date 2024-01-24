@@ -3,13 +3,12 @@
 import Image from "next/image";
 import {useHostData} from "@/context/HostDataContext";
 
-export const CardComponent = () => {
-    const hostData  = useHostData();
+export const ListingCardComponent = (data) => {
 
 
     // 첫 번째 이미지의 'preview' 속성을 사용하거나 기본 이미지로 대체
-    const imageUrl = hostData.photos !== [] && hostData.photos.length > 0 && hostData.photos[0].preview
-        ? hostData.photos[0].preview
+    const imageUrl = data?.photos !== [] && data?.photos[0]?.preview
+        ? data?.photos[0]?.preview
         : "/images/placeholder.jpg";
 
     return (
@@ -17,16 +16,15 @@ export const CardComponent = () => {
             <Image className="w-auto" src={imageUrl} width="200" height="200" alt="Property Image"/>
             <div className="px-6 py-4">
                 <div className="font-bold text-xl mb-2">
-                    <h4 className="pr-20">{'숙소명 : '+ hostData.propertyName}</h4>
-                    {score ? <h4>⭐ {score}</h4> : null}
+                    <h4 className="pr-20">{'숙소명 : '+ data.propertyName}</h4>
                 </div>
-                {hostData.price ?
+                {data.price ?
                     <p className="text-gray-700 text-base font-bold">
-                        $ {hostData.price} / 1박
+                        $ {data.price} / 1박
                     </p> : null}
-                {hostData.checkInTime && hostData.checkOutTime ?
+                {data.checkInTime && data.checkOutTime ?
                     <p className="text-gray-700 text-base font-bold">
-                        {hostData.checkInTime} ~ {hostData.checkOutTime}
+                        {data.checkInTime} ~ {data.checkOutTime}
                     </p> : null}
             </div>
         </div>

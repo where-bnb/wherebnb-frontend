@@ -128,6 +128,40 @@ export const handlers = [
         longitude: 85.31184012689732,
       });
     }),
+    http.get("/hosting/inbox" , async ({ request, params }) => {
+      return HttpResponse.json({
+        propertyName: "Lovely Apartment",
+        category: 6,
+        photos: [
+          "https://develsopher-nextjs.s3.ap-northeast-2.amazonaws.com/burger.jpg",
+          "https://develsopher-nextjs.s3.ap-northeast-2.amazonaws.com/burger.jpg",
+          "https://develsopher-nextjs.s3.ap-northeast-2.amazonaws.com/burger.jpg",
+          "https://develsopher-nextjs.s3.ap-northeast-2.amazonaws.com/burger.jpg",
+        ],
+        propertyType: 2,
+        maxPeople: 4,
+        bedroom: 2,
+        bed: 3,
+        bathroom: 1,
+        selfCheckIn: true,
+        petAvailable: false,
+        smokeAvailable: false,
+        checkInTime: 9,
+        checkOutTime: 11,
+        propertyExplanation:"lorem ipsum dolor sit amet, consectetur adip e",
+        price: 100, // 평일, 주말 상관없이 가격 고정
+        amenities: [1,2,3,4],
+        country: "대한민국",
+        state: "용산구",
+        city: "서울특별시",
+        street: "Street",
+        details: "Apartment 101",
+        zipcode: "123456",
+        latitude: 27.672932021393862,
+        longitude: 85.31184012689732,
+      });
+    }),
+
   // http.post('/hosting/listing/editor/:propertyId/status', async (req, res) => {
   //   const propertyId = req.params.propertyId;
   //   const { status } = req.body;  // status should be a boolean

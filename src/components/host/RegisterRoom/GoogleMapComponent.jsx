@@ -11,8 +11,8 @@ const GOOGLE_MAPS_API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY;
 const libraries = ["places"];
 
 const containerStyle = {
-    width: '900px',
-    height: '1000px'
+    width: '700px',
+    height: '700px'
 };
 
 
@@ -144,7 +144,7 @@ function GoogleMapComponent({ initialData, onLocationSelect, center}) {
                 googleMapsApiKey={GOOGLE_MAPS_API_KEY}
                 libraries={libraries}
             >
-                <div className="flex flex-col gap-10 w-2/5 pr-10 flex-center">
+                <div className="flex flex-col w-2/5 pr-10 flex-center">
                     <h4 className="text-4xl font-bold">숙소의 위치는 어디인가요?</h4>
                     <StandaloneSearchBox
                         onLoad={onSearchBoxLoad}

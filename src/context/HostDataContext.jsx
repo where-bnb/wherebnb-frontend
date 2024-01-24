@@ -71,7 +71,7 @@ export const HostDataProvider = ({ children }) => {
 
 
     useEffect (() => {
-        if (pathname.startsWith('/hosting/listings/editor/')) {
+        if (pathname.startsWith('/hosting/listings')) {
             const propertyId = pathname.split('/')[4]; // Assuming the propertyId is the 4th segment in the URL
 
             setIsLoading(true);

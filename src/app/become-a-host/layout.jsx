@@ -10,7 +10,7 @@ const BecomeAHostLayout = ({ children }) => {
     <Container>
       <RegisterNavbar />
       <HostDataProvider>
-        <div className="min-h-screen flex flex-col items-center justify-center">
+        <div className="py-40 flex flex-col items-center justify-center">
           {children}
         </div>
         <Footer />
