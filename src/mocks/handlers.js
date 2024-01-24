@@ -582,4 +582,90 @@ export const handlers = [
       });
     }
   }),
+  http.get("/room/filtered", ({ request, params }) => {
+    const url = new URL(request.url);
+    const page = parseInt(url.searchParams.get("page") || 0);
+    if (page === 0) {
+      return HttpResponse.json({
+        content: generateRoomList(15),
+        pageable: {
+          pageNumber: 1,
+          pageSize: 15,
+          sort: {
+            empty: false,
+            unsorted: false,
+            sorted: true,
+          },
+          offset: 15,
+          paged: true,
+          unpaged: false,
+        },
+        first: true,
+        last: false,
+        size: 15,
+        number: 1,
+        sort: {
+          empty: false,
+          unsorted: false,
+          sorted: true,
+        },
+        numberOfElements: 15,
+        empty: false,
+      });
+    } else if (page === 1) {
+      return HttpResponse.json({
+        content: generateRoomList(15),
+        pageable: {
+          pageNumber: 2,
+          pageSize: 15,
+          sort: {
+            empty: false,
+            unsorted: false,
+            sorted: true,
+          },
+          offset: 15,
+          paged: true,
+          unpaged: false,
+        },
+        first: false,
+        last: false,
+        size: 15,
+        number: 1,
+        sort: {
+          empty: false,
+          unsorted: false,
+          sorted: true,
+        },
+        numberOfElements: 15,
+        empty: false,
+      });
+    } else if (page === 2) {
+      return HttpResponse.json({
+        content: generateRoomList(15),
+        pageable: {
+          pageNumber: 3,
+          pageSize: 15,
+          sort: {
+            empty: false,
+            unsorted: false,
+            sorted: true,
+          },
+          offset: 15,
+          paged: true,
+          unpaged: false,
+        },
+        first: false,
+        last: true,
+        size: 15,
+        number: 1,
+        sort: {
+          empty: false,
+          unsorted: false,
+          sorted: true,
+        },
+        numberOfElements: 15,
+        empty: false,
+      });
+    }
+  }),
 ];

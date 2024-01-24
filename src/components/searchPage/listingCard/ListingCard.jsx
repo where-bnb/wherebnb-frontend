@@ -3,7 +3,6 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import HeartButton from "./HeartButton";
 import ImageSwiper from "../swiper/ImageSwiper";
-import { useSession } from "next-auth/react";
 
 const ListingCard = ({ room, propertyId, currentUser }) => {
   const router = useRouter();
@@ -11,7 +10,7 @@ const ListingCard = ({ room, propertyId, currentUser }) => {
 
   return (
     <div
-      onClick={() => router.push(`/rooms/${id}?${params.toString()}`)}
+      onClick={() => router.push(`/rooms/${propertyId}?${params.toString()}`)}
       className="col-span-1 cursor-pointer group"
     >
       <div className="flex flex-col gap-2 w-full">

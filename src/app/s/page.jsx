@@ -18,7 +18,7 @@ const SearchResultPage = async () => {
           relative
         "
       >
-        <Listings currentUser={currentUser} queryKey="mainSearch" />
+        <Listings currentUser={currentUser} queryKey="/s" />
       </div>
       <div
         className="

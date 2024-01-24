@@ -1,18 +1,12 @@
 import EmptyState from "@/components/searchPage/EmptyState";
-import ListingCard from "@/components/searchPage/listingCard/ListingCard";
 import { getCurrentUser } from "@/actions";
-import { getRoomsList } from "@/actions";
 import Navbar from "@/components/navbar/Navbar";
 import Container from "@/components/ui/Container";
-import ListingCardSkeleton from "@/components/searchPage/listingCard/ListingCardSkeleton";
-import { useInfiniteQuery } from "@tanstack/react-query";
 import Listings from "@/components/searchPage/listings/Listings";
 
 export default async function Home() {
   const isEmpty = false;
   const currentUser = await getCurrentUser();
-
-  // const list = await getRoomsList();
 
   if (isEmpty) {
     return <EmptyState showReset />;
@@ -35,7 +29,7 @@ export default async function Home() {
                   relative
                 "
       >
-        <Listings currentUser={currentUser} queryKey="main-random-data" />
+        <Listings currentUser={currentUser} queryKey="/" />
       </div>
     </Container>
   );

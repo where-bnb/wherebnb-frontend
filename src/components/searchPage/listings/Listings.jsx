@@ -53,7 +53,7 @@ const Listings = ({ currentUser, queryKey }) => {
           page.content.map((room) => (
             <ListingCard
               key={room.propertyId}
-              id={room.propertyId}
+              propertyId={room.propertyId}
               room={room}
               currentUser={currentUser}
             />

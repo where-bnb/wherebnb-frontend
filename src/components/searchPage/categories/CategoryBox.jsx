@@ -1,11 +1,13 @@
 "use client";
 
+import { useQueryClient } from "@tanstack/react-query";
 import Image from "next/image";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import qs from "query-string";
 import { useCallback } from "react";
 
 const CategoryBox = ({ icon, label, id, selected }) => {
+  const queryClient = useQueryClient();
   const router = useRouter();
   const pathname = usePathname();
   const params = useSearchParams();
@@ -28,6 +30,7 @@ const CategoryBox = ({ icon, label, id, selected }) => {
       delete updatedQuery.category;
     }
 
+    // 쿼리 파라미터 갱신
     const url = qs.stringifyUrl(
       {
         url: pathname,
@@ -36,6 +39,10 @@ const CategoryBox = ({ icon, label, id, selected }) => {
       { skipNull: true }
     );
 
+    // 기존 쿼리 무효화, refetch
+    queryClient.invalidateQueries([`${pathname}`]);
+
+    // 페이지 이동
     router.push(url);
   }, [id, params, router]);
 
