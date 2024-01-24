@@ -35,7 +35,14 @@ const ImageSwiper = ({ images }) => {
       <div>
         {images.map((image) => (
           <SwiperSlide key={image}>
-            <Image fill alt="room photo" src={image} sizes={24} />
+            <Image
+              fill
+              alt="room photo"
+              src={image}
+              sizes={24}
+              placeholder="blur"
+              blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mO8Ug8AAi0BVVnWL7QAAAAASUVORK5CYII="
+            />
           </SwiperSlide>
         ))}
       </div>

@@ -20,9 +20,11 @@ import CheckBoxGroup from "./CheckBoxGroup";
 import Checkbox from "./Checkbox";
 import { useDetailFilter } from "@/hooks/useSearchFilter";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import qs from "query-string";
+import { updateQuery } from "@/utils/updateQuery";
+import { useQueryClient } from "@tanstack/react-query";
 
 const FilterModal = () => {
+  const queryClient = useQueryClient();
   const router = useRouter();
   const params = useSearchParams();
   const pathname = usePathname();
@@ -70,60 +72,19 @@ const FilterModal = () => {
     }
   };
 
-  // '선택한 숙소 보기' 버튼 클릭 -> 쿼리 파라미터 삽입
+  // '선택한 숙소 보기' 버튼 클릭 -> 재검색
   const handleClick = () => {
-    let currentQuery = {};
+    // 쿼리 파라미터 갱신
+    const url = updateQuery(pathname, params);
 
-    if (params) {
-      currentQuery = qs.parse(params.toString());
-    }
+    // 기존 쿼리 무효화, refetch
+    queryClient.invalidateQueries([`${pathname}`]);
 
-    const updatedQuery = {
-      ...currentQuery,
-      price_min: detailFilterStore.price_min,
-      price_max: detailFilterStore.price_max,
-      min_bedrooms: detailFilterStore.min_bedrooms,
-      min_beds: detailFilterStore.min_beds,
-      min_bathrooms: detailFilterStore.min_bathrooms,
-      guest_favorite: detailFilterStore.guest_favorite,
-      property_type: detailFilterStore.property_type,
-      amenities: detailFilterStore.amenities,
-    };
-
-    if (updatedQuery.price_min === 0) {
-      delete updatedQuery.price_min;
-    }
-    if (updatedQuery.price_max === 0) {
-      delete updatedQuery.price_max;
-    }
-    if (updatedQuery.min_bedrooms === 0) {
-      delete updatedQuery.min_bedrooms;
-    }
-    if (updatedQuery.min_beds === 0) {
-      delete updatedQuery.min_beds;
-    }
-    if (updatedQuery.min_bathrooms === 0) {
-      delete updatedQuery.min_bathrooms;
-    }
-    if (updatedQuery.guest_favorite === false) {
-      delete updatedQuery.guest_favorite;
-    }
-    if (updatedQuery.property_type === null) {
-      delete updatedQuery.property_type;
-    }
-    if (updatedQuery.amenities === null) {
-      delete updatedQuery.amenities;
-    }
-
-    const url = qs.stringifyUrl(
-      {
-        url: pathname,
-        query: updatedQuery,
-      },
-      { skipNull: true }
-    );
-
+    // 페이지 이동
     router.push(url);
+
+    // Filter Modal 닫기
+    handleClose();
   };
 
   // '전체 해제' 버튼 클릭 -> 필터 상태 초기화

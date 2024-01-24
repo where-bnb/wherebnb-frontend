@@ -54,25 +54,25 @@ export const handlers = [
       created_at: "2024-01-12T02:48:55.040Z",
     });
   }),
-  http.post('/api/post/image', (req, res, ctx) => {
+  http.post("/api/post/image", (req, res, ctx) => {
     const { file } = req.body;
     // 여기서는 간단히 모의 URL을 반환하고 있습니다.
-    const mockS3Url = 'https://example-s3-bucket.com';
-    const mockFields = { key: 'mock-key' }; // 모의 필드
+    const mockS3Url = "https://example-s3-bucket.com";
+    const mockFields = { key: "mock-key" }; // 모의 필드
 
     return res(
-        ctx.json({
-          url: mockS3Url, // 모의 S3 URL
-          fields: mockFields // 모의 필드
-        })
+      ctx.json({
+        url: mockS3Url, // 모의 S3 URL
+        fields: mockFields, // 모의 필드
+      })
     );
   }),
-  http.post('/become-a-host', async (req, res, ctx) => {
+  http.post("/become-a-host", async (req, res, ctx) => {
     // FormData 인스턴스를 얻기
     console.log("=>(handlers.js:89) 등록함요");
     const formData = await req.formData();
-    const photos = formData.getAll('photos'); // 'photos' 필드의 모든 파일 가져오기
-    const otherData = formData.get('data'); // 'data' 필드의 JSON 데이터 가져오기
+    const photos = formData.getAll("photos"); // 'photos' 필드의 모든 파일 가져오기
+    const otherData = formData.get("data"); // 'data' 필드의 JSON 데이터 가져오기
 
     // 'data' 필드의 JSON 데이터를 객체로 파싱
     const parsedData = JSON.parse(otherData);
@@ -83,10 +83,7 @@ export const handlers = [
     console.log(`기타 데이터: `, parsedData);
 
     // 모의 응답 반환
-    return res(
-        ctx.status(200),
-        ctx.json({ message: '호스팅 등록 성공' })
-    );
+    return res(ctx.status(200), ctx.json({ message: "호스팅 등록 성공" }));
   }),
   // 숙소 예약
   http.post("/rooms/booking/:propertyId", async ({ request, params }) => {
@@ -499,7 +496,176 @@ export const handlers = [
     // 유저 위시리스트 삭제 로직
     return HttpResponse.json({}, { status: 200 });
   }),
-  http.get("/rooms", () => {
-    return HttpResponse.json(generateRoomList(30));
+  http.get("/room/search", ({ request, params }) => {
+    const url = new URL(request.url);
+    const page = parseInt(url.searchParams.get("page") || 0);
+    if (page === 0) {
+      return HttpResponse.json({
+        content: generateRoomList(15),
+        pageable: {
+          pageNumber: 1,
+          pageSize: 15,
+          sort: {
+            empty: false,
+            unsorted: false,
+            sorted: true,
+          },
+          offset: 15,
+          paged: true,
+          unpaged: false,
+        },
+        first: true,
+        last: false,
+        size: 15,
+        number: 1,
+        sort: {
+          empty: false,
+          unsorted: false,
+          sorted: true,
+        },
+        numberOfElements: 15,
+        empty: false,
+      });
+    } else if (page === 1) {
+      return HttpResponse.json({
+        content: generateRoomList(15),
+        pageable: {
+          pageNumber: 2,
+          pageSize: 15,
+          sort: {
+            empty: false,
+            unsorted: false,
+            sorted: true,
+          },
+          offset: 15,
+          paged: true,
+          unpaged: false,
+        },
+        first: false,
+        last: false,
+        size: 15,
+        number: 1,
+        sort: {
+          empty: false,
+          unsorted: false,
+          sorted: true,
+        },
+        numberOfElements: 15,
+        empty: false,
+      });
+    } else if (page === 2) {
+      return HttpResponse.json({
+        content: generateRoomList(15),
+        pageable: {
+          pageNumber: 3,
+          pageSize: 15,
+          sort: {
+            empty: false,
+            unsorted: false,
+            sorted: true,
+          },
+          offset: 15,
+          paged: true,
+          unpaged: false,
+        },
+        first: false,
+        last: true,
+        size: 15,
+        number: 1,
+        sort: {
+          empty: false,
+          unsorted: false,
+          sorted: true,
+        },
+        numberOfElements: 15,
+        empty: false,
+      });
+    }
+  }),
+  http.get("/room/filtered", ({ request, params }) => {
+    const url = new URL(request.url);
+    const page = parseInt(url.searchParams.get("page") || 0);
+    if (page === 0) {
+      return HttpResponse.json({
+        content: generateRoomList(15),
+        pageable: {
+          pageNumber: 1,
+          pageSize: 15,
+          sort: {
+            empty: false,
+            unsorted: false,
+            sorted: true,
+          },
+          offset: 15,
+          paged: true,
+          unpaged: false,
+        },
+        first: true,
+        last: false,
+        size: 15,
+        number: 1,
+        sort: {
+          empty: false,
+          unsorted: false,
+          sorted: true,
+        },
+        numberOfElements: 15,
+        empty: false,
+      });
+    } else if (page === 1) {
+      return HttpResponse.json({
+        content: generateRoomList(15),
+        pageable: {
+          pageNumber: 2,
+          pageSize: 15,
+          sort: {
+            empty: false,
+            unsorted: false,
+            sorted: true,
+          },
+          offset: 15,
+          paged: true,
+          unpaged: false,
+        },
+        first: false,
+        last: false,
+        size: 15,
+        number: 1,
+        sort: {
+          empty: false,
+          unsorted: false,
+          sorted: true,
+        },
+        numberOfElements: 15,
+        empty: false,
+      });
+    } else if (page === 2) {
+      return HttpResponse.json({
+        content: generateRoomList(15),
+        pageable: {
+          pageNumber: 3,
+          pageSize: 15,
+          sort: {
+            empty: false,
+            unsorted: false,
+            sorted: true,
+          },
+          offset: 15,
+          paged: true,
+          unpaged: false,
+        },
+        first: false,
+        last: true,
+        size: 15,
+        number: 1,
+        sort: {
+          empty: false,
+          unsorted: false,
+          sorted: true,
+        },
+        numberOfElements: 15,
+        empty: false,
+      });
+    }
   }),
 ];

@@ -1,7 +1,8 @@
 "use client";
 
+import { useSearchKey } from "@/hooks/useSearchFilter";
 import Image from "next/image";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 const SearchTextInput = ({
   name,
@@ -12,6 +13,7 @@ const SearchTextInput = ({
   setIsOpen,
 }) => {
   const [searchValue, setSearchValue] = useState("");
+  const { setSearchKey } = useSearchKey();
 
   const toggleOpen = useCallback(() => {
     setIsOpen((value) => {
@@ -19,6 +21,10 @@ const SearchTextInput = ({
       return name;
     });
   }, []);
+
+  useEffect(() => {
+    setSearchKey(searchValue);
+  }, [searchValue]);
 
   return (
     <>
