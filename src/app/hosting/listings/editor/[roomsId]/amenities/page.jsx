@@ -1,25 +1,16 @@
 'use client';
 
 import {
-    FaBath,
     FaBriefcase,
-    FaCarAlt,
-    FaCcAmazonPay,
-    FaDumbbell, FaFireExtinguisher,
-    FaHouseUser,
     FaSnowflake,
     FaWifi
 } from "react-icons/fa";
-import {PiSwimmingPoolBold, PiTelevisionFill} from "react-icons/pi";
+import { PiTelevisionFill} from "react-icons/pi";
 import {TbToolsKitchen2, TbWashTumbleDry} from "react-icons/tb";
-import {GiFireplace, GiHairStrands, GiPianoKeys, GiWashingMachine} from "react-icons/gi";
-import {MdFireplace, MdOutdoorGrill, MdOutlineTableRestaurant} from "react-icons/md";
-import {RiBilliardsFill} from "react-icons/ri";
+import {GiFireplace, GiHairStrands , GiWashingMachine} from "react-icons/gi";
 import React from "react";
-import {AiFillMedicineBox} from "react-icons/ai";
 import {SelectStructure} from "@/components/host/RegisterRoom/SelectStructure";
 import {useHostData} from "@/context/HostDataContext";
-import {Available} from "@/components/host/RegisterRoom/Available";
 
 export default function EditAmenitiesPage() {
 

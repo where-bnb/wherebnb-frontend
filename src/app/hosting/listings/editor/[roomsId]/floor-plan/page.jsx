@@ -1,5 +1,5 @@
 'use client';
-;
+
 import {useHostData} from "@/context/HostDataContext";
 import {FloorPlan} from "@/components/host/RegisterRoom/FloorPlan";
 import {Available} from "@/components/host/RegisterRoom/Available";

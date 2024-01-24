@@ -3,7 +3,6 @@
 import React, {useState, useRef, useCallback, useEffect} from 'react';
 import { GoogleMap, Marker, LoadScript, StandaloneSearchBox } from '@react-google-maps/api';
 import axios from "axios";
-import Input from "@/components/host/DesignSystem/Input";
 import LocationParsingInput from "@/components/host/Hosting/LocationParsingInput";
 
 
