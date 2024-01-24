@@ -9,6 +9,7 @@ import SearchHeader from "@/components/ui/header/SearchHeader";
 const RoomDetailPage = async ({ params }) => {
   const room = await getRoomById(params);
   const currentUser = await getCurrentUser();
+  const propertyId = params.roomId;
 
   if (Object.keys(room).length < 1) {
     return notFound();
@@ -22,7 +23,11 @@ const RoomDetailPage = async ({ params }) => {
         scores={room.scores}
         reviewCount={room.reviews.length}
       />
-      <RoomDetail room={room} currentUser={currentUser} />
+      <RoomDetail
+        room={room}
+        currentUser={currentUser}
+        propertyId={propertyId}
+      />
     </Container>
   );
 };

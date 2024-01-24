@@ -3,15 +3,19 @@
 import { authApi } from "@/lib/axios";
 
 export const addWishlist = async (userId, listingId) => {
-  console.log("wishlist 추가");
-
-  const res = await authApi.delete(`/${userId}/wishlist/${listingId}`);
-  return res.status;
+  try {
+    const res = await authApi.post(`/${userId}/wishlist/${listingId}`);
+    return res.status;
+  } catch (error) {
+    return error.response ? error.response.status : 500;
+  }
 };
 
 export const removeWishlist = async (userId, listingId) => {
-  console.log("wishlist 삭제");
-
-  const res = await authApi.post(`/${userId}/wishlist/${listingId}`);
-  return res.status;
+  try {
+    const res = await authApi.delete(`/${userId}/wishlist/${listingId}`);
+    return res.status;
+  } catch (error) {
+    return error.response ? error.response.status : 500;
+  }
 };

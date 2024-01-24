@@ -2,15 +2,13 @@
 import { useEffect } from "react";
 import RoomHead from "@/components/room/RoomHead";
 import RoomInfo from "@/components/room/RoomInfo";
-import Container from "@/components/ui/Container";
 import RoomReview from "@/components/room/RoomReview";
 import HostingArea from "@/components/room/HostingArea";
-import RoomCalendar from "@/components/room/RoomCalendar";
 import useRoomReviewModal from "@/hooks/useRoomReviewModal";
 import RoomCalendar from "@/components/room/RoomCalendar";
 import { DatePickerProvider } from "@bcad1591/react-date-picker";
 
-const RoomDetail = ({ room, currentUser }) => {
+const RoomDetail = ({ room, currentUser, propertyId }) => {
   const { propertyType, propertyDetail, address, guestFavorite } = room;
   const reviewModal = useRoomReviewModal();
 
@@ -25,7 +23,12 @@ const RoomDetail = ({ room, currentUser }) => {
   return (
     <div className="max-w-screen-lg mx-auto">
       <div className="flex flex-col gap-6">
-        <RoomHead title={room.propertyName} photos={room.photos} />
+        <RoomHead
+          title={room.propertyName}
+          photos={room.photos}
+          currentUser={currentUser}
+          propertyId={propertyId}
+        />
         <div
           className="
               grid grid-cols-1 

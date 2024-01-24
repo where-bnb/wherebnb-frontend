@@ -57,7 +57,7 @@ const Listings = ({ currentUser, queryKey }) => {
               room={room}
               currentUser={currentUser}
             />
-          ))
+          )),
         )}
       <div
         className="absolute w-full -bottom-14 h-[44px] flex flex-col items-center pb-3"

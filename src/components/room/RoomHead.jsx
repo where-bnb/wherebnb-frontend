@@ -1,9 +1,9 @@
 import Image from "next/image";
 import Heading from "../ui/Heading";
-import HeartButton from "./HeartButton";
+import HeartButton from "../ui/HeartButton";
 import { TiThSmall } from "react-icons/ti";
 
-const RoomHead = ({ title, photos }) => {
+const RoomHead = ({ title, photos, currentUser, propertyId }) => {
   return (
     <section className="space-y-4">
       <Heading title={title} />
@@ -41,7 +41,7 @@ const RoomHead = ({ title, photos }) => {
           </div>
         </div>
         <div className="absolute top-5 right-5">
-          <HeartButton />
+          <HeartButton currentUser={currentUser} listingId={propertyId} />
         </div>
         <div className="absolute bottom-3 right-3">
           <button className="bg-white flex justify-between items-center gap-2 text-sm text-neutral-500 px-2 py-1 border-none rounded-lg hover:text-black">
