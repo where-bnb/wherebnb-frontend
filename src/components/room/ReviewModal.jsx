@@ -17,7 +17,6 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import { useInView } from "react-intersection-observer";
 import LoadingSpinner from "./LoadingSpinner";
 import LoadingDotsSpinner from "./LoadingDotSpinner";
-import { FaStar } from "react-icons/fa6";
 
 async function getComments({ pageParam }) {
   await new Promise((resolve) => setTimeout(resolve, 1000));

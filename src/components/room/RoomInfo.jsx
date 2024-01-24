@@ -63,7 +63,6 @@ const RoomInfo = ({
     );
   }
 
-  console.log("roomCategory", roomCategory);
   return (
     <div className="col-span-4 flex flex-col gap-6">
       {/* 방 정보요약 */}
