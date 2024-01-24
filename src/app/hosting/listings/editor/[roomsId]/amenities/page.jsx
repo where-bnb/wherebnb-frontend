@@ -69,7 +69,6 @@ export default function EditAmenitiesPage() {
             <h1 className="text-4xl font-bold">어떤 편의 시설을 제공하시나요?</h1>
             <h2 className="text-2xl font-bold">숙소에 있는 편의 시설을 모두 선택하세요.</h2>
             <SelectStructure initialData={hostData.amenities} items={items} onItemSelect={onItemSelect} isRoomType={false}/>
-            <Available />
         </div>
     );
 }

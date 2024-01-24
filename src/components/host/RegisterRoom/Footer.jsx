@@ -11,7 +11,7 @@ const Footer = (url) => {
     const { handleSubmit } = useHostData()
     const router = useRouter();
     const pathname = usePathname();
-    const handleButtonClick = () => {
+    const handleButtonClick = async () => {
         console.log("Current Pathname: ", pathname);
         switch (pathname) {
             case "/become-a-host/first/overview":
@@ -57,12 +57,10 @@ const Footer = (url) => {
                 router.push("/become-a-host/third/receipt");
                 break;
             case "/become-a-host/third/receipt":
-                handleSubmit();
-                router.push("/become-a-host/third/publish-celebration");;
+                await handleSubmit();
                 break;
             case "/become-a-host/third/publish-celebration":
                 handleSubmit();
-                router.push("/become-a-host/hosting");;
                 break;
             // 기타 케이스 추가 가능
             default:

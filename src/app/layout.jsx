@@ -10,6 +10,7 @@ import Container from "@/components/ui/Container";
 import FilterModal from "@/components/searchPage/filters/FilterModal";
 import ReactQueryProvider from "@/providers/ReactQueryProvider";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import Navbar from "@/components/navbar/Navbar";
 
 
 export const metadata = {

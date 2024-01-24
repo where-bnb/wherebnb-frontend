@@ -1,6 +1,6 @@
 import CredentialsProvider from "next-auth/providers/credentials";
 import GithubProvider from "next-auth/providers/github";
-import mockImage from "/public/images/room-1.jpg";
+import mockImage from "../../../../../public/images/room-1.jpg";
 
 const refreshTokenApiCall = async (token) => {
   const url = process.env.NEXT_PUBLIC_BASE_URL + "/auth/refresh";

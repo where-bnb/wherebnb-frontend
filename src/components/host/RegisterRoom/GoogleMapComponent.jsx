@@ -63,10 +63,15 @@ function GoogleMapComponent({ initialData, onLocationSelect, center}) {
             const place = places[0];
 
             if (place.geometry) {
-                setLocation({
+                const newLocation = {
                     latitude: place.geometry.location.lat(),
-                    longitude: place.geometry.location.lng()
-                });
+                    lat: place.geometry.location.lat(),
+                    longitude: place.geometry.location.lng(),
+                    lng: place.geometry.location.lng()
+                };
+                setLocation(newLocation); // Update location for Marker
+                setAddress({ ...address, details: place.formatted_address }); // Optional: Update address details with new place
+
                 // Extract address components from the selected place and update address state
                 const addressComponents = place.address_components;
                 const formattedAddress = place.formatted_address;

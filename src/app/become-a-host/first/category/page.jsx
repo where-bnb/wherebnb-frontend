@@ -1,12 +1,6 @@
 'use client';
 
 import {SelectStructure} from "@/components/host/RegisterRoom/SelectStructure";
-import {FaHouseChimneyWindow} from "react-icons/fa6";
-import {MdCabin, MdCastle, MdHouseboat, MdOutlineApartment} from "react-icons/md";
-import {GiBarn, GiCaveEntrance} from "react-icons/gi";
-import {TbCamper} from "react-icons/tb";
-import {FaBuilding, FaHotel, FaHouseUser} from "react-icons/fa";
-import {LuContainer} from "react-icons/lu";
 import { useHostData } from "@/context/HostDataContext";
 import categories from "/public/data/categories";
 import Image from "next/image";

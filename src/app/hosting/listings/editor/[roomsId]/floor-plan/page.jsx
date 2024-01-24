@@ -1,8 +1,8 @@
 'use client';
-
-import {GuestCounter} from "@/components/host/Hosting/GuestCounter";
+;
 import {useHostData} from "@/context/HostDataContext";
 import {FloorPlan} from "@/components/host/RegisterRoom/FloorPlan";
+import {Available} from "@/components/host/RegisterRoom/Available";
 
 export default function EditFloorPlanPage() {
 
@@ -35,6 +35,7 @@ export default function EditFloorPlanPage() {
     return (
         <div>
             <FloorPlan initialData={floorPlan} onFloorPlan={handleFloorPlan}/>
+            <Available />
         </div>
     );
 }
