@@ -1,50 +1,36 @@
 "use client";
 
 import SearchTextInput from "./SearchTextInput";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import SearchDateInput from "./searchDateInput";
 import SearchGuestInput from "./SearchGuestInput";
 import { useDatePickGetter } from "@bcad1591/react-date-picker";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import qs from "query-string";
-import dayjs from "dayjs";
+import { updateQuery } from "@/utils/updateQuery";
+import { useQueryClient } from "@tanstack/react-query";
 
 const SearchBar = () => {
+  const queryClient = useQueryClient();
   const router = useRouter();
   const pathname = usePathname();
   const params = useSearchParams();
   const [isSelected, setIsSelected] = useState("");
   const { pickedDates } = useDatePickGetter();
 
-  useEffect(() => {
-    let currentQuery = {};
+  const handleClick = (e) => {
+    e.stopPropagation();
 
-    if (params) {
-      currentQuery = qs.parse(params.toString());
-    }
-    let updatedQuery;
+    // 쿼리 파라미터 갱신
+    const url = updateQuery("/s", params);
 
-    if (!pickedDates.firstPickedDate || !pickedDates.secondPickedDate) {
-      updatedQuery = {
-        ...currentQuery,
-        checkin: dayjs().format("YYYY-MM-DD"),
-        checkout: dayjs().add(1, "week").format("YYYY-MM-DD"),
-      };
-    } else {
-      updatedQuery = {
-        ...currentQuery,
-        checkin: dayjs(pickedDates.firstPickedDate).format("YYYY-MM-DD"),
-        checkout: dayjs(pickedDates.secondPickedDate).format("YYYY-MM-DD"),
-      };
+    // 기존 쿼리 무효화, refetch
+    if (pathname === "/s") {
+      queryClient.invalidateQueries([`${pathname}`]);
     }
 
-    const url = qs.stringifyUrl({
-      url: pathname,
-      query: updatedQuery,
-    });
-
+    // 페이지 이동
     router.push(url);
-  }, [pickedDates, params, router, pathname]);
+  };
 
   return (
     <div
@@ -114,6 +100,7 @@ const SearchBar = () => {
           placeholder="게스트 추가"
           isOpen={isSelected === "guestInfo"}
           setIsOpen={setIsSelected}
+          handleClick={handleClick}
         />
       </div>
     </div>

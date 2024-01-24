@@ -1,12 +1,10 @@
 "use client";
 
 import CategoryBox from "./CategoryBox";
-import { useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { categories } from "./categoryList";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { BiChevronRight, BiChevronLeft } from "react-icons/bi";
-
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
@@ -41,8 +39,8 @@ const Categories = () => {
                 <CategoryBox
                   key={item.id}
                   label={item.label}
-                  name={item.name}
-                  selected={params?.get("category") === item.name}
+                  id={item.id}
+                  selected={params?.get("category") === `${item.id}`}
                   icon={item.icon}
                 />
               </SwiperSlide>

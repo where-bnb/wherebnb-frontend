@@ -1,10 +1,19 @@
 import Navbar from "@/components/navbar/Navbar";
+import Container from "@/components/ui/Container";
 
 const SearchResultLayout = ({ children }) => {
   return (
-    <div className="relative">
-      <Navbar />
-      <div className="md:pt-[260px] pt-[180px]">{children}</div>
+    <div>
+      <div
+        className="mx-auto
+            xl:px-20
+            md:px-10
+            sm:px-2
+            px-4"
+      >
+        <Navbar />
+      </div>
+      <div>{children}</div>
     </div>
   );
 };

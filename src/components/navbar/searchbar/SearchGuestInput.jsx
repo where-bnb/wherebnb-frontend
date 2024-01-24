@@ -1,15 +1,10 @@
 "use client";
 
 import { useGuestFilter } from "@/hooks/useSearchFilter";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import { BiSearch, BiMinus, BiPlus } from "react-icons/bi";
-import qs from "query-string";
 
-const SearchGuestInput = ({ name, label, isOpen, setIsOpen }) => {
-  const router = useRouter();
-  const pathname = usePathname();
-  const params = useSearchParams();
+const SearchGuestInput = ({ name, label, isOpen, setIsOpen, handleClick }) => {
   const [placeholder, setPlaceholder] = useState("");
   const guestStore = useGuestFilter((state) => state.guests);
   let { adults, children, infants, pets } = guestStore;
@@ -31,45 +26,6 @@ const SearchGuestInput = ({ name, label, isOpen, setIsOpen }) => {
       return name;
     });
   }, []);
-
-  useEffect(() => {
-    let currentQuery = {};
-
-    if (params) {
-      currentQuery = qs.parse(params.toString());
-    }
-
-    const updatedQuery = {
-      ...currentQuery,
-      adults: adults,
-      children: children,
-      infants: infants,
-      pets: pets,
-    };
-
-    if (updatedQuery.adults === 0) {
-      delete updatedQuery.adults;
-    }
-    if (updatedQuery.children === 0) {
-      delete updatedQuery.children;
-    }
-    if (updatedQuery.infants === 0) {
-      delete updatedQuery.infants;
-    }
-    if (updatedQuery.pets === 0) {
-      delete updatedQuery.pets;
-    }
-
-    const url = qs.stringifyUrl(
-      {
-        url: pathname,
-        query: updatedQuery,
-      },
-      { skipNull: true }
-    );
-
-    router.push(url);
-  }, [adults, children, infants, pets, params, router, pathname]);
 
   useEffect(() => {
     if (adults && children && infants && pets) {
@@ -166,7 +122,8 @@ const SearchGuestInput = ({ name, label, isOpen, setIsOpen }) => {
           </div>
         </div>
         {/* 검색 버튼 */}
-        <div
+        <button
+          onClick={handleClick}
           className="
                     flex flex-row
                     w-fit
@@ -181,7 +138,7 @@ const SearchGuestInput = ({ name, label, isOpen, setIsOpen }) => {
         >
           <BiSearch size={18} />
           <div className="text-md text-nowrap">검색</div>
-        </div>
+        </button>
       </div>
       {isOpen && (
         <div
