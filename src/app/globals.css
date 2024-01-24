@@ -159,3 +159,27 @@ body,
   top: 0px;
   height: 100%;
 }
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0.5;
+  }
+}
+
+.animate-bounce {
+  animation: bounce 1s infinite;
+}
+
+.animate-bounce200 {
+  animation: bounce 1s infinite 200ms;
+}
+
+.animate-bounce400 {
+  animation: bounce 1s infinite 400ms;
+}
