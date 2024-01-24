@@ -50,13 +50,13 @@ export const updateQuery = (pathname, params) => {
     amenities: amenities,
   };
 
-  if (updateQuery.place === "") {
-    delete updateQuery.place;
+  if (updatedQuery.place === "") {
+    delete updatedQuery.place;
   }
-  if (updateQuery.checkin) {
+  if (updatedQuery.checkin) {
     updatedQuery.checkin = dayjs().format("YYYY-MM-DD");
   }
-  if (updateQuery.checkout) {
+  if (updatedQuery.checkout) {
     updatedQuery.checkout = dayjs().add(1, "week").format("YYYY-MM-DD");
   }
   if (updatedQuery.adults === 0) {
