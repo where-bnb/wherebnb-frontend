@@ -5,10 +5,10 @@ import RoomInfo from "@/components/room/RoomInfo";
 import RoomReview from "@/components/room/RoomReview";
 import HostingArea from "@/components/room/HostingArea";
 import useRoomReviewModal from "@/hooks/useRoomReviewModal";
+import RoomCalendar from "@/components/room/RoomCalendar";
 import { DatePickerProvider } from "@bcad1591/react-date-picker";
 import RoomImageModal from "@/components/room/RoomImageModal";
 import useRoomDescModal from "@/hooks/useRoomDescModal";
-
 
 const RoomDetail = ({ room, currentUser, propertyId }) => {
   const [showImageModal, setShowImageModal] = useState(false);
