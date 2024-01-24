@@ -17,7 +17,11 @@ const RoomDetailPage = async ({ params }) => {
   return (
     <Container>
       <SearchHeader />
-      <ReviewModal guestFavorite={room.guestFavorite} scores={room.scores} />
+      <ReviewModal
+        guestFavorite={room.guestFavorite}
+        scores={room.scores}
+        reviewCount={room.reviews.length}
+      />
       <RoomDetail room={room} currentUser={currentUser} />
     </Container>
   );

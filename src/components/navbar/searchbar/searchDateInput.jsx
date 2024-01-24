@@ -8,12 +8,13 @@ import {
 } from "@bcad1591/react-date-picker";
 import { IoClose } from "react-icons/io5";
 import { useRouter, useSearchParams } from "next/navigation";
+import { useDateFilter } from "@/hooks/useSearchFilter";
+import dayjs from "dayjs";
 
 const SearchDateInput = ({ name, label, placeholder, isOpen, setIsOpen }) => {
-  const router = useRouter();
-  const params = useSearchParams();
   const { pickedDates } = useDatePickGetter();
   const resetDatePicker = useDatePickReset();
+  const { setDateFilter, resetDateFilter } = useDateFilter();
 
   const toggleOpen = useCallback(() => {
     setIsOpen((value) => {
@@ -22,9 +23,28 @@ const SearchDateInput = ({ name, label, placeholder, isOpen, setIsOpen }) => {
     });
   }, []);
 
+  useEffect(() => {
+    // 현재 Zustand 상태
+    const { checkin, checkout } = useDateFilter.getState();
+
+    // 현재 상태와 `pickedDates`를 비교
+    if (
+      checkin !== dayjs(pickedDates.firstPickedDate).format("YYYY-MM-DD") ||
+      checkout !== dayjs(pickedDates.secondPickedDate).format("YYYY-MM-DD")
+    ) {
+      // 값이 없을 경우 : 상태를 변경하지 않음
+      if (!pickedDates.firstPickedDate || !pickedDates.secondPickedDate) return;
+
+      // 변경된 상태 Set
+      setDateFilter(pickedDates.firstPickedDate, pickedDates.secondPickedDate);
+    }
+  }, [pickedDates]);
+
+  // 'X' 버튼 클릭 -> 여행 날짜에 관련된 모든 상태 reset
   const resetDate = useCallback((e) => {
     e.stopPropagation();
-    resetDatePicker();
+    resetDatePicker(); // react-date-picker 리셋
+    resetDateFilter(); // zustand store 리셋
   }, []);
 
   return (

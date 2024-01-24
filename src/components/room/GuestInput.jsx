@@ -1,24 +1,12 @@
 "use client";
 
-import { useGuestFilter } from "@/hooks/useSearchFilter";
-import { useCallback, useEffect, useState } from "react";
-import { BiSearch, BiMinus, BiPlus } from "react-icons/bi";
+import { useState, useEffect, useCallback } from "react";
+import { BiMinus, BiPlus } from "react-icons/bi";
 
-const SearchGuestInput = ({ name, label, isOpen, setIsOpen, handleClick }) => {
+const GuestInput = ({ name, label, isOpen, setIsOpen, guest, setGuest }) => {
+  const { adults, children, infants, pets } = guest;
   const [placeholder, setPlaceholder] = useState("");
-  const guestStore = useGuestFilter((state) => state.guests);
-  let { adults, children, infants, pets } = guestStore;
-  const {
-    increaseAdults,
-    decreaseAdults,
-    increaseChildren,
-    decreaseChildren,
-    increaseInfants,
-    decreaseInfants,
-    increasePets,
-    decreasePets,
-    resetAll,
-  } = useGuestFilter();
+  // TODO: queryString으로 부터 초기값 가져오기
 
   const toggleOpen = useCallback(() => {
     setIsOpen((value) => {
@@ -27,18 +15,25 @@ const SearchGuestInput = ({ name, label, isOpen, setIsOpen, handleClick }) => {
     });
   }, []);
 
+  const updateGuestCount = (type, delta) => {
+    setGuest((prevGuest) => ({
+      ...prevGuest,
+      [type]: Math.max(0, prevGuest[type] + delta),
+    }));
+  };
+
   useEffect(() => {
     if (adults && children && infants && pets) {
       setPlaceholder(
-        `게스트 ${adults}명, 어린이 ${children}명, 유아 ${infants}명, 반려동물 ${pets}`
+        `게스트 ${adults}명, 어린이 ${children}명, 유아 ${infants}명, 반려동물 ${pets}`,
       );
     } else if (adults && children && infants) {
       setPlaceholder(
-        `게스트 ${adults}명, 어린이 ${children}명, 유아 ${infants}명`
+        `게스트 ${adults}명, 어린이 ${children}명, 유아 ${infants}명`,
       );
     } else if (adults && children && pets) {
       setPlaceholder(
-        `게스트 ${adults}명, 어린이 ${children}명, 반려동물 ${pets}`
+        `게스트 ${adults}명, 어린이 ${children}명, 반려동물 ${pets}`,
       );
     } else if (adults && infants && pets) {
       setPlaceholder(`게스트 ${adults}명, 유아 ${infants}명, 반려동물 ${pets}`);
@@ -55,37 +50,16 @@ const SearchGuestInput = ({ name, label, isOpen, setIsOpen, handleClick }) => {
 
   return (
     <>
-      <div
-        onClick={toggleOpen}
-        className={`
-                pr-3
-                h-full
-                flex
-                flex-row
-                md:justify-between
-                justify-center
-                items-center
-                gap-3
-                md:grow
-                rounded-full
-                ${!isOpen ? "md:hover:bg-neutral-200" : ""}
-                ${isOpen ? "md:bg-white" : ""}
-                ${isOpen ? "md:shadow-md" : ""}
-            `}
-      >
+      <div onClick={toggleOpen} className="w-full">
         <div
           className="
-                pl-3
-                hidden 
-                md:block
-                h-full
+                pl-1
                 text-sm
                 font-semibold
             "
         >
           <div
             className="
-              h-full
               p-3
               flex
               flex-col
@@ -101,7 +75,6 @@ const SearchGuestInput = ({ name, label, isOpen, setIsOpen, handleClick }) => {
             </div>
             <div
               className="
-                h-full
                 text-sm
                 text-neutral-500
                 font-normal
@@ -112,39 +85,15 @@ const SearchGuestInput = ({ name, label, isOpen, setIsOpen, handleClick }) => {
                 overflow-hidden
               "
             >
-              {!guestStore.adults &&
-              !guestStore.children &&
-              !guestStore.infants &&
-              !guestStore.pets
-                ? "게스트 추가"
-                : placeholder}
+              {placeholder}
             </div>
           </div>
         </div>
-        {/* 검색 버튼 */}
-        <button
-          onClick={handleClick}
-          className="
-                    flex flex-row
-                    w-fit
-                    justify-between
-                    items-center
-                    gap-1
-                    p-3
-                    bg-primary
-                    rounded-full
-                    text-white
-                "
-        >
-          <BiSearch size={18} />
-          <div className="text-md text-nowrap">검색</div>
-        </button>
       </div>
       {isOpen && (
         <div
-          className="
-        absolute
-        top-[120%]
+          className="absolute
+        top-[58%]
         right-0
         z-10
         bg-white
@@ -152,8 +101,7 @@ const SearchGuestInput = ({ name, label, isOpen, setIsOpen, handleClick }) => {
         rounded-[40px]
         w-[405px]
         py-2
-        px-8
-      "
+        px-8"
         >
           {/* Section - Adults */}
           <div className="flex flex-row justify-between py-6 border-b-[1px] border-neutral-200">
@@ -165,15 +113,15 @@ const SearchGuestInput = ({ name, label, isOpen, setIsOpen, handleClick }) => {
             </div>
             <div className="flex flex-row justify-between items-center gap-3">
               <button
-                onClick={decreaseAdults}
-                disabled={guestStore.adults === 0}
+                onClick={() => updateGuestCount("adults", -1)}
+                disabled={adults === 0}
                 className="flex items-center p-2 border-[1px] border-neutral-300 hover:border-black disabled:border-neutral-200 disabled:text-neutral-200 rounded-full"
               >
                 <BiMinus size={13} />
               </button>
-              <div>{guestStore.adults}</div>
+              <div>{adults}</div>
               <button
-                onClick={increaseAdults}
+                onClick={() => updateGuestCount("adults", 1)}
                 className="flex items-center p-2 border-[1px] border-neutral-300 hover:border-black rounded-full"
               >
                 <BiPlus size={13} />
@@ -188,15 +136,15 @@ const SearchGuestInput = ({ name, label, isOpen, setIsOpen, handleClick }) => {
             </div>
             <div className="flex flex-row justify-between items-center gap-3">
               <button
-                onClick={decreaseChildren}
-                disabled={guestStore.children === 0}
+                onClick={() => updateGuestCount("children", -1)}
+                disabled={children === 0}
                 className="flex items-center p-2 border-[1px] border-neutral-300 hover:border-black disabled:border-neutral-200 disabled:text-neutral-200 rounded-full"
               >
                 <BiMinus size={13} />
               </button>
-              <div>{guestStore.children}</div>
+              <div>{children}</div>
               <button
-                onClick={increaseChildren}
+                onClick={() => updateGuestCount("children", 1)}
                 className="flex items-center p-2 border-[1px] border-neutral-300 hover:border-black rounded-full"
               >
                 <BiPlus size={13} />
@@ -213,15 +161,15 @@ const SearchGuestInput = ({ name, label, isOpen, setIsOpen, handleClick }) => {
             </div>
             <div className="flex flex-row justify-between items-center gap-3">
               <button
-                onClick={decreaseInfants}
-                disabled={guestStore.infants === 0}
+                onClick={() => updateGuestCount("infants", -1)}
+                disabled={infants === 0}
                 className="flex items-center p-2 border-[1px] border-neutral-300 hover:border-black disabled:border-neutral-200 disabled:text-neutral-200 rounded-full"
               >
                 <BiMinus size={13} />
               </button>
-              <div>{guestStore.infants}</div>
+              <div>{infants}</div>
               <button
-                onClick={increaseInfants}
+                onClick={() => updateGuestCount("infants", 1)}
                 className="flex items-center p-2 border-[1px] border-neutral-300 hover:border-black rounded-full"
               >
                 <BiPlus size={13} />
@@ -238,15 +186,15 @@ const SearchGuestInput = ({ name, label, isOpen, setIsOpen, handleClick }) => {
             </div>
             <div className="flex flex-row justify-between items-center gap-3">
               <button
-                onClick={decreasePets}
-                disabled={guestStore.pets === 0}
+                onClick={() => updateGuestCount("pets", -1)}
+                disabled={pets === 0}
                 className="flex items-center p-2 border-[1px] border-neutral-300 hover:border-black disabled:border-neutral-200 disabled:text-neutral-200 rounded-full"
               >
                 <BiMinus size={13} />
               </button>
-              <div>{guestStore.pets}</div>
+              <div>{pets}</div>
               <button
-                onClick={increasePets}
+                onClick={() => updateGuestCount("pets", 1)}
                 className="flex items-center p-2 border-[1px] border-neutral-300 hover:border-black rounded-full"
               >
                 <BiPlus size={13} />
@@ -259,4 +207,4 @@ const SearchGuestInput = ({ name, label, isOpen, setIsOpen, handleClick }) => {
   );
 };
 
-export default SearchGuestInput;
+export default GuestInput;

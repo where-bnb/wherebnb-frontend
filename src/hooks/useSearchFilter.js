@@ -1,4 +1,29 @@
+import dayjs from "dayjs";
 import { create } from "zustand";
+
+// SearchBar - 여행지
+export const useSearchKey = create((set) => ({
+  place: "",
+  setSearchKey: (value) => set({ place: value }),
+  removeSearchKey: () => set({ place: "" }),
+}));
+
+// SearchBar - 체크인, 체크아웃 날짜
+export const useDateFilter = create((set) => ({
+  checkin: dayjs().format("YYYY-MM-DD"),
+  checkout: dayjs().add(1, "week").format("YYYY-MM-DD"),
+  setDateFilter: (checkin, checkout) => {
+    set({
+      checkin: dayjs(checkin).format("YYYY-MM-DD"),
+      checkout: dayjs(checkout).format("YYYY-MM-DD"),
+    });
+  },
+  resetDateFilter: () =>
+    set({
+      checkin: dayjs().format("YYYY-MM-DD"),
+      checkout: dayjs().add(1, "week").format("YYYY-MM-DD"),
+    }),
+}));
 
 // SearchBar - 여행자 정보 (게스트 인원)
 export const useGuestFilter = create((set) => ({

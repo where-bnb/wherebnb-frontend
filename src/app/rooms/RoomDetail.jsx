@@ -7,6 +7,8 @@ import RoomReview from "@/components/room/RoomReview";
 import HostingArea from "@/components/room/HostingArea";
 import RoomCalendar from "@/components/room/RoomCalendar";
 import useRoomReviewModal from "@/hooks/useRoomReviewModal";
+import RoomCalendar from "@/components/room/RoomCalendar";
+import { DatePickerProvider } from "@bcad1591/react-date-picker";
 
 const RoomDetail = ({ room, currentUser }) => {
   const { propertyType, propertyDetail, address, guestFavorite } = room;
@@ -46,17 +48,20 @@ const RoomDetail = ({ room, currentUser }) => {
           />
           <div
             className="
+            
                 order-first 
                 mb-10 
                 md:order-last 
                 md:col-span-3
               "
           >
-            <RoomCalendar
-              price={room.price}
-              bookings={room.bookings}
-              currentUser={currentUser}
-            />
+            <DatePickerProvider>
+              <RoomCalendar
+                price={room.price}
+                bookings={room.bookings}
+                currentUser={currentUser}
+              />
+            </DatePickerProvider>
           </div>
         </div>
         <div>날짜 선택</div>
