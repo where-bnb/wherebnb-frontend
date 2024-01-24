@@ -3,13 +3,22 @@ import Heading from "../ui/Heading";
 import HeartButton from "../ui/HeartButton";
 import { TiThSmall } from "react-icons/ti";
 
-const RoomHead = ({ title, photos, currentUser, propertyId }) => {
+const RoomHead = ({
+  title,
+  photos,
+  currentUser,
+  propertyId,
+  setShowImageModal,
+}) => {
   return (
     <section className="space-y-4">
       <Heading title={title} />
-      <div className="w-full h-[35vh] overflow-hidden rounded-xl relative">
+      <div className="w-full h-[35vh] lg:h-[50vh] overflow-hidden rounded-xl relative">
         <div className="grid grid-rows-2 grid-cols-2 gap-2 h-full">
-          <div className="row-span-2 relative">
+          <div
+            className="row-span-2 relative cursor-pointer"
+            onClick={() => setShowImageModal(true)}
+          >
             {photos[0] && (
               <Image
                 alt={`Image ${title} 1`}
@@ -19,7 +28,10 @@ const RoomHead = ({ title, photos, currentUser, propertyId }) => {
               />
             )}
           </div>
-          <div className="row-span-1 col-span-1 relative">
+          <div
+            className="row-span-1 col-span-1 relative cursor-pointer"
+            onClick={() => setShowImageModal(true)}
+          >
             {photos[1] && (
               <Image
                 alt={`Image ${title} 2`}
@@ -29,7 +41,10 @@ const RoomHead = ({ title, photos, currentUser, propertyId }) => {
               />
             )}
           </div>
-          <div className="row-span-1 col-span-1 relative">
+          <div
+            className="row-span-1 col-span-1 relative cursor-pointer"
+            onClick={() => setShowImageModal(true)}
+          >
             {photos[2] && (
               <Image
                 alt={`Image ${title} 3`}
@@ -44,7 +59,10 @@ const RoomHead = ({ title, photos, currentUser, propertyId }) => {
           <HeartButton currentUser={currentUser} listingId={propertyId} />
         </div>
         <div className="absolute bottom-3 right-3">
-          <button className="bg-white flex justify-between items-center gap-2 text-sm text-neutral-500 px-2 py-1 border-none rounded-lg hover:text-black">
+          <button
+            onClick={() => setShowImageModal(true)}
+            className="bg-white flex justify-between items-center gap-2 text-sm text-neutral-500 px-2 py-1 border-none rounded-lg hover:text-black"
+          >
             <TiThSmall />
             <span>사진 모두 보기</span>
           </button>

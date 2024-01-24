@@ -19,7 +19,7 @@ const useFavorite = ({ listingId, currentUser }) => {
   const toggleFavorite = useCallback(
     async (e) => {
       e.stopPropagation();
-
+      console.log("함수실행?", currentUser);
       if (!currentUser) {
         return loginModal.onOpen();
       }

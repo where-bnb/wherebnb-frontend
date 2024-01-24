@@ -5,6 +5,8 @@ import { notFound } from "next/navigation";
 import { getCurrentUser } from "@/actions/getCurrentUser";
 import ReviewModal from "@/components/room/ReviewModal";
 import SearchHeader from "@/components/ui/header/SearchHeader";
+import RoomDescModal from "@/components/room/RoomDescModal";
+import RoomContentModal from "@/components/room/RoomContentModal";
 
 const RoomDetailPage = async ({ params }) => {
   const room = await getRoomById(params);
@@ -23,6 +25,8 @@ const RoomDetailPage = async ({ params }) => {
         scores={room.scores}
         reviewCount={room.reviews.length}
       />
+      <RoomDescModal propertyExplanation={room.propertyExplanation} />
+      <RoomContentModal contents={room.amenities} />
       <RoomDetail
         room={room}
         currentUser={currentUser}

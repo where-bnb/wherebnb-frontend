@@ -490,7 +490,7 @@ export const handlers = [
   }),
   http.post("/:userId/wishlist/:propertyId", () => {
     // 유저 위시리스트 추가 로직
-
+    console.log("추가되었습니다.");
     return HttpResponse.json({}, { status: 200 });
   }),
   http.delete("/:userId/wishlist/:propertyId", () => {

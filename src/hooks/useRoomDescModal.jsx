@@ -1,9 +1,9 @@
 import { create } from "zustand";
 
-const useRoomContentModal = create((set) => ({
+const useRoomDescModal = create((set) => ({
   isOpen: false,
   onOpen: () => set({ isOpen: true }),
   onClose: () => set({ isOpen: false }),
 }));
 
-export default useRoomContentModal;
+export default useRoomDescModal;
