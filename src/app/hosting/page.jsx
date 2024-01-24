@@ -4,7 +4,6 @@ export default function HostingPage() {
   // 페이지 내용
   return (
     <div>
-      HostingPage
     </div>
   );
 }
