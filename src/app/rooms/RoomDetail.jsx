@@ -7,7 +7,6 @@ import RoomReview from "@/components/room/RoomReview";
 import HostingArea from "@/components/room/HostingArea";
 import RoomCalendar from "@/components/room/RoomCalendar";
 import useRoomReviewModal from "@/hooks/useRoomReviewModal";
-import RoomCalendar from "@/components/room/RoomCalendar";
 import { DatePickerProvider } from "@bcad1591/react-date-picker";
 
 const RoomDetail = ({ room, currentUser }) => {

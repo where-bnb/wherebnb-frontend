@@ -59,8 +59,9 @@ const Listings = ({ currentUser, queryKey }) => {
             />
           ))
         )}
+
       <div
-        className="absolute w-full -bottom-14 h-[44px] flex flex-col items-center pb-3"
+        className={`w-[100%] h-[44px] flex flex-col items-center pb-3 mt-3`}
         ref={ref}
       >
         {isFetchingNextPage && <LoadingSpinner />}

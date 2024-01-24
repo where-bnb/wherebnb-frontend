@@ -3,4 +3,3 @@ export { createReservation } from "./createReservation";
 export { getCurrentUser } from "./getCurrentUser";
 export { getRoomsList } from "./getRoomsList";
 export { addWishlist, removeWishlist } from "./updateWishlist";
-export { searchRoomsList } from "./searchRoomsList";
