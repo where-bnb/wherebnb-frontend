@@ -261,10 +261,28 @@ export const handlers = [
   http.post("/rooms/booking/:propertyId", async ({ request, params }) => {
     const propertyId = params.propertyId; // URL 경로에서 propertyId 추출
     const body = await request.json(); // 요청 본문을 JSON으로 파싱
-
-    // 이제 propertyId와 body 데이터를 사용할 수 있음
-    console.log(propertyId, body);
-    return HttpResponse.json({});
+    // return new HttpResponse(
+    //   "예약에 실패했습니다. 결제처리 중 문제가 발생했습니다.",
+    //   {
+    //     status: 503,
+    //   },
+    // );
+    return new HttpResponse("예약이 완료되었습니다.", {
+      status: 201,
+    });
+  }),
+  // 예약 페이지 접근시
+  http.get("/rooms/booking/:propertyId", async ({ request, params }) => {
+    // return HttpResponse.text(JSON.stringify("user_exists"), {
+    //   status: 403,
+    // });
+    return HttpResponse.json({
+      propertyName: "Lovely Apartment",
+      propertyPhoto:
+        "https://develsopher-nextjs.s3.ap-northeast-2.amazonaws.com/burger.jpg",
+      propertyType: "호텔",
+      pricePerDay: 100,
+    });
   }),
   // 숙소상세 정보
   http.get("/rooms/:roomId", ({ request, params }) => {
