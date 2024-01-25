@@ -1,5 +1,6 @@
 import { http, HttpResponse } from "msw";
 import { generateRoomList } from "./faker";
+import { fakerKO as faker } from "@faker-js/faker";
 
 export const handlers = [
   // credentials
@@ -16,7 +17,7 @@ export const handlers = [
         headers: {
           "Set-Cookie": "connect.sid=msw-cookie;HttpOnly;Path=/",
         },
-      },
+      }
     );
   }),
   http.post("/auth/refresh", () => {
@@ -27,7 +28,7 @@ export const handlers = [
         headers: {
           NewAccessToken: "Bearer refreshed ---token ,.,..",
         },
-      },
+      }
     );
   }),
   http.post("/users", async ({ request }) => {
@@ -64,22 +65,19 @@ export const handlers = [
       ctx.json({
         url: mockS3Url, // 모의 S3 URL
         fields: mockFields, // 모의 필드
-      }),
+      })
     );
   }),
-  http.post("/become-a-host", async (
-      req,
-      res,
-      ctx) => {
+  http.post("/become-a-host", async (req, res, ctx) => {
     console.log("=>(handlers.js:75) 왜안되니..?");
     // FormData 인스턴스를 얻기
     console.log("=>(handlers.js:77) req", req);
     const formData = await req.request.body;
     console.log("=>(handlers.js:77) formData", formData);
 
-    const photos = formData.getAll('photos'); // 'photos' 필드의 모든 파일 가져오기
+    const photos = formData.getAll("photos"); // 'photos' 필드의 모든 파일 가져오기
     console.log("=>(handlers.js:80) photos", photos);
-    const otherData = formData.get('data'); // 'data' 필드의 JSON 데이터 가져오기
+    const otherData = formData.get("data"); // 'data' 필드의 JSON 데이터 가져오기
     console.log("=>(handlers.js:82) otherData", otherData);
 
     // 'data' 필드의 JSON 데이터를 객체로 파싱
@@ -95,10 +93,12 @@ export const handlers = [
     return HttpResponse.json({}, { status: 200 });
   }),
 
-    http.get("/hosting/listing/editor/:propertyId" , async ({ request, params }) => {
+  http.get(
+    "/hosting/listing/editor/:propertyId",
+    async ({ request, params }) => {
       return HttpResponse.json({
         // userId":null,"propertyName":"권오영네","propertyType":3,"category":5,"propertyExplanation":"아늑해요요옹","country":"대한민국","state":"경기도","city":"시흥시","street":"능곡동 산21-8","details":"3층","zipcode":"14992","latitude":37.373095436202554,"longitude":126.81675263482332,"maxPeople":2,"selfCheckIn":true,"petAvailable":true,"smokeAvailable":true,"checkInTime":9,"checkOutTime":13,"bedroom":4,"bed":2,"bathroom":5,"price":"10000","amenities":[5,10,7,4,8],"lat":37.373095436202554,"lng":126.81675263482332
-        status : true,
+        status: true,
         propertyName: "Lovely Apartment",
         category: 6,
         photos: [
@@ -117,9 +117,9 @@ export const handlers = [
         smokeAvailable: false,
         checkInTime: 9,
         checkOutTime: 11,
-        propertyExplanation:"lorem ipsum dolor sit amet, consectetur adip e",
+        propertyExplanation: "lorem ipsum dolor sit amet, consectetur adip e",
         price: 100, // 평일, 주말 상관없이 가격 고정
-        amenities: [1,2,3,4],
+        amenities: [1, 2, 3, 4],
         country: "대한민국",
         state: "용산구",
         city: "서울특별시",
@@ -129,40 +129,41 @@ export const handlers = [
         latitude: 27.672932021393862,
         longitude: 85.31184012689732,
       });
-    }),
-    http.get("/hosting/listing" , async ({ request, params }) => {
-      return HttpResponse.json({
-        propertyName: "Lovely Apartment",
-        category: 6,
-        photos: [
-          "https://develsopher-nextjs.s3.ap-northeast-2.amazonaws.com/burger.jpg",
-          "https://develsopher-nextjs.s3.ap-northeast-2.amazonaws.com/burger.jpg",
-          "https://develsopher-nextjs.s3.ap-northeast-2.amazonaws.com/burger.jpg",
-          "https://develsopher-nextjs.s3.ap-northeast-2.amazonaws.com/burger.jpg",
-        ],
-        propertyType: 2,
-        maxPeople: 4,
-        bedroom: 2,
-        bed: 3,
-        bathroom: 1,
-        selfCheckIn: true,
-        petAvailable: false,
-        smokeAvailable: false,
-        checkInTime: 9,
-        checkOutTime: 11,
-        propertyExplanation:"lorem ipsum dolor sit amet, consectetur adip e",
-        price: 100, // 평일, 주말 상관없이 가격 고정
-        amenities: [1,2,3,4],
-        country: "대한민국",
-        state: "용산구",
-        city: "서울특별시",
-        street: "Street",
-        details: "Apartment 101",
-        zipcode: "123456",
-        latitude: 27.672932021393862,
-        longitude: 85.31184012689732,
-      });
-    }),
+    }
+  ),
+  http.get("/hosting/listing", async ({ request, params }) => {
+    return HttpResponse.json({
+      propertyName: "Lovely Apartment",
+      category: 6,
+      photos: [
+        "https://develsopher-nextjs.s3.ap-northeast-2.amazonaws.com/burger.jpg",
+        "https://develsopher-nextjs.s3.ap-northeast-2.amazonaws.com/burger.jpg",
+        "https://develsopher-nextjs.s3.ap-northeast-2.amazonaws.com/burger.jpg",
+        "https://develsopher-nextjs.s3.ap-northeast-2.amazonaws.com/burger.jpg",
+      ],
+      propertyType: 2,
+      maxPeople: 4,
+      bedroom: 2,
+      bed: 3,
+      bathroom: 1,
+      selfCheckIn: true,
+      petAvailable: false,
+      smokeAvailable: false,
+      checkInTime: 9,
+      checkOutTime: 11,
+      propertyExplanation: "lorem ipsum dolor sit amet, consectetur adip e",
+      price: 100, // 평일, 주말 상관없이 가격 고정
+      amenities: [1, 2, 3, 4],
+      country: "대한민국",
+      state: "용산구",
+      city: "서울특별시",
+      street: "Street",
+      details: "Apartment 101",
+      zipcode: "123456",
+      latitude: 27.672932021393862,
+      longitude: 85.31184012689732,
+    });
+  }),
 
   // http.post('/hosting/listing/editor/:propertyId/status', async (req, res) => {
   //   const propertyId = req.params.propertyId;
@@ -257,7 +258,7 @@ export const handlers = [
   //   res.status(200).json({ message: 'Price updated successfully' });
   // }),
 
-// 숙소 예약
+  // 숙소 예약
   http.post("/rooms/booking/:propertyId", async ({ request, params }) => {
     const propertyId = params.propertyId; // URL 경로에서 propertyId 추출
     const body = await request.json(); // 요청 본문을 JSON으로 파싱
@@ -692,7 +693,43 @@ export const handlers = [
     const page = parseInt(url.searchParams.get("page") || 0);
     if (page === 0) {
       return HttpResponse.json({
-        content: generateRoomList(15),
+        content: [
+          {
+            address: {
+              country: "대한민국",
+              state: "용산구",
+              city: "서울특별시",
+              street: "Street",
+              details: "Apartment 101",
+              zipcode: "123456",
+              latitude: 27.672932021393862,
+              longitude: 85.31184012689732,
+            },
+            searchUser: {
+              userId: faker.string.uuid(),
+              name: "John Doe",
+              picture: faker.image.avatar(),
+              explanation: "안녕 나는 조 도",
+            },
+            propertyId: faker.number.int({ min: 1, max: 30 }),
+            photos: [
+              "https://develsopher-nextjs.s3.ap-northeast-2.amazonaws.com/home-image-01.jpg",
+              "https://develsopher-nextjs.s3.ap-northeast-2.amazonaws.com/home-image-02.jpg",
+              "https://develsopher-nextjs.s3.ap-northeast-2.amazonaws.com/home-image-03.jpg",
+            ],
+            price: faker.commerce.price({
+              min: 13000,
+              max: 300000,
+              dec: 0,
+            }),
+            totalScore: 3.8,
+            reviews: faker.number.int(1000),
+            propertyExplanation:
+              "지하철역1분 | 용산, 서울중심, 용리단길ㅣMood of Seoul 입니다",
+            guestFavorite: true,
+          },
+          ...generateRoomList(14),
+        ],
         pageable: {
           pageNumber: 1,
           pageSize: 15,
@@ -778,7 +815,43 @@ export const handlers = [
     const page = parseInt(url.searchParams.get("page") || 0);
     if (page === 0) {
       return HttpResponse.json({
-        content: generateRoomList(15),
+        content: [
+          {
+            address: {
+              country: "대한민국",
+              state: "용산구",
+              city: "서울특별시",
+              street: "Street",
+              details: "Apartment 101",
+              zipcode: "123456",
+              latitude: 27.672932021393862,
+              longitude: 85.31184012689732,
+            },
+            searchUser: {
+              userId: faker.string.uuid(),
+              name: "John Doe",
+              picture: faker.image.avatar(),
+              explanation: "안녕 나는 조 도",
+            },
+            propertyId: faker.number.int({ min: 1, max: 30 }),
+            photos: [
+              "https://develsopher-nextjs.s3.ap-northeast-2.amazonaws.com/home-image-01.jpg",
+              "https://develsopher-nextjs.s3.ap-northeast-2.amazonaws.com/home-image-02.jpg",
+              "https://develsopher-nextjs.s3.ap-northeast-2.amazonaws.com/home-image-03.jpg",
+            ],
+            price: faker.commerce.price({
+              min: 13000,
+              max: 300000,
+              dec: 0,
+            }),
+            totalScore: 3.8,
+            reviews: faker.number.int(1000),
+            propertyExplanation:
+              "지하철역1분 | 용산, 서울중심, 용리단길ㅣMood of Seoul 입니다",
+            guestFavorite: true,
+          },
+          ...generateRoomList(14),
+        ],
         pageable: {
           pageNumber: 1,
           pageSize: 15,
