@@ -696,14 +696,14 @@ export const handlers = [
         content: [
           {
             address: {
-              country: "대한민국",
-              state: "용산구",
-              city: "서울특별시",
+              country: "캐나다",
+              state: "브리티시컬럼비아",
+              city: "노스 벤쿠버",
               street: "Street",
-              details: "Apartment 101",
+              details: "101",
               zipcode: "123456",
-              latitude: 27.672932021393862,
-              longitude: 85.31184012689732,
+              latitude: 49.351512401272196,
+              longitude: -123.059801336648,
             },
             searchUser: {
               userId: faker.string.uuid(),
@@ -717,15 +717,10 @@ export const handlers = [
               "https://develsopher-nextjs.s3.ap-northeast-2.amazonaws.com/home-image-02.jpg",
               "https://develsopher-nextjs.s3.ap-northeast-2.amazonaws.com/home-image-03.jpg",
             ],
-            price: faker.commerce.price({
-              min: 13000,
-              max: 300000,
-              dec: 0,
-            }),
+            price: 172108,
             totalScore: 3.8,
-            reviews: faker.number.int(1000),
-            propertyExplanation:
-              "지하철역1분 | 용산, 서울중심, 용리단길ㅣMood of Seoul 입니다",
+            reviews: 120,
+            propertyExplanation: "노스 밴쿠버의 한적한 주택",
             guestFavorite: true,
           },
           ...generateRoomList(14),
@@ -818,14 +813,14 @@ export const handlers = [
         content: [
           {
             address: {
-              country: "대한민국",
-              state: "용산구",
-              city: "서울특별시",
+              country: "캐나다",
+              state: "브리티시컬럼비아",
+              city: "노스 벤쿠버",
               street: "Street",
-              details: "Apartment 101",
+              details: "101",
               zipcode: "123456",
-              latitude: 27.672932021393862,
-              longitude: 85.31184012689732,
+              latitude: 49.351512401272196,
+              longitude: -123.059801336648,
             },
             searchUser: {
               userId: faker.string.uuid(),
@@ -839,15 +834,10 @@ export const handlers = [
               "https://develsopher-nextjs.s3.ap-northeast-2.amazonaws.com/home-image-02.jpg",
               "https://develsopher-nextjs.s3.ap-northeast-2.amazonaws.com/home-image-03.jpg",
             ],
-            price: faker.commerce.price({
-              min: 13000,
-              max: 300000,
-              dec: 0,
-            }),
+            price: 172108,
             totalScore: 3.8,
-            reviews: faker.number.int(1000),
-            propertyExplanation:
-              "지하철역1분 | 용산, 서울중심, 용리단길ㅣMood of Seoul 입니다",
+            reviews: 120,
+            propertyExplanation: "노스 밴쿠버의 한적한 주택",
             guestFavorite: true,
           },
           ...generateRoomList(14),
