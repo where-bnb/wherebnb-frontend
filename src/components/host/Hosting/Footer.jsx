@@ -3,24 +3,21 @@
 
 
 import Button from "@/components/ui/Button";
-import {usePathname, useRouter} from "next/navigation";
 import {useHostData} from "@/context/HostDataContext"; // 임포트 경로는 실제 경로에 맞게 수정해주세요.
 
 const Footer = () => {
 
-    const { handleSubmit } = useHostData()
+    const { handleEditSubmit } = useHostData()
 
 
 
     return (
-        <footer className="fixed bottom-0 left-0 w-full bg-white border-t-2 border-gray-200 px-6 py-4 flex justify-between items-center">
+        <footer className="fixed bottom-0 left-0 w-full bg-white border-t-2 border-gray-200 px-6 py-4 flex justify-center items-center">
             {/* 여기에 추가적인 컨텐츠나 로고를 넣을 수 있습니다. */}
-            <div></div>
-
-            <div className="flex justify-end">
+            <div className="flex w-72 justify-center">
                 <Button
                     label="제출"
-                    onClick={handleSubmit}
+                    onClick={handleEditSubmit}
                 />
             </div>
         </footer>

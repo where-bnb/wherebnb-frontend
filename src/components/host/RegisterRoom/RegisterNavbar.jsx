@@ -1,6 +1,5 @@
 "use client";
 
-import Container from "@/components/ui/Container";
 import Logo from "@/components/navbar/Logo";
 
 const RegisterNavbar = () => {
@@ -16,11 +15,12 @@ const RegisterNavbar = () => {
                 md:gap-0
                 sm:mx-5
             "
-      >
-        <Logo />
-      </div>
-    </div>
-  );
+                    >
+                        <Logo />
+                    </div>
+            </div>
+
+    );
 };
 
 export default RegisterNavbar;

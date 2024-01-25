@@ -67,15 +67,24 @@ export const handlers = [
       }),
     );
   }),
-  http.post("/become-a-host", async (req, res, ctx) => {
+  http.post("/become-a-host", async (
+      req,
+      res,
+      ctx) => {
+    console.log("=>(handlers.js:75) 왜안되니..?");
     // FormData 인스턴스를 얻기
-    console.log("=>(handlers.js:89) 등록함요");
-    const formData = await req.formData();
-    const photos = formData.getAll("photos"); // 'photos' 필드의 모든 파일 가져오기
-    const otherData = formData.get("data"); // 'data' 필드의 JSON 데이터 가져오기
+    console.log("=>(handlers.js:77) req", req);
+    const formData = await req.request.body;
+    console.log("=>(handlers.js:77) formData", formData);
 
-    // 'data' 필드의 JSON 데이터를 객체로 파싱
-    const parsedData = JSON.parse(otherData);
+    // const photos = formData.getAll('photos'); // 'photos' 필드의 모든 파일 가져오기
+    // console.log("=>(handlers.js:80) photos", photos);
+    // const otherData = formData.get('data'); // 'data' 필드의 JSON 데이터 가져오기
+    // console.log("=>(handlers.js:82) otherData", otherData);
+    //
+    // // 'data' 필드의 JSON 데이터를 객체로 파싱
+    // const parsedData = JSON.parse(otherData);
+    // console.log("=>(handlers.js:86) parsedData", parsedData);
 
     // 필요한 로직 수행...
     // 예: 파일의 수와 다른 데이터를 확인
@@ -85,7 +94,169 @@ export const handlers = [
     // 모의 응답 반환
     return res(ctx.status(200), ctx.json({ message: "호스팅 등록 성공" }));
   }),
-  // 숙소 예약
+
+    http.get("/hosting/listing/editor/:propertyId" , async ({ request, params }) => {
+      return HttpResponse.json({
+        // userId":null,"propertyName":"권오영네","propertyType":3,"category":5,"propertyExplanation":"아늑해요요옹","country":"대한민국","state":"경기도","city":"시흥시","street":"능곡동 산21-8","details":"3층","zipcode":"14992","latitude":37.373095436202554,"longitude":126.81675263482332,"maxPeople":2,"selfCheckIn":true,"petAvailable":true,"smokeAvailable":true,"checkInTime":9,"checkOutTime":13,"bedroom":4,"bed":2,"bathroom":5,"price":"10000","amenities":[5,10,7,4,8],"lat":37.373095436202554,"lng":126.81675263482332
+        propertyName: "Lovely Apartment",
+        category: 6,
+        photos: [
+          "https://develsopher-nextjs.s3.ap-northeast-2.amazonaws.com/burger.jpg",
+          "https://develsopher-nextjs.s3.ap-northeast-2.amazonaws.com/burger.jpg",
+          "https://develsopher-nextjs.s3.ap-northeast-2.amazonaws.com/burger.jpg",
+          "https://develsopher-nextjs.s3.ap-northeast-2.amazonaws.com/burger.jpg",
+        ],
+        propertyType: 2,
+        maxPeople: 4,
+        bedroom: 2,
+        bed: 3,
+        bathroom: 1,
+        selfCheckIn: true,
+        petAvailable: false,
+        smokeAvailable: false,
+        checkInTime: 9,
+        checkOutTime: 11,
+        propertyExplanation:"lorem ipsum dolor sit amet, consectetur adip e",
+        price: 100, // 평일, 주말 상관없이 가격 고정
+        amenities: [1,2,3,4],
+        country: "대한민국",
+        state: "용산구",
+        city: "서울특별시",
+        street: "Street",
+        details: "Apartment 101",
+        zipcode: "123456",
+        latitude: 27.672932021393862,
+        longitude: 85.31184012689732,
+      });
+    }),
+    http.get("/hosting/listing" , async ({ request, params }) => {
+      return HttpResponse.json({
+        propertyName: "Lovely Apartment",
+        category: 6,
+        photos: [
+          "https://develsopher-nextjs.s3.ap-northeast-2.amazonaws.com/burger.jpg",
+          "https://develsopher-nextjs.s3.ap-northeast-2.amazonaws.com/burger.jpg",
+          "https://develsopher-nextjs.s3.ap-northeast-2.amazonaws.com/burger.jpg",
+          "https://develsopher-nextjs.s3.ap-northeast-2.amazonaws.com/burger.jpg",
+        ],
+        propertyType: 2,
+        maxPeople: 4,
+        bedroom: 2,
+        bed: 3,
+        bathroom: 1,
+        selfCheckIn: true,
+        petAvailable: false,
+        smokeAvailable: false,
+        checkInTime: 9,
+        checkOutTime: 11,
+        propertyExplanation:"lorem ipsum dolor sit amet, consectetur adip e",
+        price: 100, // 평일, 주말 상관없이 가격 고정
+        amenities: [1,2,3,4],
+        country: "대한민국",
+        state: "용산구",
+        city: "서울특별시",
+        street: "Street",
+        details: "Apartment 101",
+        zipcode: "123456",
+        latitude: 27.672932021393862,
+        longitude: 85.31184012689732,
+      });
+    }),
+
+  // http.post('/hosting/listing/editor/:propertyId/status', async (req, res) => {
+  //   const propertyId = req.params.propertyId;
+  //   const { status } = req.body;  // status should be a boolean
+  //
+  //   // Update logic here
+  //
+  //   res.status(200).json({ message: 'Status updated successfully' });
+  // }),
+  // http.post('/hosting/listing/editor/:propertyId/propertyName', async (req, res) => {
+  //   const propertyId = req.params.propertyId;
+  //   const { propertyName } = req.body;  // propertyName should be a String
+  //
+  //   // Update logic here
+  //
+  //   res.status(200).json({ message: 'Property name updated successfully' });
+  // }),
+  // http.post('/hosting/listing/editor/:propertyId/propertyType', async (req, res) => {
+  //   const propertyId = req.params.propertyId;
+  //   const { propertyType } = req.body;  // propertyType should be a String
+  //
+  //   // Update logic here
+  //
+  //   res.status(200).json({ message: 'Property type updated successfully' });
+  // }),
+  // http.post('/hosting/listing/editor/:propertyId/propertyDetail', async (req, res) => {
+  //   const propertyId = req.params.propertyId;
+  //   const {
+  //     maxPeople,
+  //     selfCheckIn,  // boolean
+  //     petAvailable,  // boolean
+  //     smokeAvailable,  // boolean
+  //     checkInTime,  // int
+  //     checkOutTime,  // int
+  //     bedroom,  // int
+  //     bed,  // int
+  //     bathroom  // int
+  //   } = req.body;
+  //
+  //   // Update logic here
+  //
+  //   res.status(200).json({ message: 'Property details updated successfully' });
+  // }),
+  //   http.post('/hosting/listing/editor/:propertyId/propertyExplanation', async (req, res) => {
+  //       const propertyId = req.params.propertyId;
+  //       const { propertyExplanation } = req.body;  // String
+  //
+  //       // Update logic here
+  //
+  //       res.status(200).json({ message: 'Property explanation updated successfully' });
+  //   }),
+  // // Assuming multer is used for handling multipart/form-data
+  // http.post('/hosting/listing/editor/:propertyId/photos', upload.array('photos'), async (req, res) => {
+  //   const propertyId = req.params.propertyId;
+  //   const photos = req.files;
+  //
+  //   // Update logic here
+  //
+  //   res.status(200).json({ message: 'Photos updated successfully' });
+  // }),
+  // http.post('/hosting/listing/editor/:propertyId/amenities', async (req, res) => {
+  //   const propertyId = req.params.propertyId;
+  //   const { amenities } = req.body;  // Array of integers
+  //
+  //   // Update logic here
+  //
+  //   res.status(200).json({ message: 'Amenities updated successfully' });
+  // }),
+  // http.post('/hosting/listing/editor/:propertyId/address', async (req, res) => {
+  //   const propertyId = req.params.propertyId;
+  //   const {
+  //     country,
+  //     state,
+  //     city,
+  //     street,
+  //     details,
+  //     zipcode,
+  //     latitude,  // Double
+  //     longitude  // Double
+  //   } = req.body;
+  //
+  //   // Update logic here
+  //
+  //   res.status(200).json({ message: 'Address updated successfully' });
+  // }),
+  // http.post('/hosting/listing/editor/:propertyId/price', async (req, res) => {
+  //   const propertyId = req.params.propertyId;
+  //   const { price } = req.body;  // Integer
+  //
+  //   // Update logic here
+  //
+  //   res.status(200).json({ message: 'Price updated successfully' });
+  // }),
+
+// 숙소 예약
   http.post("/rooms/booking/:propertyId", async ({ request, params }) => {
     const propertyId = params.propertyId; // URL 경로에서 propertyId 추출
     const body = await request.json(); // 요청 본문을 JSON으로 파싱

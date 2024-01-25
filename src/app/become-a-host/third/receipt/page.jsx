@@ -15,14 +15,13 @@ export default function ReceiptPage() {
     const location = hostData?.state + ' ' + hostData.city + ' ' + hostData.street + ' ' + hostData.details
 
     return (
-        <div className="p-20">
+        <div className="flex flex-col justify-center items-center">
             <h4 className="text-4xl font-bold">숙소 검토하기</h4>
             <h4>게스트에게 표시되는 정보는 다음과 같습니다 모든정보가 정확한지 확인하세요</h4>
-            <div className="flex flex-row gap-10">
+            <div className="mt-10 flex flex-row gap-10 justify-center">
                 <CardComponent/>
                 <div className="flex flex-col text-bold text-4xl">
-                    <h4 className="font-bold mb-10">다음 단계</h4>
-                    <h4 className="font-bold">위치</h4>
+                    <h4 className="mt-10 font-bold">위치</h4>
                     <h4 className="mb-10 text-xl">{location}</h4>
                     <h4 className="font-bold">CheckIn</h4>
                     <h4 className="mb-10 text-xl">{hostData.checkInTime + '시 체크인 '}</h4>

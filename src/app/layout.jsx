@@ -8,6 +8,7 @@ import AuthSession from "@/providers/AuthSessionProvider";
 import FilterModal from "@/components/searchPage/filters/FilterModal";
 import ReactQueryProvider from "@/providers/ReactQueryProvider";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import Navbar from "@/components/navbar/Navbar";
 
 export const metadata = {
   title: "WhereBnb",

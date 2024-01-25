@@ -8,12 +8,14 @@ import useRegisterModal from "@/hooks/useRegisterModal";
 import useLoginModal from "@/hooks/useLoginModal";
 import { useSession } from "next-auth/react";
 import { signOut } from "next-auth/react";
+import {useRouter} from "next/navigation";
 
 const UserMenu = () => {
   const { data: session, status } = useSession();
   const [isOpen, setIsOpen] = useState(false);
   const registerModal = useRegisterModal();
   const loginModal = useLoginModal();
+    const router = useRouter();
 
   const toggleOpen = useCallback(() => {
     setIsOpen((value) => !value);
@@ -46,7 +48,7 @@ const UserMenu = () => {
     <div className="relative">
       <div className="flex flex-row items-center gap-3">
         <div
-          onClick={() => {}}
+          onClick={() => {router.push("/become-a-host/first/overview")}}
           className="
                         hidden
                         md:block
