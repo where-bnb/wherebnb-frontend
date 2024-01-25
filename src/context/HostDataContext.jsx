@@ -16,6 +16,7 @@ export const HostDataProvider = ({ children }) => {
 
     // 초기 hostData 구조 정의
     const initialHostData = {
+        status : true,
         userId : null,
         propertyName : '',
         propertyType : 0,
@@ -129,36 +130,25 @@ export const HostDataProvider = ({ children }) => {
     }
 
     const handleSubmit = async () => {
-        console.log("=>(HostDataContext.jsx:115) 자선수입장");
         const formData = new FormData();
         hostData.photos.forEach(photo => {
-            console.log("=>(HostDataContext.jsx:119) photo", photo);
             formData.append('photos', photo);
         });
 
         // 기타 데이터를 JSON 문자열로 변환하여 추가
-        const otherData = { ...hostData, photos: undefined };
-        formData.append('data', JSON.stringify(otherData));
-        console.log("=>(HostDataContext.jsx:124) formData.get('photos')", formData.get('photos'));
-        console.log("=>(HostDataContext.jsx:124) formData.get('photos')", formData.get('data'));
-        console.log("=>(HostDataContext.jsx:126) formData.getAll('photos')", formData.getAll('photos'));
-        console.log("=>(HostDataContext.jsx:127) otherData", otherData);
+        const { photos, lng, lat, ...otherData } = hostData;
+        formData.append('requestDto', new Blob( JSON.stringify(otherData) , {contentType: 'application/json'}));
 
         try {
-            console.log("보내는중?")
             // 서버에 POST 요청
             const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/become-a-host`, {
                 method: 'POST',
                 body: formData,
             });
-            console.log("=>(HostDataContext.jsx:135) response", response);
-
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
-
             const responseData = await response.json();
-            console.log("=>(HostDataContext.jsx:131) response data", responseData);
             // 서버 응답 처리
         } catch (error) {
             console.error('Error:', error);
@@ -176,6 +166,7 @@ export const HostDataProvider = ({ children }) => {
             // Check the URL and set the appropriate endpoint and body
             if (pathname.endsWith('/status')) {
                 endpoint = `/hosting/listing/editor/${propertyId}/status`;
+
             } else if (pathname.endsWith('/title')) {
                 endpoint = `/hosting/listing/editor/${propertyId}/propertyName`;
                 body = JSON.stringify({ propertyName: hostData.propertyName });
