@@ -33,7 +33,7 @@ export default function EditFloorPlanPage() {
 
 
     return (
-        <div>
+        <div className="flex flex-col items-center px-80">
             <FloorPlan initialData={floorPlan} onFloorPlan={handleFloorPlan}/>
             <Available />
         </div>
