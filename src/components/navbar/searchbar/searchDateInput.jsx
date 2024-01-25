@@ -14,7 +14,13 @@ import dayjs from "dayjs";
 const SearchDateInput = ({ name, label, placeholder, isOpen, setIsOpen }) => {
   const { pickedDates } = useDatePickGetter();
   const resetDatePicker = useDatePickReset();
-  const { setDateFilter, resetDateFilter } = useDateFilter();
+  const {
+    setDateFilter,
+    resetDateFilter,
+    setCheckinPlaceholder,
+    setCheckoutPlaceholder,
+    resetPlaceholder,
+  } = useDateFilter();
 
   const toggleOpen = useCallback(() => {
     setIsOpen((value) => {
@@ -37,6 +43,8 @@ const SearchDateInput = ({ name, label, placeholder, isOpen, setIsOpen }) => {
 
       // 변경된 상태 Set
       setDateFilter(pickedDates.firstPickedDate, pickedDates.secondPickedDate);
+      setCheckinPlaceholder(pickedDates.firstPickedDate);
+      setCheckoutPlaceholder(pickedDates.secondPickedDate);
     }
   }, [pickedDates]);
 
@@ -45,6 +53,7 @@ const SearchDateInput = ({ name, label, placeholder, isOpen, setIsOpen }) => {
     e.stopPropagation();
     resetDatePicker(); // react-date-picker 리셋
     resetDateFilter(); // zustand store 리셋
+    resetPlaceholder(); // placeholder 리셋
   }, []);
 
   return (

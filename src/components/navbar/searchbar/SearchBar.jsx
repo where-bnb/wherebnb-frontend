@@ -8,6 +8,7 @@ import { useDatePickGetter } from "@bcad1591/react-date-picker";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { updateQuery } from "@/utils/updateQuery";
 import { useQueryClient } from "@tanstack/react-query";
+import { useDateFilter } from "@/hooks/useSearchFilter";
 
 const SearchBar = () => {
   const queryClient = useQueryClient();
@@ -16,6 +17,7 @@ const SearchBar = () => {
   const params = useSearchParams();
   const [isSelected, setIsSelected] = useState("");
   const { pickedDates } = useDatePickGetter();
+  const { checkinPlaceholder, checkoutPlaceholder } = useDateFilter.getState();
 
   const handleClick = (e) => {
     e.stopPropagation();
@@ -72,7 +74,9 @@ const SearchBar = () => {
           name="checkIn"
           label="체크인"
           placeholder={
-            pickedDates?.firstPickedDate
+            checkinPlaceholder !== ""
+              ? checkinPlaceholder
+              : pickedDates?.firstPickedDate
               ? `${
                   pickedDates?.firstPickedDate.getMonth() + 1
                 }월 ${pickedDates?.firstPickedDate.getDate()}일`
@@ -85,7 +89,9 @@ const SearchBar = () => {
           name="checkOut"
           label="체크아웃"
           placeholder={
-            pickedDates?.secondPickedDate
+            checkoutPlaceholder !== ""
+              ? checkoutPlaceholder
+              : pickedDates?.secondPickedDate
               ? `${
                   pickedDates?.secondPickedDate.getMonth() + 1
                 }월 ${pickedDates?.secondPickedDate.getDate()}일`
