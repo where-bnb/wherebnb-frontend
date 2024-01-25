@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import Avatar from "../ui/Avatar";
 import { fromNow } from "@/utils/helpers";
 import dynamic from "next/dynamic";
+import useRoomReviewModal from "@/hooks/useRoomReviewModal";
 
 const StarRatings = dynamic(() => import("react-star-ratings"), {
   ssr: false,
@@ -10,6 +11,7 @@ const StarRatings = dynamic(() => import("react-star-ratings"), {
 const Comment = ({ review, isModal, innerRef = null }) => {
   const [isLongComment, setIsLongComment] = useState(false);
   const contentRef = useRef(null);
+  const reviewModal = useRoomReviewModal();
 
   useEffect(() => {
     if (contentRef.current) {
@@ -48,9 +50,11 @@ const Comment = ({ review, isModal, innerRef = null }) => {
       >
         {review.content}
       </p>
-      {/* TODO - comment modal */}
       {!isModal && isLongComment && (
-        <p className="underline text-sm cursor-pointer mt-2 font-semibold">
+        <p
+          className="underline text-sm cursor-pointer mt-2 font-semibold"
+          onClick={reviewModal.onOpen}
+        >
           더 보기
         </p>
       )}

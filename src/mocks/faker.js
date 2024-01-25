@@ -12,8 +12,8 @@ export const generateRoomList = (number) => {
         street: faker.location.street(),
         details: faker.location.secondaryAddress(),
         zipcode: faker.location.zipCode(),
-        latitude: faker.location.latitude(),
-        longtitude: faker.location.longitude(),
+        latitude: faker.location.latitude({ max: 33.6, min: 33.3 }),
+        longtitude: faker.location.longitude({ max: 126.7, min: 126.3 }),
       },
       searchUser: {
         userId: faker.string.uuid(),

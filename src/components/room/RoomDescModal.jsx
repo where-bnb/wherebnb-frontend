@@ -1,25 +1,24 @@
 "use client";
-import useRoomContentModal from "@/hooks/useRoomContentModal";
+import useRoomDescModal from "@/hooks/useRoomDescModal";
 import { useState, useEffect } from "react";
 import { IoMdClose } from "react-icons/io";
-import RoomIcon from "./RoomIcon";
 
-const RoomContentModal = ({ contents }) => {
-  const contentModal = useRoomContentModal();
-  const [showModal, setShowModal] = useState(contentModal.isOpen);
+const RoomDescModal = ({ propertyExplanation }) => {
+  const descModal = useRoomDescModal();
+  const [showModal, setShowModal] = useState(descModal.isOpen);
 
   useEffect(() => {
-    setShowModal(contentModal.isOpen);
-  }, [contentModal.isOpen]);
+    setShowModal(descModal.isOpen);
+  }, [descModal.isOpen]);
 
   const handleClose = () => {
     setShowModal(false);
     setTimeout(() => {
-      contentModal.onClose();
+      descModal.onClose();
     }, 300);
   };
 
-  if (!contentModal.isOpen) {
+  if (!descModal.isOpen) {
     return null;
   }
 
@@ -50,14 +49,8 @@ const RoomContentModal = ({ contents }) => {
               </div>
               {/* Content */}
               <section className="p-6">
-                <h2 className="text-2xl font-semibold">숙소 편의시설</h2>
-                <p className="mt-8">
-                  <div className="flex flex-col gap-4">
-                    {contents.map((amenity) => {
-                      return <RoomIcon key={amenity} label={amenity} />;
-                    })}
-                  </div>
-                </p>
+                <h2 className="text-2xl font-semibold">숙소 설명</h2>
+                <p className="mt-2">{propertyExplanation}</p>
               </section>
             </div>
           </div>
@@ -67,4 +60,4 @@ const RoomContentModal = ({ contents }) => {
   );
 };
 
-export default RoomContentModal;
+export default RoomDescModal;
