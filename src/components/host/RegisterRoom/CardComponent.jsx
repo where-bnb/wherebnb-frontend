@@ -13,12 +13,10 @@ export const CardComponent = () => {
         : "/images/placeholder.jpg";
 
     return (
-        <div className="px-20 rounded overflow-hidden shadow-lg w-3/5 mr-4 flex flex-col items-center border-2 border-b-gray-950 mb-3">
+        <div className="px-20 rounded overflow-hidden shadow-lg xl:w-3/5 md:w-full mr-4 flex flex-col items-center border-2 border-b-gray-950 mb-3">
             <Image className="w-auto" src={imageUrl} width="200" height="200" alt="Property Image"/>
             <div className="px-6 py-4">
-                <div className="font-bold text-xl mb-2">
-                    <h4 className="pr-20">{'숙소명 : '+ hostData.propertyName}</h4>
-                </div>
+                <h4 className="font-bold text-xl mb-2">{'숙소명 : '+ hostData.propertyName}</h4>
                 {hostData.price ?
                     <p className="text-gray-700 text-base font-bold">
                         $ {hostData.price} / 1박

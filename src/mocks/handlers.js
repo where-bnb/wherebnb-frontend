@@ -77,14 +77,14 @@ export const handlers = [
     const formData = await req.request.body;
     console.log("=>(handlers.js:77) formData", formData);
 
-    // const photos = formData.getAll('photos'); // 'photos' 필드의 모든 파일 가져오기
-    // console.log("=>(handlers.js:80) photos", photos);
-    // const otherData = formData.get('data'); // 'data' 필드의 JSON 데이터 가져오기
-    // console.log("=>(handlers.js:82) otherData", otherData);
-    //
-    // // 'data' 필드의 JSON 데이터를 객체로 파싱
-    // const parsedData = JSON.parse(otherData);
-    // console.log("=>(handlers.js:86) parsedData", parsedData);
+    const photos = formData.getAll('photos'); // 'photos' 필드의 모든 파일 가져오기
+    console.log("=>(handlers.js:80) photos", photos);
+    const otherData = formData.get('data'); // 'data' 필드의 JSON 데이터 가져오기
+    console.log("=>(handlers.js:82) otherData", otherData);
+
+    // 'data' 필드의 JSON 데이터를 객체로 파싱
+    const parsedData = JSON.parse(otherData);
+    console.log("=>(handlers.js:86) parsedData", parsedData);
 
     // 필요한 로직 수행...
     // 예: 파일의 수와 다른 데이터를 확인
@@ -92,12 +92,13 @@ export const handlers = [
     console.log(`기타 데이터: `, parsedData);
 
     // 모의 응답 반환
-    return res(ctx.status(200), ctx.json({ message: "호스팅 등록 성공" }));
+    return HttpResponse.json({}, { status: 200 });
   }),
 
     http.get("/hosting/listing/editor/:propertyId" , async ({ request, params }) => {
       return HttpResponse.json({
         // userId":null,"propertyName":"권오영네","propertyType":3,"category":5,"propertyExplanation":"아늑해요요옹","country":"대한민국","state":"경기도","city":"시흥시","street":"능곡동 산21-8","details":"3층","zipcode":"14992","latitude":37.373095436202554,"longitude":126.81675263482332,"maxPeople":2,"selfCheckIn":true,"petAvailable":true,"smokeAvailable":true,"checkInTime":9,"checkOutTime":13,"bedroom":4,"bed":2,"bathroom":5,"price":"10000","amenities":[5,10,7,4,8],"lat":37.373095436202554,"lng":126.81675263482332
+        status : true,
         propertyName: "Lovely Apartment",
         category: 6,
         photos: [
@@ -260,10 +261,28 @@ export const handlers = [
   http.post("/rooms/booking/:propertyId", async ({ request, params }) => {
     const propertyId = params.propertyId; // URL 경로에서 propertyId 추출
     const body = await request.json(); // 요청 본문을 JSON으로 파싱
-
-    // 이제 propertyId와 body 데이터를 사용할 수 있음
-    console.log(propertyId, body);
-    return HttpResponse.json({});
+    // return new HttpResponse(
+    //   "예약에 실패했습니다. 결제처리 중 문제가 발생했습니다.",
+    //   {
+    //     status: 503,
+    //   },
+    // );
+    return new HttpResponse("예약이 완료되었습니다.", {
+      status: 201,
+    });
+  }),
+  // 예약 페이지 접근시
+  http.get("/rooms/booking/:propertyId", async ({ request, params }) => {
+    // return HttpResponse.text(JSON.stringify("user_exists"), {
+    //   status: 403,
+    // });
+    return HttpResponse.json({
+      propertyName: "Lovely Apartment",
+      propertyPhoto:
+        "https://develsopher-nextjs.s3.ap-northeast-2.amazonaws.com/burger.jpg",
+      propertyType: "호텔",
+      pricePerDay: 100,
+    });
   }),
   // 숙소상세 정보
   http.get("/rooms/:roomId", ({ request, params }) => {

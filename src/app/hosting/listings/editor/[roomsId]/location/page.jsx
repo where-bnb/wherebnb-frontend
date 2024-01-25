@@ -34,7 +34,7 @@ export default function EditLocationPage() {
             <div
                 className="flex justify-center items-center w-full h-full"
             >
-                loading...
+                <h4>loading...</h4>
             </div>)
     }
 
