@@ -9,11 +9,9 @@ export default function ListingPage() {
     // 페이지 내용
     return (
         <div className="">
-            <h4 className="mb-3 ml-10 text-4xl font-bold">숙소 관리</h4>
+            <h4 className="mb-3 ml-28 text-4xl font-bold">숙소 관리</h4>
             <div className="p-20 flex flex-wrap">
-                <RoomsCardComponent title={"그냥집"} />
-                <RoomsCardComponent title={"그냥집"} />
-                <RoomsCardComponent title={"그냥집"} />
+                <RoomsCardComponent/>
             </div>
         </div>
     );

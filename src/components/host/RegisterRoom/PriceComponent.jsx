@@ -7,8 +7,8 @@ export default function PriceComponent({priceNumber, onChange}) {
     const [price, setPrice] = useState(priceNumber);
 
     const handlePriceChange = (event) => {
-        setPrice(event.target.value);
-        onChange(event.target.value);
+        setPrice(parseInt(event.target.value));
+        onChange(parseInt(event.target.value));
     }
 
     return (

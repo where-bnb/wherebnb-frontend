@@ -3,7 +3,6 @@
 import React, {useState, useRef, useCallback, useEffect} from 'react';
 import { GoogleMap, Marker, LoadScript, StandaloneSearchBox } from '@react-google-maps/api';
 import axios from "axios";
-import Input from "@/components/host/DesignSystem/Input";
 import LocationParsingInput from "@/components/host/Hosting/LocationParsingInput";
 
 
@@ -12,8 +11,8 @@ const GOOGLE_MAPS_API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY;
 const libraries = ["places"];
 
 const containerStyle = {
-    width: '900px',
-    height: '1000px'
+    width: '700px',
+    height: '700px'
 };
 
 
@@ -63,10 +62,15 @@ function GoogleMapComponent({ initialData, onLocationSelect, center}) {
             const place = places[0];
 
             if (place.geometry) {
-                setLocation({
+                const newLocation = {
                     latitude: place.geometry.location.lat(),
-                    longitude: place.geometry.location.lng()
-                });
+                    lat: place.geometry.location.lat(),
+                    longitude: place.geometry.location.lng(),
+                    lng: place.geometry.location.lng()
+                };
+                setLocation(newLocation); // Update location for Marker
+                setAddress({ ...address, details: place.formatted_address }); // Optional: Update address details with new place
+
                 // Extract address components from the selected place and update address state
                 const addressComponents = place.address_components;
                 const formattedAddress = place.formatted_address;
@@ -140,7 +144,7 @@ function GoogleMapComponent({ initialData, onLocationSelect, center}) {
                 googleMapsApiKey={GOOGLE_MAPS_API_KEY}
                 libraries={libraries}
             >
-                <div className="flex flex-col gap-10 w-2/5 pr-10 flex-center">
+                <div className="flex flex-col w-2/5 pr-10 flex-center">
                     <h4 className="text-4xl font-bold">숙소의 위치는 어디인가요?</h4>
                     <StandaloneSearchBox
                         onLoad={onSearchBoxLoad}

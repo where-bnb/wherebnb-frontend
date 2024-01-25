@@ -8,7 +8,7 @@ import {
   InfoWindowF,
 } from "@react-google-maps/api";
 import LoadingSpinner from "../LoadingSpinner";
-import React, { useEffect, useMemo } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useInfiniteQuery, useQueryClient } from "@tanstack/react-query";
 import MarkerIcon from "./MarkerIcon";
 import { useSearchParams } from "next/navigation";
@@ -21,6 +21,7 @@ const containerStyle = {
 
 const SearchMap = () => {
   const searchParams = qs.parse(useSearchParams().toString());
+  const [selectedMarker, setSelectedMarker] = useState("");
 
   // Query Data 불러오기
   const { data: list, isLoading } = useInfiniteQuery({
@@ -35,7 +36,6 @@ const SearchMap = () => {
       }
     },
   });
-  console.log("querydata", list);
 
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_API_KEY,
@@ -54,6 +54,10 @@ const SearchMap = () => {
 
   // mapCenter : 임의 지정 (제주시 부근)
   const mapCenter = useMemo(() => ({ lat: 33.487, lng: 126.531 }), []);
+
+  const toggleSelectedMarker = useCallback((propertyId) => {
+    setSelectedMarker(propertyId);
+  }, []);
 
   if (!isLoaded || isLoading) {
     return (
@@ -87,7 +91,11 @@ const SearchMap = () => {
               }}
               mapPaneName="overlayMouseTarget"
             >
-              <MarkerIcon price={room.price} />
+              <MarkerIcon
+                onClick={toggleSelectedMarker}
+                room={room}
+                selected={selectedMarker === room.propertyId}
+              />
             </OverlayViewF>
           ))
         )}

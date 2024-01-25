@@ -1,6 +1,6 @@
 const LocationParsingInput = ({ value, placeholder, onChange, isReadOnly= true }) => (
     <input
-        className="p-10 text-2xl mt-10 w-full h-12 px-4 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-500"
+        className="md:p-5 xl:p-8 xl:text-2xl md:text-xl mt-8 w-full xl:h-7 md:h-5 px-4 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-500"
         type="text"
         value={value}
         placeholder={placeholder}

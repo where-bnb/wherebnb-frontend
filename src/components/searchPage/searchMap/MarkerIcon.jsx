@@ -1,10 +1,33 @@
-const MarkerIcon = ({ price }) => {
+import { useCallback } from "react";
+
+const MarkerIcon = ({ onClick, room, selected }) => {
+  const toggleInfoWindow = useCallback((propertyId) => {
+    onClick(propertyId);
+  }, []);
+
   return (
-    <div className="flex  justify-center size-fit rounded-2xl border-[1px] border-neutral-300 shadow-md py-1 px-2 bg-white">
-      <div className="whitespace-nowrap text-sm font-bold">
-        ₩ {Number(price).toLocaleString()}
+    <>
+      <div
+        onClick={() => toggleInfoWindow(room.propertyId)}
+        className={`
+    flex
+    justify-center
+    size-fit
+    rounded-2xl
+    border-[1px]
+    shadow-lg
+    py-1 px-2
+    ${selected ? "border-neutral-800" : "border-neutral-300"}
+    ${selected ? "bg-black" : "bg-white"}
+    ${selected ? "text-white" : "text-black"}
+   `}
+      >
+        <div className="whitespace-nowrap text-sm font-bold">
+          ₩ {Number(room.price).toLocaleString()}
+        </div>
       </div>
-    </div>
+      {selected && <div className="bg-white">infowindow</div>}
+    </>
   );
 };
 
