@@ -53,10 +53,10 @@ export const updateQuery = (pathname, params) => {
   if (updatedQuery.place === "") {
     delete updatedQuery.place;
   }
-  if (updatedQuery.checkin) {
+  if (!updatedQuery.checkin) {
     updatedQuery.checkin = dayjs().format("YYYY-MM-DD");
   }
-  if (updatedQuery.checkout) {
+  if (!updatedQuery.checkout) {
     updatedQuery.checkout = dayjs().add(1, "week").format("YYYY-MM-DD");
   }
   if (updatedQuery.adults === 0) {

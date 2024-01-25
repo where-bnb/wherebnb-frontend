@@ -12,6 +12,8 @@ export const useSearchKey = create((set) => ({
 export const useDateFilter = create((set) => ({
   checkin: dayjs().format("YYYY-MM-DD"),
   checkout: dayjs().add(1, "week").format("YYYY-MM-DD"),
+  checkinPlaceholder: "",
+  checkoutPlaceholder: "",
   setDateFilter: (checkin, checkout) => {
     set({
       checkin: dayjs(checkin).format("YYYY-MM-DD"),
@@ -22,6 +24,19 @@ export const useDateFilter = create((set) => ({
     set({
       checkin: dayjs().format("YYYY-MM-DD"),
       checkout: dayjs().add(1, "week").format("YYYY-MM-DD"),
+    }),
+  setCheckinPlaceholder: (value) =>
+    set({
+      checkinPlaceholder: dayjs(value).format("MM월 DD일"),
+    }),
+  setCheckoutPlaceholder: (value) =>
+    set({
+      checkoutPlaceholder: dayjs(value).format("MM월 DD일"),
+    }),
+  resetPlaceholder: () =>
+    set({
+      checkinPlaceholder: "",
+      checkoutPlaceholder: "",
     }),
 }));
 
