@@ -7,3 +7,179 @@ body,
 :root {
   height: 100%;
 }
+
+/* google map custom marker */
+.gm-ui-hover-effect {
+  display: none !important;
+}
+
+.text-overflow {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  word-break: break-word;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+}
+
+.no-scroll {
+  overflow: hidden;
+}
+
+/* Rheostat */
+
+.DefaultProgressBar__vertical {
+  width: 24px;
+  height: 100%;
+}
+.DefaultProgressBar_progressBar {
+  background-color: black;
+  position: absolute;
+}
+
+.DefaultProgressBar_progressBar__vertical {
+  height: 100%;
+  width: 24px;
+}
+
+.DefaultProgressBar_background__vertical {
+  height: 100%;
+  top: 0px;
+  width: 15px;
+}
+
+.DefaultProgressBar_background__horizontal {
+  height: 3px;
+  top: 0px;
+}
+
+.DefaultHandle_handle {
+  width: 30px;
+  height: 30px;
+  border: 1px solid;
+  border-color: #d4d4d4;
+  background-color: white;
+  border-radius: 100%;
+  outline: none;
+  z-index: 2;
+}
+
+.DefaultHandle_handle:focus {
+  box-shadow: #abc4e8 0 0 1px 1px;
+}
+
+.DefaultHandle_handle__horizontal {
+  margin-left: -12px;
+  top: -12px;
+}
+
+.DefaultHandle_handle__horizontal:before {
+  top: 7px;
+  height: 10px;
+  width: 1px;
+  left: 10px;
+}
+
+.DefaultHandle_handle__horizontal:after {
+  top: 7px;
+  height: 10px;
+  width: 1px;
+  left: 13px;
+}
+
+.DefaultHandle_handle__disabled {
+  border-color: #dbdbdb;
+}
+
+.DefaultBackground {
+  background-color: #e5e5e5;
+  height: 3px;
+  width: 100%;
+  border: 1px solid #d8d8d8;
+  position: relative;
+}
+
+.DefaultBackground_background__horizontal {
+  height: 3px;
+  top: 0px;
+  left: -2px;
+  bottom: 4px;
+  width: 100%;
+}
+
+.DefaultBackground_background__vertical {
+  width: 15px;
+  top: 0px;
+  height: 100%;
+}
+
+.rheostat {
+  position: relative;
+  overflow: visible;
+  margin-top: 30px;
+  margin-bottom: 40px;
+  width: 80%;
+}
+@media (min-width: 1128px) {
+  .autoAdjustVerticalPosition {
+    top: 12px;
+  }
+}
+
+.rheostat__vertical {
+  height: 100%;
+}
+
+.handleContainer {
+  height: 15px;
+  top: -2px;
+  left: -2px;
+  bottom: 4px;
+  width: 100%;
+  position: absolute;
+}
+
+.rheostat_background {
+  background-color: #fcfcfc;
+  border: 1px solid #d8d8d8;
+  position: relative;
+}
+
+.rheostat_background__horizontal {
+  height: 15px;
+  top: -2px;
+  left: -2px;
+  bottom: 4px;
+  width: 100%;
+}
+
+.rheostat_background__vertical {
+  width: 15px;
+  top: 0px;
+  height: 100%;
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0.5;
+  }
+}
+
+.animate-bounce {
+  animation: bounce 1s infinite;
+}
+
+.animate-bounce200 {
+  animation: bounce 1s infinite 200ms;
+}
+
+.animate-bounce400 {
+  animation: bounce 1s infinite 400ms;
+}

@@ -17,7 +17,16 @@ module.exports = {
         accent: "#008489",
         error: "#C13515",
       },
+      scrollbarHide: {
+        "-ms-overflow-style": "none", // IE와 Edge를 위한 설정
+        "scrollbar-width": "none", // Firefox를 위한 설정
+        "&::-webkit-scrollbar": {
+          // Chrome, Safari, Opera를 위한 설정
+          display: "none",
+        },
+      },
     },
   },
+  mode: "jit",
   plugins: [],
 };
